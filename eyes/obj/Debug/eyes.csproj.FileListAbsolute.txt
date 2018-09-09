@@ -1,0 +1,899 @@
+c:\users\admin\source\repos\eyes\eyes\bin\Debug\eyes.exe.config
+c:\users\admin\source\repos\eyes\eyes\bin\Debug\eyes.exe
+c:\users\admin\source\repos\eyes\eyes\bin\Debug\eyes.pdb
+c:\users\admin\source\repos\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+c:\users\admin\source\repos\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.Form1.resources
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.exe
+c:\users\admin\source\repos\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes127\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes127\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes127\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes127\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes127\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes127\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes127\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes127\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes127\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes127\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes127\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes127\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes128\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes128\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes128\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes128\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes128\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes128\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes129\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes129\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes129\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes129\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes129\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes129\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes129\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes129\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes129\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes129\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes129\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes129\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes130\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes130\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes130\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes130\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes130\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes130\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes201\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes201\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes201\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes201\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes201\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes201\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes203\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes203\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes203\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes203\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes203\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes203\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\admin\source\repos\eyes203\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\admin\source\repos\eyes203\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\Kakeru\source\repos\eyes204\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes204\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\Kakeru\source\repos\eyes206\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes206\eyes\obj\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\eyes.exe.config
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\eyes.pdb
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\Kakeru\source\repos\eyes208\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.exe
+C:\Users\Kakeru\source\repos\eyes208\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\admin\source\repos\eyes221\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes221\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\admin\source\repos\eyes224\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.exe
+C:\Users\admin\source\repos\eyes224\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes226\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes226\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Documents\GitHub\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\eyes.exe.config
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\eyes.exe
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\eyes.pdb
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\admin\Documents\GitHub\eyes\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.exe
+C:\Users\admin\Documents\GitHub\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+F:\桌面\eyes 0327\eyes\bin\Debug\eyes.exe.config
+F:\桌面\eyes 0327\eyes\bin\Debug\eyes.exe
+F:\桌面\eyes 0327\eyes\bin\Debug\eyes.pdb
+F:\桌面\eyes 0327\eyes\bin\Debug\PdfiumViewer.dll
+F:\桌面\eyes 0327\eyes\bin\Debug\Emgu.CV.World.xml
+F:\桌面\eyes 0327\eyes\bin\Debug\PdfiumViewer.xml
+F:\桌面\eyes 0327\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.Form1.resources
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.Form2.resources
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.Form3.resources
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.Properties.Resources.resources
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.exe
+F:\桌面\eyes 0327\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0327\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0327\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0327\eyes 0327\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0416\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0416\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0416\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0425\eyes 0425\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0506\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0506\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0506\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0516\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0516\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0524\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0524\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0601\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0605\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0605\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0605\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0608\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0608\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\eyes.exe.config
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\kakeru\Desktop\eyes 0610\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.exe
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.pdb
+C:\Users\kakeru\Desktop\eyes 0610\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0613\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0613\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0613\eyes\bin\Debug\eyes.exe
+E:\eyes 0613\eyes\bin\Debug\eyes.pdb
+E:\eyes 0613\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0613\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0613\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0613\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0613\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0613\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0613\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0613\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0613\eyes\obj\Debug\eyes.exe
+E:\eyes 0613\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes 0613\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0625\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0625\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0625\eyes\bin\Debug\eyes.exe
+E:\eyes 0625\eyes\bin\Debug\eyes.pdb
+E:\eyes 0625\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0625\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0625\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0625\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0625\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0625\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0625\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0625\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0625\eyes\obj\Debug\eyes.exe
+E:\eyes 0625\eyes\obj\Debug\eyes.pdb
+E:\eyes 0701\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0701\eyes\bin\Debug\eyes.exe
+E:\eyes 0701\eyes\bin\Debug\eyes.pdb
+E:\eyes 0701\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0701\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0701\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0701\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0701\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0701\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0701\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0701\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0701\eyes\obj\Debug\eyes.exe
+E:\eyes 0701\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0701\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0704\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0704\eyes\bin\Debug\eyes.exe
+E:\eyes 0704\eyes\bin\Debug\eyes.pdb
+E:\eyes 0704\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0704\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0704\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0704\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0704\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0704\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0704\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0704\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0704\eyes\obj\Debug\eyes.exe
+E:\eyes 0704\eyes\obj\Debug\eyes.pdb
+F:\桌面\eyes 0704\eyes\bin\Debug\eyes.exe.config
+F:\桌面\eyes 0704\eyes\bin\Debug\eyes.exe
+F:\桌面\eyes 0704\eyes\bin\Debug\eyes.pdb
+F:\桌面\eyes 0704\eyes\bin\Debug\PdfiumViewer.dll
+F:\桌面\eyes 0704\eyes\bin\Debug\Emgu.CV.World.xml
+F:\桌面\eyes 0704\eyes\bin\Debug\PdfiumViewer.xml
+F:\桌面\eyes 0704\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Form1.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Form2.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Form3.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Form4.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Form5.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.Properties.Resources.resources
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.exe
+F:\桌面\eyes 0704\eyes\obj\Debug\eyes.pdb
+E:\真eyes 0707\eyes\bin\Debug\eyes.exe.config
+E:\真eyes 0707\eyes\bin\Debug\eyes.exe
+E:\真eyes 0707\eyes\bin\Debug\eyes.pdb
+E:\真eyes 0707\eyes\bin\Debug\PdfiumViewer.dll
+E:\真eyes 0707\eyes\bin\Debug\Emgu.CV.World.xml
+E:\真eyes 0707\eyes\bin\Debug\PdfiumViewer.xml
+E:\真eyes 0707\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\真eyes 0707\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\真eyes 0707\eyes\obj\Debug\eyes.Form1.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.Form2.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.Form3.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.Form4.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.Form5.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\真eyes 0707\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\真eyes 0707\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\真eyes 0707\eyes\obj\Debug\eyes.exe
+E:\真eyes 0707\eyes\obj\Debug\eyes.pdb
+E:\eyes 0715\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0715\eyes\bin\Debug\eyes.exe
+E:\eyes 0715\eyes\bin\Debug\eyes.pdb
+E:\eyes 0715\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0715\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0715\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0715\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0715\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0715\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0715\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0715\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0715\eyes\obj\Debug\eyes.exe
+E:\eyes 0715\eyes\obj\Debug\eyes.pdb
+F:\桌面\eyes 0723\eyes\bin\Debug\eyes.exe.config
+F:\桌面\eyes 0723\eyes\bin\Debug\eyes.exe
+F:\桌面\eyes 0723\eyes\bin\Debug\eyes.pdb
+F:\桌面\eyes 0723\eyes\bin\Debug\PdfiumViewer.dll
+F:\桌面\eyes 0723\eyes\bin\Debug\Emgu.CV.World.xml
+F:\桌面\eyes 0723\eyes\bin\Debug\PdfiumViewer.xml
+F:\桌面\eyes 0723\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Form1.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Form2.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Form3.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Form4.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Form5.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.Properties.Resources.resources
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.exe
+F:\桌面\eyes 0723\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0723\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0723\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0723\eyes\bin\Debug\eyes.exe
+E:\eyes 0723\eyes\bin\Debug\eyes.pdb
+E:\eyes 0723\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0723\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0723\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0723\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0723\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0723\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0723\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0723\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0723\eyes\obj\Debug\eyes.exe
+E:\eyes 0723\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0815\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0822\eyes\bin\Debug\eyes.exe.config
+E:\eyes 0822\eyes\bin\Debug\eyes.exe
+E:\eyes 0822\eyes\bin\Debug\eyes.pdb
+E:\eyes 0822\eyes\bin\Debug\PdfiumViewer.dll
+E:\eyes 0822\eyes\bin\Debug\Emgu.CV.World.xml
+E:\eyes 0822\eyes\bin\Debug\PdfiumViewer.xml
+E:\eyes 0822\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\eyes 0822\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+E:\eyes 0822\eyes\obj\Debug\eyes.Form1.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.Form2.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.Form3.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.Form4.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.Form5.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\eyes 0822\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
+E:\eyes 0822\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\eyes 0822\eyes\obj\Debug\eyes.exe
+E:\eyes 0822\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\eyes.exe.config
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\eyes.exe
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\eyes.pdb
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\Emgu.CV.World.dll
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\PdfiumViewer.dll
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\Emgu.CV.World.xml
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\PdfiumViewer.xml
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.csprojResolveAssemblyReference.cache
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form1.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form2.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form3.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form4.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form5.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Properties.Resources.resources
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
