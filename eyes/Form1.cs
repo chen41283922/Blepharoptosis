@@ -5204,9 +5204,9 @@ namespace eyes
                             //document.Add(new Paragraph("Hello World"));
                             //document.Close();
 
-                            var form = new Form6();
-                            form.showpdf(Savefile.FileName);
-                            form.Show(this);
+                            //var form = new Form6();
+                            //form.showpdf(Savefile.FileName);
+                            //form.Show(this);
                         }
                         catch
                         {
@@ -5994,6 +5994,39 @@ namespace eyes
 
             imageBox6.Image = MeasurementImage;
         }
+        // LEVATOR radioButton
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            imageBox7.Visible = true;
+            imageBox8.Visible = true;
+            imageBox9.Visible = true;
+            imageBox10.Visible = true;
+
+            /* R_eye */
+            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
+            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
+            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+
+            Point pupil = new Point((int)pupil_x, (int)pupil_y);
+            Point upperEyelid = new Point((int)pupil_x, (int)maxParRight.above.FY(pupil_x));
+            imageBox5.Image = measurementVisualize(MeasurementImage, upperEyelid, upperEyelid, Levetor[0]);
+
+            /* L_eye */
+            MeasurementImage = L_eyeParticle.Clone();
+            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
+            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+
+            pupil = new Point((int)pupil_x, (int)pupil_y);
+            upperEyelid = new Point((int)pupil_x, (int)maxPar.above.FY(pupil_x));
+
+            imageBox6.Image = measurementVisualize(MeasurementImage, upperEyelid, upperEyelid, Levetor[1]);
+
+            imageBox7.Image = R_LevatorUp.Clone();
+            imageBox8.Image = L_LevatorUp.Clone();
+            imageBox9.Image = R_LevatorDown.Clone();
+            imageBox10.Image = L_LevatorDown.Clone();
+        }
+
         // PS radioButton
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {

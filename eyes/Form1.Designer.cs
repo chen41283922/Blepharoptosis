@@ -112,7 +112,11 @@
             this.radioButton_PFH3 = new System.Windows.Forms.RadioButton();
             this.radioButton_MRD2 = new System.Windows.Forms.RadioButton();
             this.radioButton_MRD1 = new System.Windows.Forms.RadioButton();
-            this.label_Levator = new System.Windows.Forms.Label();
+            this.imageBox7 = new Emgu.CV.UI.ImageBox();
+            this.imageBox8 = new Emgu.CV.UI.ImageBox();
+            this.imageBox9 = new Emgu.CV.UI.ImageBox();
+            this.imageBox10 = new Emgu.CV.UI.ImageBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox6)).BeginInit();
@@ -126,6 +130,10 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -364,7 +372,6 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "                              ";
             this.label5.Visible = false;
-            
             // 
             // label6
             // 
@@ -378,7 +385,6 @@
             this.label6.Text = "                          ";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.label6.Visible = false;
-            
             // 
             // label49
             // 
@@ -799,7 +805,7 @@
             // 
             // imageBox5
             // 
-            this.imageBox5.Location = new System.Drawing.Point(865, 38);
+            this.imageBox5.Location = new System.Drawing.Point(890, 38);
             this.imageBox5.Name = "imageBox5";
             this.imageBox5.Size = new System.Drawing.Size(243, 121);
             this.imageBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -937,12 +943,11 @@
             this.label7.Text = "                              ";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.label7.Visible = false;
-            
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label_Levator);
             this.panel1.Controls.Add(this.radioButtonOri);
+            this.panel1.Controls.Add(this.radioButton7);
             this.panel1.Controls.Add(this.radioButton_OSA);
             this.panel1.Controls.Add(this.radioButton_PS);
             this.panel1.Controls.Add(this.radioButton_PFW4);
@@ -1054,16 +1059,59 @@
             this.radioButton_MRD1.UseVisualStyleBackColor = true;
             this.radioButton_MRD1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // label_Levator
+            // imageBox7
             // 
-            this.label_Levator.AutoSize = true;
-            this.label_Levator.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_Levator.ForeColor = System.Drawing.Color.White;
-            this.label_Levator.Location = new System.Drawing.Point(34, 250);
-            this.label_Levator.Name = "label_Levator";
-            this.label_Levator.Size = new System.Drawing.Size(101, 21);
-            this.label_Levator.TabIndex = 5;
-            this.label_Levator.Text = "LEVATOR";
+            this.imageBox7.Location = new System.Drawing.Point(890, 547);
+            this.imageBox7.Name = "imageBox7";
+            this.imageBox7.Size = new System.Drawing.Size(243, 121);
+            this.imageBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBox7.TabIndex = 2;
+            this.imageBox7.TabStop = false;
+            this.imageBox7.Visible = false;
+            // 
+            // imageBox8
+            // 
+            this.imageBox8.Location = new System.Drawing.Point(1155, 547);
+            this.imageBox8.Name = "imageBox8";
+            this.imageBox8.Size = new System.Drawing.Size(243, 121);
+            this.imageBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBox8.TabIndex = 2;
+            this.imageBox8.TabStop = false;
+            this.imageBox8.Visible = false;
+            // 
+            // imageBox9
+            // 
+            this.imageBox9.Location = new System.Drawing.Point(890, 708);
+            this.imageBox9.Name = "imageBox9";
+            this.imageBox9.Size = new System.Drawing.Size(243, 121);
+            this.imageBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBox9.TabIndex = 2;
+            this.imageBox9.TabStop = false;
+            this.imageBox9.Visible = false;
+            // 
+            // imageBox10
+            // 
+            this.imageBox10.Location = new System.Drawing.Point(1155, 708);
+            this.imageBox10.Name = "imageBox10";
+            this.imageBox10.Size = new System.Drawing.Size(243, 121);
+            this.imageBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBox10.TabIndex = 2;
+            this.imageBox10.TabStop = false;
+            this.imageBox10.Visible = false;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.radioButton7.ForeColor = System.Drawing.Color.White;
+            this.radioButton7.Location = new System.Drawing.Point(16, 243);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(119, 25);
+            this.radioButton7.TabIndex = 4;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "LEVATOR";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioButton7.CheckedChanged += new System.EventHandler(this.radioButton7_CheckedChanged);
             // 
             // Form1
             // 
@@ -1083,6 +1131,10 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.imageBox6);
+            this.Controls.Add(this.imageBox10);
+            this.Controls.Add(this.imageBox8);
+            this.Controls.Add(this.imageBox9);
+            this.Controls.Add(this.imageBox7);
             this.Controls.Add(this.imageBox5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -1121,6 +1173,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1210,7 +1266,11 @@
         private System.Windows.Forms.RadioButton radioButton_MRD1;
         private System.Windows.Forms.RadioButton radioButton_OSA;
         private System.Windows.Forms.RadioButton radioButtonOri;
-        private System.Windows.Forms.Label label_Levator;
+        private Emgu.CV.UI.ImageBox imageBox7;
+        private Emgu.CV.UI.ImageBox imageBox8;
+        private Emgu.CV.UI.ImageBox imageBox9;
+        private Emgu.CV.UI.ImageBox imageBox10;
+        private System.Windows.Forms.RadioButton radioButton7;
     }
 }
 
