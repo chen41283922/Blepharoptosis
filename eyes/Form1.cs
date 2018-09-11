@@ -17,6 +17,8 @@ using bearing;
 using EyeDection;
 using SomeCalibrations;
 using eyes;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace eyes
 {
@@ -3502,7 +3504,7 @@ namespace eyes
                 Graphics gr = Graphics.FromImage(drawface);//畫上曲線
                 Pen pr = new Pen(Color.FromArgb(255, 255, 0, 0), 3);
                 Pen pg = new Pen(Color.FromArgb(255, 0, 255, 0), 3);
-                int Xsize = 22;//X記號大小
+                //int Xsize = 22;//X記號大小
 
                 //g.DrawLine(pen, 50, 180, 400, 180);
                 //gr.DrawLine(pg, 224, 180, 224, 595);//臉高
@@ -3746,7 +3748,7 @@ namespace eyes
                 gw109.Dispose();
                 //pictureBox1.Image = mybmp109;
                 /////////////////////////////////////////////////////////////////////////上耳+中耳(右)
-                Image MergedImage112 = default(Image);
+                //Image MergedImage112 = default(Image);
                 Int32 Wide112 = 0;
                 Int32 High112 = 0;
                 High112 = upfacespace2.Height + rightear.Height;//設定高度          
@@ -3772,7 +3774,7 @@ namespace eyes
                 gw112.Dispose();
                 //pictureBox1.Image = mybmp112;
                 /////////////////////////////////////////////////////////////////////////上耳+中耳+下耳(右)
-                Image MergedImage113 = default(Image);
+                //Image MergedImage113 = default(Image);
                 Int32 Wide113 = 0;
                 Int32 High113 = 0;
                 High113 = mybmp112.Height + downfacespace2.Height;//設定高度          
@@ -4192,7 +4194,7 @@ namespace eyes
                 gw106.Dispose();
                 // pictureBox1.Image = mybmp106;
                 /////////////////////////////////////////////////////////////////////////+下面空白
-                Image MergedImage107 = default(Image);
+                //Image MergedImage107 = default(Image);
                 Int32 Wide107 = 0;
                 Int32 High107 = 0;
                 High107 = mybmp106.Height + upspace.Height;//設定高度          
@@ -4290,7 +4292,7 @@ namespace eyes
                 gs210.Dispose();
                 //pictureBox1.Image = bi210;
                 /////////////////////////////////////////////////////////////////////////上空白處+上耳+中耳+下耳(右)
-                Image MergedImage114 = default(Image);
+                //Image MergedImage114 = default(Image);
                 Int32 Wide114 = 0;
                 Int32 High114 = 0;
                 High114 = spacefree.Height + mybmp113.Height;//設定高度          
@@ -4316,7 +4318,7 @@ namespace eyes
                 gw114.Dispose();
                 //pictureBox1.Image = mybmp114;
                 /////////////////////////////////////////////////////////////////////////上空白處+上耳+中耳+下耳+下空白處(右)
-                Image MergedImage115 = default(Image);
+                //Image MergedImage115 = default(Image);
                 Int32 Wide115 = 0;
                 Int32 High115 = 0;
                 High115 = mybmp114.Height + spacefree2.Height;//設定高度          
@@ -4342,7 +4344,7 @@ namespace eyes
                 gw115.Dispose();
                 //pictureBox1.Image = mybmp115;
                 ////////////////////////////////////////////////////////////////////////////右耳+整圖
-                Image MR216 = default(Image);
+                //Image MR216 = default(Image);
                 Int32 WD216 = 0;
                 Int32 HH216 = 0;
                 WD216 = bi210.Width + mybmp115.Width;//設定寬度           
@@ -4364,7 +4366,7 @@ namespace eyes
                 gs216.Dispose();
                 //pictureBox1.Image = bi216;
                 ////////////////////////////////////////////////////////////////////////////test1
-                Image MR217 = default(Image);
+                //Image MR217 = default(Image);
                 Int32 WD217 = 0;
                 Int32 HH217 = 0;
                 WD217 = mybmp109.Width + mybmp104.Width;//設定寬度           
@@ -4825,7 +4827,7 @@ namespace eyes
             L_eye_SobelY = L_eye.Convert<Gray, byte>().Sobel(0, 1, 3);
             L_eye_SobelY = L_eye_SobelY.AbsDiff(new Gray(0));
             L_eye_SobelY.Save("L_eye_SobelY.jpg");
-
+            
             timer2.Enabled = true;
             timer2.Start();
         }
@@ -4841,7 +4843,7 @@ namespace eyes
         Image<Bgr, byte> ParticleDraw;
         PointF R_CornerL, R_CornerR;
         PointF L_CornerL, L_CornerR;
-        Rectangle L_PupilROI, R_PupilROI;
+        System.Drawing.Rectangle L_PupilROI, R_PupilROI;
         Rectangle L_CornerR_ROI, L_CornerL_ROI;
         Rectangle R_CornerR_ROI, R_CornerL_ROI;
         List<List<PointF>> CtrlPoints = new List<List<PointF>>();
@@ -4872,21 +4874,23 @@ namespace eyes
                 turn = R_eyeParticle.Clone();
                 doppff = false;
 
-                CtrlPoints = ContourSampling(getContour(R_eyeParticle),3);
+                CtrlPoints = ContourSampling(getContour(R_eyeParticle),7);
 
-                //foreach (var p in CtrlPoints[1]){
-                //    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                //}
-                //foreach (var p in CtrlPoints[0]){
-                //    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
-                //}
+                foreach (var p in CtrlPoints[1])
+                {
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                }
+                foreach (var p in CtrlPoints[0])
+                {
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                }
                 R_eyeParticle.Save("R_Ctrl.jpg");
             }
             if (doppff && LorR_flag == 1)
             {
                 maxParRight = new Parcitle(maxPar);
                 maxParRight.Graddraw(ref R_eye);
-                
+                maxParRight.drawtest(ref R_eye);
                 // Calculate R_eye measurement
                 measurementCalculate(R_PupilROI, R_eye_Pupil, maxParRight);
 
@@ -4894,14 +4898,16 @@ namespace eyes
                 turn = L_eyeParticle.Clone();
                 doppff = false;
                 
-                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),3);
+                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),7);
 
-                //foreach (var p in CtrlPoints[1]){
-                //    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                //}
-                //foreach (var p in CtrlPoints[0]){
-                //    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
-                //}
+                foreach (var p in CtrlPoints[1])
+                {
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                }
+                foreach (var p in CtrlPoints[0])
+                {
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                }
                 L_eyeParticle.Save("L_Ctrl.jpg");
 
                 maxPar = null;
@@ -4928,7 +4934,7 @@ namespace eyes
                 if (loopcounter == 2)
                 {
                     maxPar.Graddraw(ref L_eye);
-
+                    maxPar.drawtest(ref L_eye);
                     Console.WriteLine("end");
 
                     L_eye.Save("L_eyeROI.jpg");
@@ -4968,7 +4974,260 @@ namespace eyes
                                   "\n" + Levetor[1].ToString("#0.#0");
 
                     timer2.Stop();
+
+                    #region PDF report
+                    SaveFileDialog Savefile = new SaveFileDialog();
+                    Savefile.DefaultExt = "pdf";
+                    Savefile.Filter = "PDF 檔案(.pdf)|*.pdf";
+
+
+                    if (Savefile.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            PdfReader reader = new PdfReader("sample.pdf");
+                            int n = reader.NumberOfPages;
+                            PdfStamper stamp = new PdfStamper(reader, new FileStream(Savefile.FileName, FileMode.Create));
+                            PdfContentByte under;
+                            //iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance("D:\\51863897_p0.jpg");
+                            //img.SetAbsolutePosition(0, 0);
+                            BaseFont bfHei = BaseFont.CreateFont(@"arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+
+
+                            int i = 0;
+                            while (i < n)
+                            {
+                                i++;
+                                under = stamp.GetOverContent(i);
+                                PdfTemplate template;
+
+                                #region slit_pre
+                                template = under.CreateTemplate(60, 20);
+                                //template.AddImage(img);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PFH[0].ToString("#0.#0"));//右眼
+                                template.EndText();
+                                under.AddTemplate(template, 55, 695);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PFH[1].ToString("#0.#0"));//左眼
+                                template.EndText();
+                                under.AddTemplate(template, 238, 695);//左下0,0
+                                #endregion
+
+                                #region slit_post
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(leyeinfo[0]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 143, 695);//左下0,0
+
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(reyeinfo[0]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 325, 695);//左下0,0
+                                #endregion
+
+                                #region mrd_pre
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PFH[0].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 55, 657);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PFH[1].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 238, 657);//左下0,0
+                                #endregion
+
+                                #region mrd_post
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(leyeinfo[1]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 143, 657);//左下0,0
+
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(reyeinfo[1]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 325, 657);//左下0,0
+                                #endregion
+
+                                #region severity_pre
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PtosisSeverity[0].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 55, 620);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(PtosisSeverity[1].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 238, 620);//左下0,0
+                                #endregion
+
+                                #region severity_post
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(leyeinfo[2]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 143, 620);//左下0,0
+
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText(reyeinfo[2]);
+                                //template.EndText();
+                                //under.AddTemplate(template, 325, 620);//左下0,0
+                                #endregion
+
+                                #region levator_pre
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(Levetor[0].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 55, 464);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                template.Rectangle(0, 0, 50, 15);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 18);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText(Levetor[1].ToString("#0.#0"));
+                                template.EndText();
+                                under.AddTemplate(template, 238, 464);//左下0,0
+                                #endregion
+
+                                #region levator_post
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN.Darker());
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText("13");
+                                //template.EndText();
+                                //under.AddTemplate(template, 143, 464);//左下0,0
+
+                                //template = under.CreateTemplate(60, 20);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.GREEN.Darker());
+                                //template.Rectangle(0, 0, 50, 15);
+                                //template.Fill();
+                                //template.BeginText();
+                                //template.SetFontAndSize(bfHei, 18);
+                                //template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                //template.ShowText("13");
+                                //template.EndText();
+                                //under.AddTemplate(template, 325, 464);//左下0,0
+                                #endregion
+
+                            }
+                            stamp.Close();
+
+
+                            //Document document = new Document();
+                            //PdfWriter.GetInstance(document, new FileStream(Savefile.FileName, FileMode.Create));
+                            //document.Open();
+                            //document.Add(new Paragraph("Hello World"));
+                            //document.Close();
+
+                            var form = new Form6();
+                            form.showpdf(Savefile.FileName);
+                            form.Show(this);
+                        }
+                        catch
+                        {
+
+                        }
+
+                    }
+                    #region position
+                    //左下0,0
+                    //x 55 143 238 325
+                    //eyeslit y 695
+                    //MRD y 657
+                    //serverity y<620
+                    //eyelid crease y 501
+                    //levator func y 464
+                    #endregion
+                    #endregion
                 }
+
+
+
                 #endregion
             }
 
@@ -5616,8 +5875,8 @@ namespace eyes
         int LineLength = -30;
         int LineThickness = 1;
         Bgr LineColor = new Bgr(0, 0, 255);
-        FontFace fontface = FontFace.HersheyComplexSmall;
-        double fontscale = 0.5;
+        FontFace fontface = FontFace.HersheySimplex;
+        double fontscale = 0.3;
         MCvScalar textColor = new MCvScalar(0,0,255);
         // result radioButton
         private void radioButtonOri_CheckedChanged(object sender, EventArgs e)
@@ -5786,7 +6045,6 @@ namespace eyes
             }
             Point TextPoint = new Point((int)(pupil_x - R_eye_Pupil.Radius*2), (int)(pupil_y - R_eye_Pupil.Radius));
             String Text = OSA[0].ToString("#0.#0") + "mm^2";
-            double fontscale = 0.5;
             CvInvoke.PutText(MeasurementImage, Text, TextPoint,
                 fontface, fontscale, textColor, 1, LineType.AntiAlias);
             imageBox5.Image = MeasurementImage;
@@ -5821,7 +6079,7 @@ namespace eyes
         private Image<Bgr, byte> measurementVisualize(Image<Bgr,byte> img_measurement,Point upAnchor,Point downAnchor, double value) {
             Point upAnchor_end = new Point(upAnchor.X + LineLength, upAnchor.Y);
             Point downAnchor_end = new Point(downAnchor.X + LineLength, downAnchor.Y);
-            Point upMark = new Point(upAnchor.X + LineLength, upAnchor.Y - (upAnchor.Y/10));
+            Point upMark = new Point(upAnchor.X + LineLength, upAnchor.Y - (upAnchor.Y/6));
             
 
             // upper line

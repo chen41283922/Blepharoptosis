@@ -166,16 +166,9 @@ namespace SomeCalibrations
         public void drawtest(ref Image<Bgr, Byte> img)
         {
             Bgr bgr = new Bgr(Color.Green);
-            img.Draw(new CircleF(center, 1), new Bgr(Color.Red), 0);
-            img.Draw(new CircleF(up, 1), bgr, 0);
-            img.Draw(new CircleF(down, 1), bgr, 0);
-            img.Draw(new CircleF(upLeft, 1), bgr, 0);
-            img.Draw(new CircleF(downLeft, 1), bgr, 0);
-            img.Draw(new CircleF(upRight, 1), bgr, 0);
-            img.Draw(new CircleF(downRight, 1), bgr, 0);
-            img.Draw(new CircleF(new PointF((upRight.X + right.X) / 2, upRight.Y ), 1), bgr, 0);
-            //img.Draw(new CircleF(left, 0), bgr, 0);
-            //img.Draw(new CircleF(right, 0), bgr, 0);
+            
+            img.Draw(new CircleF(left, 0), bgr, 2);
+            img.Draw(new CircleF(right, 0), bgr, 2);
         }
         
         public basicparcitlt getbasic()

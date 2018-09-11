@@ -39,8 +39,13 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\..\..\..\..\Emgu\emgucv-windesktop 3.3.0.2824\bin\Emgu.CV.World.dll</HintPath>
     </Reference>
-    <Reference Include="PdfiumViewer">
-      <HintPath>..\packages\PdfiumViewer.2.12.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.12.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PdfiumViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,6 +93,12 @@
     <Compile Include="Form5.Designer.cs">
       <DependentUpon>Form5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form6.Designer.cs">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
     <Compile Include="GaussEliminate.cs" />
     <Compile Include="Lagrange_Interpolation.cs" />
     <Compile Include="MatExtension.cs" />
@@ -112,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form5.resx">
       <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form6.resx">
+      <DependentUpon>Form6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Webp.net-gifmaker.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

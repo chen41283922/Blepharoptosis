@@ -23,8 +23,8 @@ namespace SomeCalibrations
 
         public Parabola(List<PointF> points) {
             
-            coefficient = FindPolynomialLeastSquaresFit(points,3);
-            Power = 3;
+            this.coefficient = FindPolynomialLeastSquaresFit(points,3);
+            this.Power = 3;
         }
 
         public Parabola(PointF c,PointF l,PointF r) {
