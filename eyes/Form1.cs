@@ -1565,8 +1565,6 @@ namespace eyes
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-
             //this.Width = (int)sel_w;
             //this.Height = (int)sel_h;
 
@@ -4510,7 +4508,7 @@ namespace eyes
         bool doppff;
         int timercounter = 0;
         int loopcounter = 0;
-        int numofpar = 300;
+        int numofpar = 3;
         Parcitle maxPar,maxParRight;
         double maxw = -100;
         double maxd1 = -100;
@@ -4861,6 +4859,14 @@ namespace eyes
         List<double> PtosisSeverity;
         List<double> Levetor;
 
+        public String name = String.Empty;
+        public String AgeSex = String.Empty;
+        public String NoChart = String.Empty;
+        public String Address = String.Empty;
+        public String Phone = String.Empty;
+        public String Date = String.Empty;
+
+
         int parcount;
         int LorR_flag = 0;
 
@@ -5122,6 +5128,44 @@ namespace eyes
                                 under.AddTemplate(template, 238, 620);//左下0,0
                                 #endregion
 
+                                #region severity_pre v
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 8, 10);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 12);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText("V");
+                                template.EndText();
+                                if (PtosisSeverity[0] >= 1 && PtosisSeverity[0] <= 2)
+                                    under.AddTemplate(template, 33, 604);//左下0,0
+                                else if (PtosisSeverity[0] > 2 && PtosisSeverity[0] <= 3)
+                                    under.AddTemplate(template, 33, 586);//左下0,0
+                                else if (PtosisSeverity[0] > 3 && PtosisSeverity[0] <= 4)
+                                    under.AddTemplate(template, 33, 568);//左下0,0
+                                else if (PtosisSeverity[0] > 4)
+                                    under.AddTemplate(template, 33, 550);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 8, 10);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 12);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText("V");
+                                template.EndText();
+                                if (PtosisSeverity[1] >= 1 && PtosisSeverity[1] <= 2)
+                                    under.AddTemplate(template, 216, 604);//左下0,0
+                                else if (PtosisSeverity[1] > 2 && PtosisSeverity[1] <= 3)
+                                    under.AddTemplate(template, 216, 586);//左下0,0
+                                else if (PtosisSeverity[1] > 3 && PtosisSeverity[1] <= 4)
+                                    under.AddTemplate(template, 216, 568);//左下0,0
+                                else if (PtosisSeverity[1] > 4)
+                                    under.AddTemplate(template, 216, 550);//左下0,0
+                                #endregion
+
                                 #region severity_post
                                 //template = under.CreateTemplate(60, 20);
                                 //template.SetColorFill(iTextSharp.text.BaseColor.GREEN);
@@ -5170,6 +5214,44 @@ namespace eyes
                                 under.AddTemplate(template, 238, 464);//左下0,0
                                 #endregion
 
+                                #region levator_pre v
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 8, 10);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 12);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText("V");
+                                template.EndText();
+                                if (Levetor[0] >= 12)
+                                    under.AddTemplate(template, 33, 448);//左下0,0
+                                else if (Levetor[0] >= 8 && Levetor[0] < 12)
+                                    under.AddTemplate(template, 33, 430);//左下0,0
+                                else if (Levetor[0] >= 5 && Levetor[0] < 8)
+                                    under.AddTemplate(template, 34, 412);//左下0,0
+                                else if (Levetor[0] <= 4)
+                                    under.AddTemplate(template, 34, 394);//左下0,0
+
+                                template = under.CreateTemplate(60, 20);
+                                template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker());
+                                template.Rectangle(0, 0, 8, 10);
+                                template.Fill();
+                                template.BeginText();
+                                template.SetFontAndSize(bfHei, 12);
+                                template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                template.ShowText("V");
+                                template.EndText();
+                                if (Levetor[1] >= 12)
+                                    under.AddTemplate(template, 216, 448);//左下0,0
+                                else if (Levetor[1] >= 8 && Levetor[1] < 12)
+                                    under.AddTemplate(template, 216, 430);//左下0,0
+                                else if (Levetor[1] >= 5 && Levetor[1] < 8)
+                                    under.AddTemplate(template, 217, 412);//左下0,0
+                                else if (Levetor[1] <= 4)
+                                    under.AddTemplate(template, 217, 394);//左下0,0
+                                #endregion
+
                                 #region levator_post
                                 //template = under.CreateTemplate(60, 20);
                                 //template.SetColorFill(iTextSharp.text.BaseColor.GREEN.Darker());
@@ -5192,6 +5274,102 @@ namespace eyes
                                 //template.ShowText("13");
                                 //template.EndText();
                                 //under.AddTemplate(template, 325, 464);//左下0,0
+                                #endregion
+
+                                #region name
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(name);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 758);//左下0,0
+                                }
+                                #endregion
+
+                                #region AgeSex
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(AgeSex);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 741);//左下0,0
+                                }
+                                #endregion
+
+                                #region NoChart
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(NoChart);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 724);//左下0,0
+                                }
+                                #endregion
+
+                                #region Address
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(Address);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 707);//左下0,0
+                                }
+                                #endregion
+
+                                #region Phone
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(Phone);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 690);//左下0,0
+                                }
+                                #endregion
+
+                                #region Date
+                                if (name != String.Empty)
+                                {
+                                    template = under.CreateTemplate(60, 20);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
+                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Fill();
+                                    template.BeginText();
+                                    template.SetFontAndSize(bfHei, 12);
+                                    template.SetColorFill(iTextSharp.text.BaseColor.BLACK);
+                                    template.ShowText(Date);
+                                    template.EndText();
+                                    under.AddTemplate(template, 477, 672);//左下0,0
+                                }
                                 #endregion
 
                             }

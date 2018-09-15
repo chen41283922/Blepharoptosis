@@ -1,0 +1,18 @@
+#picture
+*.bmp
+*.jpg
+*.gif
+*.png
+*.jpeg
+
+#cache
+*.cache
+
+#exe
+*.exe
+
+# test result
+/eyes/bin/Debug/BMP/
+/eyes/bin/Debug/L/*.*
+/eyes/bin/Debug/R/*.*
+/eyes/bin/Debug/image/*.*

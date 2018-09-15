@@ -898,3 +898,4 @@ C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Properties.Resourc
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.csproj.GenerateResource.Cache
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form6.resources
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\itextsharp.xml
+C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form7.resources
