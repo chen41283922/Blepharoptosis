@@ -16,3 +16,11 @@
 /eyes/bin/Debug/L/*.*
 /eyes/bin/Debug/R/*.*
 /eyes/bin/Debug/image/*.*
+
+#visual studio file
+
+/eyes/bin/Debug/eyes.exe
+/eyes/bin/Debug/eyes.pdb
+/eyes/obj/Debug/eyes.exe
+/eyes/obj/Debug/eyes.pdb
+/.vs/eyes/v14/.suo

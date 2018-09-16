@@ -4874,55 +4874,6 @@ namespace eyes
         {
             label4.Text = timercounter.ToString();
 
-            if (doppff && LorR_flag == 0)
-            {
-                ppff = new Particle_parameter_for_fullimg(R_eyeParticle);
-                turn = R_eyeParticle.Clone();
-                doppff = false;
-
-                CtrlPoints = ContourSampling(getContour(R_eyeParticle),7);
-
-                foreach (var p in CtrlPoints[1])
-                {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                }
-                foreach (var p in CtrlPoints[0])
-                {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
-                }
-                R_eyeParticle.Save("R_Ctrl.jpg");
-            }
-            if (doppff && LorR_flag == 1)
-            {
-                maxParRight = new Parcitle(maxPar);
-                maxParRight.Graddraw(ref R_eye);
-                maxParRight.drawtest(ref R_eye);
-                // Calculate R_eye measurement
-                measurementCalculate(R_PupilROI, R_eye_Pupil, maxParRight);
-
-                ppff = new Particle_parameter_for_fullimg(L_eyeParticle);
-                turn = L_eyeParticle.Clone();
-                doppff = false;
-                
-                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),7);
-
-                foreach (var p in CtrlPoints[1])
-                {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                }
-                foreach (var p in CtrlPoints[0])
-                {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
-                }
-                L_eyeParticle.Save("L_Ctrl.jpg");
-
-                maxPar = null;
-                maxw = -100;
-
-            }
-            ParticleDraw = turn.Clone();
-
-
             if (timercounter == numofpar)
             {
                 doppff = true;
@@ -4956,8 +4907,8 @@ namespace eyes
                     imageBox1.Image = My_Image2;
                     imageBox5.Image = R_eye;
                     imageBox6.Image = L_eye;
-                    
-                    
+
+
                     // Calculate L_eye measurement
                     measurementCalculate(L_PupilROI, L_eye_Pupil, maxPar);
 
@@ -5281,7 +5232,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5297,7 +5248,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5313,7 +5264,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5329,7 +5280,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5345,7 +5296,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5361,7 +5312,7 @@ namespace eyes
                                 {
                                     template = under.CreateTemplate(60, 20);
                                     template.SetColorFill(iTextSharp.text.BaseColor.YELLOW.Darker().Darker());
-                                    template.Rectangle(0, 0, 40, 12);
+                                    template.Rectangle(0, 0, 100, 12);
                                     template.Fill();
                                     template.BeginText();
                                     template.SetFontAndSize(bfHei, 12);
@@ -5408,6 +5359,55 @@ namespace eyes
 
                 #endregion
             }
+
+
+            if (doppff && LorR_flag == 0)
+            {
+                ppff = new Particle_parameter_for_fullimg(R_eyeParticle);
+                turn = R_eyeParticle.Clone();
+                doppff = false;
+
+                CtrlPoints = ContourSampling(getContour(R_eyeParticle),7);
+
+                foreach (var p in CtrlPoints[1])
+                {
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                }
+                foreach (var p in CtrlPoints[0])
+                {
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                }
+                R_eyeParticle.Save("R_Ctrl.jpg");
+            }
+            if (doppff && LorR_flag == 1)
+            {
+                maxParRight = new Parcitle(maxPar);
+                maxParRight.Graddraw(ref R_eye);
+                maxParRight.drawtest(ref R_eye);
+                // Calculate R_eye measurement
+                measurementCalculate(R_PupilROI, R_eye_Pupil, maxParRight);
+
+                ppff = new Particle_parameter_for_fullimg(L_eyeParticle);
+                turn = L_eyeParticle.Clone();
+                doppff = false;
+                
+                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),7);
+
+                foreach (var p in CtrlPoints[1])
+                {
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                }
+                foreach (var p in CtrlPoints[0])
+                {
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                }
+                L_eyeParticle.Save("L_Ctrl.jpg");
+
+                maxPar = null;
+                maxw = -100;
+
+            }
+            ParticleDraw = turn.Clone();
 
 
             if (loopcounter == 0)// R_eye
