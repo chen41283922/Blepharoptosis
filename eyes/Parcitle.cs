@@ -112,16 +112,16 @@ namespace SomeCalibrations
             int offset = 2;
             //left = new PointF(CornerR.X + rand.Next(-offset * 2, 0), CornerR.Y + rand.Next(-offset, offset));
             //right = new PointF(CornerL.X + rand.Next(0, offset * 2), CornerL.Y + rand.Next(-offset, offset));
-
+            
             if (LorR == "R")// R_eye
             {
-                left = new PointF(CornerR.X + rand.Next(-offset * 2, 0), CornerR.Y + rand.Next(-offset, offset));
+                left = new PointF(CornerR.X + rand.Next(-offset, offset), CornerR.Y + rand.Next(-offset, offset));
                 right = new PointF(CornerL.X, CornerL.Y); // left corner
             }
             else // LorR == "L" L_eye
             {
                 left = new PointF(CornerR.X, CornerR.Y); // right corner
-                right = new PointF(CornerL.X + rand.Next(0, offset * 2), CornerL.Y + rand.Next(-offset, offset));
+                right = new PointF(CornerL.X + rand.Next(-offset, offset), CornerL.Y + rand.Next(-offset, offset));
             }
 
             PointF Mid = new PointF((float)(left.X * (1 - relativeR) + right.X * relativeR), (float)(left.Y * (1 - relativeR) + right.Y * relativeR));

@@ -4508,7 +4508,7 @@ namespace eyes
         bool doppff;
         int timercounter = 0;
         int loopcounter = 0;
-        int numofpar = 3;
+        int numofpar = 30;
         Parcitle maxPar,maxParRight;
         double maxw = -100;
         double maxd1 = -100;
@@ -4699,6 +4699,7 @@ namespace eyes
             R_CornerR = CornerDetector.WVPF("R_eye_CornerR", ref ppff);
             R_CornerL.X += R_PupilROI.Right;
             R_CornerL.Y += R_PupilROI.Top;
+
 
             // Draw R_eye Corner
             //R_eye.Draw(new Cross2DF(R_CornerL, 5, 5), new Bgr(0, 0, 255), 1);
@@ -5367,7 +5368,7 @@ namespace eyes
                 turn = R_eyeParticle.Clone();
                 doppff = false;
 
-                CtrlPoints = ContourSampling(getContour(R_eyeParticle),7);
+                CtrlPoints = ContourSampling(getContour(R_eyeParticle),10,"R");
 
                 foreach (var p in CtrlPoints[1])
                 {
@@ -5391,7 +5392,7 @@ namespace eyes
                 turn = L_eyeParticle.Clone();
                 doppff = false;
                 
-                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),7);
+                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),10,"L");
 
                 foreach (var p in CtrlPoints[1])
                 {
@@ -6348,11 +6349,11 @@ namespace eyes
         /// <param name="Contour">The contour information</param>
         /// <param name="Div">The distance of each sampling point, a lower value indicate the point would be dense </param>
         /// <returns></returns>
-        private List<List<PointF>> ContourSampling(VectorOfPoint Contour,int Div) {
+        private List<List<PointF>> ContourSampling(VectorOfPoint Contour,int Div,String LorR) {
             
             int len = Contour.ToArray().Length;
             PointF[] ContourArray = new PointF[len];
-
+            
             // Convert Point to PointF
             for (int i = 0; i < len; i++) {
                 ContourArray[i] = Point2PointF(Contour[i]);
@@ -6373,7 +6374,8 @@ namespace eyes
             // To avoid Adding the same X coordinate point
             float CurX = 0, NextX = 0;
             bool isUpAdd = false, isDownAdd = false;
-            for (int i = 0; i < len-1; i++) {
+
+            for (int i = len/10; i < len*9/10 -1; i++) {
                 if (CurX != NextX) {
                     isUpAdd = false;
                     isDownAdd = false;
