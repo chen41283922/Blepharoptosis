@@ -26,7 +26,7 @@ namespace eyes
             form1.NoChart = textBox_NoChart.Text;
             form1.Address = textBox_Address.Text;
             form1.Phone = textBox_Phone.Text;
-            form1.Date = textBox_Date.Text;
+            //form1.Date = textBox_Date.Text;
 
             form1.Visible = true;
             this.Visible = false;
