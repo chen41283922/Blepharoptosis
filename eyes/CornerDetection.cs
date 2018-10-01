@@ -146,7 +146,7 @@ namespace eyes
             Image<Gray, byte> Corner = EyeROIGray.Clone();
             int CornerL_width = (CornerROI_Rx + offset) < EyeROIGray.Width ? offset : EyeROIGray.Width - CornerROI_Rx;
             int CornerR_x = (CornerROI_Lx - offset) > 0 ? CornerROI_Lx - offset : 0;
-            CornerL_ROI = new Rectangle(CornerROI_Rx, CornerROI_Uy, CornerL_width, CornerROI_Dy - CornerROI_Uy);
+            CornerL_ROI = new Rectangle(CornerROI_Rx, CornerROI_Uy,offset, CornerROI_Dy - CornerROI_Uy);
             CornerR_ROI = new Rectangle(CornerR_x, CornerROI_Uy, offset, CornerROI_Dy - CornerROI_Uy);
             
             CornerR = EyeROIGray.Clone();
@@ -197,8 +197,6 @@ namespace eyes
             #region setting
             if (LorR.Last().ToString() == "R")
             {
-
-
                 EyeROIGray = CornerR.Clone();
                 this.row = CornerR.Height;
                 this.col = CornerR.Width;
@@ -208,8 +206,6 @@ namespace eyes
             }
             if (LorR.Last().ToString() == "L")
             {
-
-
                 EyeROIGray = CornerL.Clone();
                 this.row = CornerL.Height;
                 this.col = CornerL.Width;
@@ -226,7 +222,7 @@ namespace eyes
             double min = 0, max = 0;
             Point minP = new Point();
             Point maxP = new Point();
-            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")
+            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")//右眼外眼角
             {
                 Image<Gray, float> CornerL_float = CornerL.Convert<Gray, float>();
                 CvInvoke.CornerHarris(CornerL, CornerL_float, 3);     //注意：角点检测传出的为Float类型的数据
@@ -236,10 +232,9 @@ namespace eyes
                 CvInvoke.MinMaxLoc(CornerL_float, ref min, ref max, ref minP, ref maxP);
                 double scale = 255 / (max - min);
                 double shift = min * scale;
-                //CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
                 CornerL = CornerL_float.ConvertScale<byte>(scale, shift);
             }
-            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")
+            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")//左眼外眼角
             {
                 Image<Gray, float> CornerR_float = CornerR.Convert<Gray, float>();
                 CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     //注意：角点检测传出的为Float类型的数据
@@ -249,8 +244,31 @@ namespace eyes
                 CvInvoke.MinMaxLoc(CornerR_float, ref min, ref max, ref minP, ref maxP);
                 double scale = 255 / (max - min);
                 double shift = min * scale;
-                //CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
                 CornerR = CornerR_float.ConvertScale<byte>(scale, shift);
+            }
+            else if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "R")//右眼內眼角
+            {
+                Image<Gray, float> CornerR_float = CornerR.Convert<Gray, float>();
+                CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     //注意：角点检测传出的为Float类型的数据
+                CvInvoke.Normalize(CornerR_float, CornerR_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
+                CornerR_float = CornerR_float.AbsDiff(new Gray(0));
+
+                CvInvoke.MinMaxLoc(CornerR_float, ref min, ref max, ref minP, ref maxP);
+                double scale = 255 / (max - min);
+                double shift = min * scale;
+                CornerR = CornerR_float.ConvertScale<byte>(scale, shift);
+            }
+            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "L")//左眼內眼角
+            {
+                Image<Gray, float> CornerL_float = CornerL.Convert<Gray, float>();
+                CvInvoke.CornerHarris(CornerL, CornerL_float, 3);     //注意：角点检测传出的为Float类型的数据
+                CvInvoke.Normalize(CornerL_float, CornerL_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
+                CornerL_float = CornerL_float.AbsDiff(new Gray(0));
+
+                CvInvoke.MinMaxLoc(CornerL_float, ref min, ref max, ref minP, ref maxP);
+                double scale = 255 / (max - min);
+                double shift = min * scale;
+                CornerL = CornerL_float.ConvertScale<byte>(scale, shift);
             }
             #endregion
 
@@ -321,51 +339,35 @@ namespace eyes
             variance.Save(LorR.First().ToString() + "\\varianceHorizontal" + LorR.Last().ToString() + ".jpg");
 
 
-            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")
-            {
-                //Image<Gray, float> CornerL_float = CornerL.Convert<Gray, float>();
-                //CvInvoke.CornerHarris(CornerL, CornerL_float, 3);     //注意：角点检测传出的为Float类型的数据
-                //CvInvoke.Normalize(CornerL_float, CornerL_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
-                //CornerL_float = CornerL_float.AbsDiff(new Gray(0));
-
-                //CvInvoke.MinMaxLoc(CornerL_float, ref min, ref max, ref minP, ref maxP);
-                //double scale = 255 / (max - min);
-                //double shift = min * scale;
-                ////CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
-                //CornerL = CornerL_float.ConvertScale<byte>(scale, shift);
-
-                
+            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")//右眼內眼角
+            {   
                 CvInvoke.MinMaxLoc(CornerL, ref min, ref max, ref minP, ref maxP);
                 CornerL.Draw(new CircleF(maxP, 1), new Gray(0), 1);
                 CornerL.Save(LorR.First().ToString() + "/R_eye_CornerL_Harris.jpg");
 
-                Console.WriteLine("maxP.X : " + maxP.X + " maxP.Y : " + maxP.Y);
-
-                //maxP.X += CornerL.ROI.X;
-                //maxP.Y += CornerL.ROI.Y;
-
                 return maxP;
             }
-            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")
-            {
-                //Image<Gray, float> CornerR_float = CornerR.Convert<Gray, float>();
-                //CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     //注意：角点检测传出的为Float类型的数据
-                //CvInvoke.Normalize(CornerR_float, CornerR_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
-                //CornerR_float = CornerR_float.AbsDiff(new Gray(0));
-
-                //CvInvoke.MinMaxLoc(CornerR_float, ref min, ref max, ref minP, ref maxP);
-                //double scale = 255 / (max - min);
-                //double shift = min * scale;
-                ////CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
-                //CornerR = CornerR_float.ConvertScale<byte>(scale, shift);
-
-                
+            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")//左眼內眼角
+            {   
                 CvInvoke.MinMaxLoc(CornerR, ref min, ref max, ref minP, ref maxP);
                 CornerR.Draw(new CircleF(maxP, 1), new Gray(0), 1);
                 CornerR.Save(LorR.First().ToString() + "/L_eye_CornerR_Harris.jpg");
 
-                //maxP.X += CornerR.ROI.X;
-                //maxP.Y += CornerR.ROI.Y;
+                return maxP;
+            }
+            else if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "R")//右眼外眼角
+            {
+                CvInvoke.MinMaxLoc(CornerR, ref min, ref max, ref minP, ref maxP);
+                CornerR.Draw(new CircleF(maxP, 1), new Gray(0), 1);
+                CornerR.Save(LorR.First().ToString() + "/R_eye_CornerR_Harris.jpg");
+
+                return maxP;
+            }
+            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "L")//左眼外眼角
+            {
+                CvInvoke.MinMaxLoc(CornerL, ref min, ref max, ref minP, ref maxP);
+                CornerL.Draw(new CircleF(maxP, 1), new Gray(0), 1);
+                CornerL.Save(LorR.First().ToString() + "/L_eye_CornerL_Harris.jpg");
 
                 return maxP;
             }

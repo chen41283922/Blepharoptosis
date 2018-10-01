@@ -2059,7 +2059,7 @@ namespace eyes
             {
 
                 Image<Bgr, Byte> img = new Image<Bgr, Byte>(My_Image2.Bitmap);
-                //img.ROI = new Rectangle(2 * img.Width / 5, img.Height / 2, img.Width / 4, img.Height / 2);
+                img.ROI = new Rectangle(2 * img.Width / 5, img.Height / 2, img.Width / 4, img.Height / 2);
                 Image<Bgr, Byte> result = img.Copy();
                 CircleF[] colsecircle = scale(img, ref result);
                 label1.Text = "硬幣半徑 : " + colsecircle[0].Radius.ToString("#0.00") + " pixels";
@@ -2081,7 +2081,7 @@ namespace eyes
             CircleF[] closeCircle;
             double[] std;
             //example of GeometryDetection 350,300 should be variable!!
-            sectionDetection.GeometryDetection(src, dest, 350, 350, out closeCircle, out std);
+            sectionDetection.GeometryDetection(src, dest, 350, 350, out closeCircle, out std);// 350 350
             //example of DrewAllCircle
             sectionDetection.DrewAllCircle(ref dest, closeCircle);
             int width = 10;
@@ -4576,6 +4576,7 @@ namespace eyes
             if (facecutori != null)
             {
                 facecutori.ROI = facesori;
+                facecutori.Save("facecutori.jpg");
                 Ori_Image = facecutori.Clone();
                 int Eye_X = facecutori.ROI.Width * 15 / 100;
                 int Eye_Y = facecutori.ROI.Height * 25 / 100;
@@ -4622,8 +4623,8 @@ namespace eyes
 
             #region EyeROI
             // Find EyeROI base on faceROI and FRST outcome
-            int BlockWidth = 100;
-            int BlockHeight = 60;
+            int BlockWidth = 200;
+            int BlockHeight = 120;
             Point EyeRoi_R = ppff.FindEyeROIbyFRST(BlockWidth, BlockHeight);
             Point EyeRoi_L;
             if (EyeRoi_R.X >= (Ori_Image.Width / 2)){
@@ -4695,34 +4696,17 @@ namespace eyes
             CornerDetection CornerDetector = new CornerDetection(R_eye);
             CornerDetector.VPF("R", out R_PupilROI, out R_CornerL_ROI, out R_CornerR_ROI, out R_Pupil);
             // Get the Corner (PointF)
-            R_CornerL = CornerDetector.WVPF("R_eye_CornerL", ref ppff);
-            R_CornerR = CornerDetector.WVPF("R_eye_CornerR", ref ppff);
-            R_CornerL.X += R_PupilROI.Right;
-            R_CornerL.Y += R_PupilROI.Top;
+            R_CornerL = CornerDetector.WVPF("R_eye_CornerL", ref ppff);//右眼內眼角
+            R_CornerR = CornerDetector.WVPF("R_eye_CornerR", ref ppff);//右眼外眼角
 
+            R_CornerL.X += R_CornerL_ROI.X;
+            R_CornerL.Y += R_CornerL_ROI.Y;
+            R_CornerR.X += R_CornerR_ROI.X;
+            R_CornerR.Y += R_CornerR_ROI.Y;
 
             // Draw R_eye Corner
             //R_eye.Draw(new Cross2DF(R_CornerL, 5, 5), new Bgr(0, 0, 255), 1);
             //R_eye.Draw(new Cross2DF(R_CornerR, 5, 5), new Bgr(0, 0, 255), 1);
-
-            // Boundary Check
-            // Size of Corner_ROI
-            int cor_offset = 5;
-            int cor_width = 10;
-            // Outer Corner
-            R_CornerR_ROI.X = ((int)R_CornerR.X - cor_offset) < 0 ? (int)R_CornerR.X : ((int)R_CornerR.X - cor_offset);
-            R_CornerR_ROI.Width = cor_width;
-            // Inner Corner
-            R_CornerL_ROI.X = (int)R_CornerL.X - cor_offset;
-            R_CornerL_ROI.Y = ((int)R_CornerL.Y - cor_offset) < 0 ? (int)R_CornerL.Y : (int)R_CornerL.Y - cor_offset;
-            R_CornerL_ROI.Width = ((int)R_CornerL.X + cor_offset) < R_eye.Width ? cor_width : (R_eye.Width - R_CornerL_ROI.X - 1);
-            R_CornerL_ROI.Height = ((int)R_CornerL.Y + cor_offset) < R_eye.Height ? cor_width : (R_eye.Height - R_CornerL_ROI.Y - 1);
-
-            //R_eye.Draw(new Rectangle((int)R_CornerL.X - 5, (int)R_CornerL.Y - 5, 10, 10), new Bgr(0, 0, 255), 1);
-            //R_eye.Draw(new Rectangle((int)R_CornerR.X - 5, (int)R_CornerR_ROI.Y, 10, R_CornerR_ROI.Height), new Bgr(0, 0, 255), 1);
-            //R_eye.Draw(R_CornerR_ROI, new Bgr(0, 255, 0), 1);
-            //R_eye.Draw(R_CornerL_ROI, new Bgr(0, 255, 0), 1);
-
 
 
             //---------------------------------------------------------------------------------------
@@ -4730,30 +4714,17 @@ namespace eyes
             CornerDetector = new CornerDetection(L_eye);
             CornerDetector.VPF("L", out L_PupilROI, out L_CornerL_ROI, out L_CornerR_ROI, out L_Pupil);
             // Get the Corner (PointF)
-            L_CornerL = CornerDetector.WVPF("L_eye_CornerL", ref ppff);
-            L_CornerR = CornerDetector.WVPF("L_eye_CornerR", ref ppff);
+            L_CornerL = CornerDetector.WVPF("L_eye_CornerL", ref ppff);//左眼外眼角
+            L_CornerR = CornerDetector.WVPF("L_eye_CornerR", ref ppff);//左眼內眼角
 
-            L_CornerR.Y += L_PupilROI.Y;
+            L_CornerR.Y += L_CornerR_ROI.Y;
+            L_CornerR.X += L_CornerR_ROI.X;
+            L_CornerL.Y += L_CornerL_ROI.Y;
+            L_CornerL.X += L_CornerL_ROI.X;
 
             // Draw L_eye Corner
             //L_eye.Draw(new Cross2DF(L_CornerL, 5, 5), new Bgr(0, 0, 255), 1);
             //L_eye.Draw(new Cross2DF(L_CornerR, 5, 5), new Bgr(0, 0, 255), 1);
-
-
-            // Boundary Check
-            // Outer Corner
-            L_CornerL_ROI.X = (int)L_CornerL.X - cor_offset;
-            L_CornerL_ROI.Width = ((int)L_CornerL.X + cor_offset) < L_eye.Width ? cor_width : L_eye.Width - (int)L_CornerL_ROI.X - 1;
-            // Inner Corner
-            L_CornerR_ROI.X = ((int)L_CornerR.X - cor_offset) < 0 ? (int)L_CornerR.X : (int)L_CornerR.X - cor_offset;
-            L_CornerR_ROI.Y = ((int)L_CornerR.Y - cor_offset) < 0 ? (int)L_CornerR.Y : (int)L_CornerR.Y - cor_offset;
-            L_CornerR_ROI.Width = cor_width;
-            L_CornerR_ROI.Height = ((int)L_CornerR.Y + cor_offset) < L_eye.Height ? cor_width : (L_eye.Height - L_CornerR_ROI.Y - 1);
-
-            //L_eye.Draw(new Rectangle((int)L_CornerL.X - 5, (int)L_CornerL_ROI.Y, 10, L_CornerL_ROI.Height), new Bgr(0, 0, 255), 1);
-            //L_eye.Draw(L_CornerL_ROI, new Bgr(0, 255, 0), 1);
-            //L_eye.Draw(L_CornerR_ROI, new Bgr(0, 255, 0), 1);
-            //L_eye.Draw(new Rectangle((int)L_CornerR.X - 5, (int)L_CornerR.Y - 5, 10, 10), new Bgr(0, 255, 0), 1);
 
 
             #endregion
@@ -4772,8 +4743,8 @@ namespace eyes
             double minDist = 0.05;
             double CannyThres = 80;
             double HoughThres = 80;
-            int minRadius = 12; // hospital : 29
-            int maxRadius = 18; // hospital : 38
+            int minRadius = 29; // hospital : 29
+            int maxRadius = 38; // hospital : 38
 
             // Right Pupil Detect
             //R_Pupil._SmoothGaussian(3);
@@ -5372,11 +5343,11 @@ namespace eyes
 
                 foreach (var p in CtrlPoints[1])
                 {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0,0), 0);
                 }
                 foreach (var p in CtrlPoints[0])
                 {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
                 }
                 R_eyeParticle.Save("R_Ctrl.jpg");
             }
@@ -5396,11 +5367,11 @@ namespace eyes
 
                 foreach (var p in CtrlPoints[1])
                 {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
                 }
                 foreach (var p in CtrlPoints[0])
                 {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
                 }
                 L_eyeParticle.Save("L_Ctrl.jpg");
 
@@ -6401,9 +6372,9 @@ namespace eyes
 
         // A series of pre-process methods to get the 'main Contour' ( the largest one )
         private VectorOfPoint getContour(Image<Bgr, byte> img) {
-            
+
             Image<Gray, byte> colorSubtract = img[2] - img[0]; // R - B
-            CvInvoke.Normalize(colorSubtract, colorSubtract, 0, 255, NormType.MinMax);
+            
             colorSubtract.Save("L_eyeRG.jpg");
             CvInvoke.Threshold(colorSubtract, colorSubtract, 10, 255, ThresholdType.Binary);
             colorSubtract.Save("L_eyeBin.jpg");
@@ -6428,7 +6399,6 @@ namespace eyes
                         Inx = i;
                     }
                 }
-                //CvInvoke.DrawContours(img, Contours, Inx, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
             }
             img.Save("L_eye.jpg");
             
