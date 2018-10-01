@@ -13,8 +13,8 @@
 
 # test result
 /eyes/bin/Debug/BMP/
-/eyes/bin/Debug/L/*.*
-/eyes/bin/Debug/R/*.*
+/eyes/bin/Debug/L/*.jpg
+/eyes/bin/Debug/R/*.jpg
 /eyes/bin/Debug/image/*.*
 
 #visual studio file
