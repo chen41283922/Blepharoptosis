@@ -37,8 +37,6 @@ namespace eyes
         VideoCapture webCamRight;
         Image<Gray, Byte> My_Image1;
         Image<Bgr, Byte> My_Image2;
-        Image<Bgr, Byte> LevatorFaceDown;
-        Image<Bgr, Byte> LevatorFaceUp;
         int turn = 0;
 
         private void Form3_Load(object sender, EventArgs e)

@@ -52,12 +52,13 @@ namespace eyes
         }
 
         public List<CircleF> HoughCircles(Image<Bgr, byte> EyeRoi,// Input image
-                                           double dp,// Resolution of the accumulator used to detect centers of the circles
-                                           double minDist,//min detected circles distance 
-                                           double CannyThres,// Canny high threshold
-                                           double HoughThres,// Hough counting threshold
                                            int minRadius, // Circle Radius
-                                           int maxRadius)
+                                           int maxRadius,
+                                           double dp = 0.1,// Resolution of the accumulator used to detect centers of the circles
+                                           double minDist = 0.01,//min detected circles distance 
+                                           double CannyThres = 80,// Canny high threshold
+                                           double HoughThres = 80// Hough counting threshold
+                                           )
         {
             //轉灰階
             img_Gray = EyeRoi.Convert<Gray, Byte>();
@@ -72,9 +73,21 @@ namespace eyes
             Point[] minLoc, maxLoc;
             double[] mins, maxs;
             img_laplace.MinMax(out mins, out maxs, out minLoc, out maxLoc);
-            Console.WriteLine("mins : " + mins[0] + "maxs : " + maxs[0]);
             img_laplaceByte = img_laplace.ConvertScale<byte>(255 / maxs[0], 0);
-            
+
+            img_Sobel = img_laplaceByte.Convert<Gray, float>();
+            img_SobelX = img_laplaceByte.Sobel(1, 0, 3);
+            img_SobelY = img_laplaceByte.Sobel(0, 1, 3);
+
+            img_SobelX = img_SobelX.AbsDiff(new Gray(0));
+            img_SobelY = img_SobelY.AbsDiff(new Gray(0));
+            img_Sobel = img_SobelX + img_SobelY;
+            //Find sobel min or max value
+
+            //Find sobel min or max value position
+            img_Sobel.MinMax(out mins, out maxs, out minLoc, out maxLoc);
+            //Conversion to 8-bit image
+            sobelImage = img_Sobel.ConvertScale<byte>(255 / maxs[0], 0);
 
 
             //二值化
@@ -107,7 +120,7 @@ namespace eyes
             
             img_Threshold = img_Gray.CopyBlank();
 
-            img_Threshold = img_Ada23.Clone();
+            img_Threshold = img_Ada7.Clone();
 
             //Median Filter 去除雜訊
             CvInvoke.MedianBlur(img_Threshold, img_Threshold, 3);
@@ -124,7 +137,6 @@ namespace eyes
             img_Edge = img_Gray.CopyBlank();
             img_EdgeText = EyeRoi.CopyBlank();
 
-            Console.WriteLine("(Pupil) img_Edge Contours.size : " + Contours.Size);
             double maxArea = 0;
             int Inx = 0;
             if (Contours.Size > 0)
@@ -142,15 +154,12 @@ namespace eyes
                     //{
                     //    continue;
                     //}
-                    Console.WriteLine("n : " + i + " area : " + area);
                     CvInvoke.DrawContours(img_Edge, Contours, i, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
                     CvInvoke.DrawContours(img_EdgeText, Contours, i, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
                     Rectangle rect = CvInvoke.BoundingRectangle(Contours[i]);
                     CvInvoke.PutText(img_EdgeText, area.ToString("###.#"), new Point(rect.X, rect.Y + rect.Height), Emgu.CV.CvEnum.FontFace.HersheyDuplex, 0.2, new Bgr(Color.Red).MCvScalar);
                     C.Add(Contours[i]);
                 }
-                //CvInvoke.DrawContours(img_Edge, Contours, Inx, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
-
 
                 try
                 {
@@ -178,7 +187,7 @@ namespace eyes
                             {
                                 list_Pupil.Add(cy);
                                 limit++;
-                                if (limit == 30 || limit > Circles.Length) break;
+                                if (limit == 60 || limit > Circles.Length) break;
                             }
 
                         }
@@ -187,10 +196,8 @@ namespace eyes
                 }
                 catch (Emgu.CV.Util.CvException ex) { Console.WriteLine(ex); }
 
-                //list_Pupil = CircleVerify(list_Pupil, img_Edge, img_Threshold
-
                 // by  gradient 
-                list_Pupil = CircleVerify(list_Pupil, img_Edge, img_Threshold, img_laplaceByte);
+                list_Pupil = CircleVerify(list_Pupil/*, img_Edge, img_Threshold, img_laplaceByte*/);
 
             }
             else
@@ -199,36 +206,82 @@ namespace eyes
                 return null;
             }
 
-            img_Sobel = img_laplaceByte.Convert<Gray, float>();
-            img_SobelX = img_laplaceByte.Sobel(1, 0, 3);
-            img_SobelY = img_laplaceByte.Sobel(0, 1, 3);
-            
-            img_SobelX = img_SobelX.AbsDiff(new Gray(0));
-            img_SobelY = img_SobelY.AbsDiff(new Gray(0));
-            img_Sobel = img_SobelX+ img_SobelY;
-            //Find sobel min or max value
-            
-            //Find sobel min or max value position
-            img_Sobel.MinMax(out mins, out maxs, out minLoc, out maxLoc);
-            //Conversion to 8-bit image
-            sobelImage = img_Sobel.ConvertScale<byte>(255 / maxs[0], 0);
-            
-            //CvInvoke.Threshold(sobelImage, sobelImage, 100, 255, ThresholdType.Binary);
-            //sobelImage = sobelImage.Canny(400, 500);
-            //Get binary image
-            //sobelImage = img_Gray.Copy();
-
-
-
-            //CvInvoke.MedianBlur(sobelImage, sobelImage,3);
-
-
-
             return list_Pupil;
-
-
         }
-        
+
+        private List<CircleF> CircleVerify(List<CircleF> Circles)
+        {
+            if (Circles.Count < 1)
+            {
+                Console.WriteLine("No cy to verify");
+                return Circles;
+            }
+            else
+            {
+                Console.WriteLine("cy num:" + Circles.Count);
+            }
+
+            Dictionary<CircleF, double> WeightSum = new Dictionary<CircleF, double>();
+
+            foreach (CircleF cy in Circles)
+            {
+                // initialization
+                WeightSum.Add(cy, 0);
+
+                for (double theta = 0.0; theta < 2.0; theta += 0.01)
+                {
+                    
+                    double rx = cy.Radius * Math.Cos(theta * Math.PI);
+                    double ry = cy.Radius * Math.Sin(theta * Math.PI);
+                    double Circle_X = cy.Center.X + rx + 0.5;
+                    double Circle_Y = cy.Center.Y + ry + 0.5;
+
+                    if (Circle_Y < 0 || Circle_Y > img_SobelX.Height) continue;
+                    if (Circle_X < 0 || Circle_X > img_SobelX.Width) continue;
+                    WeightSum[cy] += img_SobelX[(int)Circle_Y, (int)Circle_X].Intensity;
+
+                    rx = (cy.Radius + 1) * Math.Cos(theta * Math.PI);
+                    ry = (cy.Radius + 1) * Math.Sin(theta * Math.PI);
+                    Circle_X = cy.Center.X + rx + 0.5;
+                    Circle_Y = cy.Center.Y + ry + 0.5;
+                    if (Circle_Y < 0 || Circle_Y > img_SobelX.Height) continue;
+                    if (Circle_X < 0 || Circle_X > img_SobelX.Width) continue;
+                    WeightSum[cy] += img_SobelX[(int)Circle_Y, (int)Circle_X].Intensity;
+
+                    //rx = (2) * Math.Cos(theta * Math.PI);
+                    //ry = (2) * Math.Sin(theta * Math.PI);
+                    //Circle_X = cy.Center.X + rx + 0.5;
+                    //Circle_Y = cy.Center.Y + ry + 0.5;
+                    //if (Circle_Y < 0 || Circle_Y > img_SobelX.Height) continue;
+                    //if (Circle_X < 0 || Circle_X > img_SobelX.Width) continue;
+                    //WeightSum[cy] += img_SobelX[(int)Circle_Y, (int)Circle_X].Intensity;
+
+                    //rx = (cy.Radius + 2) * Math.Cos(theta * Math.PI);
+                    //ry = (cy.Radius + 2) * Math.Sin(theta * Math.PI);
+                    //if (cy.Center.Y + ry + 0.5 < 0 || cy.Center.Y + ry + 0.5 > img_SobelX.Height) continue;
+                    //if (cy.Center.X + rx + 0.5 < 0 || cy.Center.X + rx + 0.5 > img_SobelX.Width) continue;
+                    //WeightSum[cy] -= img_SobelX[(int)(cy.Center.Y + ry + 0.5), (int)(cy.Center.X + rx + 0.5)].Intensity;
+                }
+            }
+
+            // Sort the Eye_evaluate from highest to lowest
+            var dicSort = from objDic in WeightSum orderby objDic.Value descending select objDic;
+
+            List<CircleF> result = new List<CircleF>();
+
+            foreach (var item in dicSort)
+            {
+                result.Add(item.Key);
+                //Console.WriteLine("Key : " + count++ + " Value : " + item.Value.ToString("0.###"));
+
+                Console.WriteLine("r : " + item.Key.Radius.ToString("0.###") +
+                 " WeightSum : " + WeightSum[item.Key].ToString("0.###"));
+
+            }
+
+            return result;
+        }
+
         private List<CircleF> CircleVerify(List<CircleF> Circles, Image<Gray, byte> edge, Image<Gray, byte> black, Image<Gray, byte> gray)
         {
             if (Circles.Count < 1)
@@ -359,10 +412,10 @@ namespace eyes
             foreach (CircleF cy in list_LeftPupil)
             {
                 Image<Bgr, byte> drawCircle = draw.Clone();
-                float X = cy.Center.X + L_eye.ROI.X + L_PupilROI.X;
-                float Y = cy.Center.Y + L_eye.ROI.Y + L_PupilROI.Y;
+                float X = cy.Center.X + L_eye.ROI.X + L_PupilROI.X + 0.5f;
+                float Y = cy.Center.Y + L_eye.ROI.Y + L_PupilROI.Y + 0.5f;
                 //Circle
-                drawCircle.Draw(new CircleF(new PointF(X, Y), cy.Radius+1), color, 1);
+                drawCircle.Draw(new CircleF(new PointF((int)X, (int)Y), (cy.Radius + 1)), color, 1);
                 //Center
                 drawCircle.Draw(new CircleF(new PointF(X, Y), 0), color, 5);
                 list_draw.Add(drawCircle);
@@ -374,42 +427,14 @@ namespace eyes
                 if (list_RightPupil.IndexOf(cy) < list_LeftPupil.Count)
                 {
                     Image<Bgr, byte> drawCircle = draw.Clone();
-                    float X = cy.Center.X + R_eye.ROI.X + R_PupilROI.X;
-                    float Y = cy.Center.Y + R_eye.ROI.Y + R_PupilROI.Y;
+                    float X = cy.Center.X + R_eye.ROI.X + R_PupilROI.X+0.5f;
+                    float Y = cy.Center.Y + R_eye.ROI.Y + R_PupilROI.Y+0.5f;
                     //Circle
-                    list_draw[list_RightPupil.IndexOf(cy)].Draw(new CircleF(new PointF(X, Y), cy.Radius+1), color, 1);
+                    list_draw[list_RightPupil.IndexOf(cy)].Draw(new CircleF(new PointF((int)X, (int)Y), (cy.Radius + 1)), color, 1);
                     //Center
                     list_draw[list_RightPupil.IndexOf(cy)].Draw(new CircleF(new PointF(X, Y), 0), color, 5);
                     list_draw[list_RightPupil.IndexOf(cy)].Save(count++ + ".jpg");
                 }
-            }
-
-            //Filter by Center.Y and Radius
-            for (int i = 0; i < 20 && list_LeftPupil.Count > 0 && list_RightPupil.Count > 0; i++)
-            {
-
-                if (list_RightPupil[0].Center.Y - list_LeftPupil[0].Center.Y > 40)
-                {
-                    list_LeftPupil.RemoveAt(0);
-                    Console.WriteLine("L-R Center.Y >40");
-                }
-                else if (list_LeftPupil[0].Center.Y - list_RightPupil[0].Center.Y > 40)
-                {
-                    list_RightPupil.RemoveAt(0);
-                    Console.WriteLine("L-R Center.Y >40");
-                }
-                else if (list_LeftPupil[0].Radius - list_RightPupil[0].Radius > 1.5)
-                {
-                    list_LeftPupil.RemoveAt(0);
-                    Console.WriteLine("L-R Radius >1.5");
-                }
-                else if (list_RightPupil[0].Radius - list_LeftPupil[0].Radius > 1.5)
-                {
-                    list_RightPupil.RemoveAt(0);
-                    Console.WriteLine("L-R Radius >1.5");
-                }
-                else
-                    break;
             }
 
 
@@ -424,17 +449,19 @@ namespace eyes
 
                 // Draw Circle
                 L_eye.Draw(new CircleF(new PointF(Circle_X*16, Circle_Y*16), Circle_radius*16), color, 1, LineType.AntiAlias, 4);
+                //L_eye.Draw(new CircleF(new PointF((int)(Circle_X + 0.5), (int)(Circle_Y + 0.5)), Circle_radius), color);
                 //Draw center
                 L_eye.Draw(new CircleF(new PointF(Circle_X, Circle_Y), 0), color, 3);
             }
             if (list_RightPupil.Count != 0)
             {
-                Circle_X = list_RightPupil[0].Center.X + R_PupilROI.X;
-                Circle_Y = list_RightPupil[0].Center.Y + R_PupilROI.Y;
+                Circle_X = list_RightPupil[0].Center.X + R_PupilROI.X ;
+                Circle_Y = list_RightPupil[0].Center.Y + R_PupilROI.Y ;
                 Circle_radius = list_RightPupil[0].Radius + 1;
 
                 // Draw Circle
                 R_eye.Draw(new CircleF(new PointF(Circle_X*16, Circle_Y*16), Circle_radius*16), color, 1,LineType.AntiAlias,4);
+                //R_eye.Draw(new CircleF(new PointF((int)(Circle_X + 0.5), (int)(Circle_Y + 0.5)), Circle_radius), color);
                 //Draw center
                 R_eye.Draw(new CircleF(new PointF(Circle_X, Circle_Y), 0), color, 3);
             }
@@ -483,7 +510,6 @@ namespace eyes
                 CvInvoke.AddWeighted(img_Edge, 0.3, img_Gray, 0.7, 0, img_overlap);
                 img_overlap.Save(LorR + "\\" + "img_overlap" + LorR + ".jpg");
 
-
             }
 
             Draw_cyedg_cybla(list_Pupil, LorR + "\\", img_Edge, img_Threshold);
@@ -502,23 +528,24 @@ namespace eyes
                 for (double theta = 0.0; theta < 2.0; theta += 0.01)
                 {
                     //if ((theta > 0.25 && theta < 0.75) || theta > 1.0 && theta < 1.99) continue;
-                    if ( theta > 1.0 && theta < 1.99) continue;
-                    double rx = cy.Radius * Math.Cos(theta * Math.PI);
-                    double ry = cy.Radius * Math.Sin(theta * Math.PI);
-                    cyedg.Draw(new CircleF(new PointF(cy.Center.X + (float)rx, cy.Center.Y + (float)ry), 0), new Gray(0), 0);
+                    //if ( theta > 1.0 && theta < 1.99) continue;
+                    double rx = cy.Center.X + cy.Radius * Math.Cos(theta * Math.PI)+0.5;
+                    double ry = cy.Center.Y + cy.Radius * Math.Sin(theta * Math.PI)+0.5;
+                    cyedg.Draw(new CircleF(new PointF((int)rx, (int)ry), 0), new Gray(0), 0);
 
-                    rx = (cy.Radius - 1) * Math.Cos(theta * Math.PI);
-                    ry = (cy.Radius - 1) * Math.Sin(theta * Math.PI);
-                    cyedg.Draw(new CircleF(new PointF(cy.Center.X + (float)rx, cy.Center.Y + (float)ry), 0), new Gray(0), 0);
+                    rx = cy.Center.X + (cy.Radius + 1) * Math.Cos(theta * Math.PI)+0.5;
+                    ry = cy.Center.Y + (cy.Radius + 1) * Math.Sin(theta * Math.PI)+0.5;
+                    cyedg.Draw(new CircleF(new PointF((int)rx, (int)ry), 0), new Gray(0), 0);
 
-                    //rx = (cy.Radius + 1) * Math.Cos(theta * Math.PI);
-                    //ry = (cy.Radius + 1) * Math.Sin(theta * Math.PI);
-                    //cyedg.Draw(new CircleF(new PointF(cy.Center.X + (float)rx, cy.Center.Y + (float)ry), 0), new Gray(0), 0);
+                    rx = cy.Center.X + (2) * Math.Cos(theta * Math.PI) + 0.5;
+                    ry = cy.Center.Y + (2) * Math.Sin(theta * Math.PI) + 0.5;
+                    cyedg.Draw(new CircleF(new PointF((int)rx, (int)ry), 0), new Gray(0), 0);
+
                 }
 
 
 
-                CvInvoke.AddWeighted(Edge, 0.5, cyedg, 0.5, 0, cyedg);
+                CvInvoke.AddWeighted(img_SobelX.Convert<Gray,byte>(), 0.5, cyedg, 0.5, 0, cyedg);
                 cyedg.Save(Directory + "cyedg" + count + ".jpg");
 
                 Image<Gray, byte> cybla = new Image<Gray, byte>(img_Edge.Width, img_Edge.Height, new Gray(255));
@@ -530,20 +557,7 @@ namespace eyes
             }
 
         }
-
-        public Image<Gray,byte> Get_imgThreshold() {
-            if (img_Threshold != null)
-                return img_Threshold;
-            else
-                return null;
-        }
-        public Image<Gray, byte> Get_imgOverlap()
-        {
-            if (img_overlap != null)
-                return img_overlap;
-            else
-                return null;
-        }
+        
 
     }
 }
