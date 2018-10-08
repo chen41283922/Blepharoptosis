@@ -38,16 +38,7 @@ namespace eyes
         
         public Bitmap camera;
         
-        /// ////////////////////////////柏洧
-        List<CircleF> fortestcyl = new List<CircleF>();
-        List<CircleF> fortestcyr = new List<CircleF>();
-        Dictionary<CircleF, double> lvalver = new Dictionary<CircleF, double>();
-        Dictionary<CircleF, double> rvalver = new Dictionary<CircleF, double>();
-        Dictionary<CircleF, double> lvalbla = new Dictionary<CircleF, double>();
-        Dictionary<CircleF, double> rvalbla = new Dictionary<CircleF, double>();
-        List<Image<Bgr, Byte>> forproshow = new List<Image<Bgr, Byte>>();
-        List<string> leyeinfo = new List<string>();
-        List<string> reyeinfo = new List<string>();
+        
 
         public Form1()
         {
@@ -3362,7 +3353,7 @@ namespace eyes
                 g3.DrawString("+", new Font("Arial", 25), drawBrush, points[rightpoint].X, points[rightpoint].Y, sf);//畫右點
                 g3.DrawString("+", new Font("Arial", 25), drawBrush, facetop.X, facetop.Y, sf);//髮際點
                 g3.DrawString("+", new Font("Arial", 25), drawBrush, points[buttonpoint].X, points[buttonpoint].Y, sf);//下巴點
-                g3.DrawString("+", new Font("Arial", 50), drawBrush, L_CornerL.X + 50, L_CornerL.Y + 50, sf);//左眼左角點
+                g3.DrawString("+", new Font("Arial", 50), drawBrush, L_CornerOuter.X + 50, L_CornerOuter.Y + 50, sf);//左眼左角點
                 //g3.DrawString("x", new Font("Arial", 25), drawBrush, eyescenter.X, eyescenter.Y, sf); //兩眼中心點
 
                 g3.DrawLine(redPen, points[leftpoint].X, points[leftpoint].Y, points[rightpoint].X, points[rightpoint].Y);//畫橫線
@@ -4518,10 +4509,7 @@ namespace eyes
 
         private void toolStripMenuItem12_Click(object sender, EventArgs e)//1000次
         {
-            //LevatorFaceDown = null;
-            //LevatorFaceUp = null;
-            //My_Image2 = null;
-
+            
             #region imgLoading & UI setting
             if (My_Image2 == null || LevatorFaceDown == null || LevatorFaceUp == null )
             {
@@ -4695,15 +4683,15 @@ namespace eyes
             CornerDetection CornerDetector = new CornerDetection(R_eye);
             CornerDetector.VPF("R", out R_PupilROI, out R_Pupil);
             // Get the Corner (PointF)
-            R_CornerL = CornerDetector.WVPF("R_eye_CornerL", ref ppff);
-            R_CornerR = CornerDetector.WVPF("R_eye_CornerR", ref ppff);
-            R_CornerL.X += R_PupilROI.Right;
-            R_CornerL.Y += R_PupilROI.Top;
+            R_CornerInner = CornerDetector.WVPF("R_eye_CornerL", ref ppff);
+            R_CornerOuter = CornerDetector.WVPF("R_eye_CornerR", ref ppff);
+            R_CornerInner.X += R_PupilROI.Right;
+            R_CornerInner.Y += R_PupilROI.Top;
 
 
             // Draw R_eye Corner
-            //R_eye.Draw(new Cross2DF(R_CornerL, 5, 5), new Bgr(0, 0, 255), 1);
-            //R_eye.Draw(new Cross2DF(R_CornerR, 5, 5), new Bgr(0, 0, 255), 1);
+            R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
 
 
             //---------------------------------------------------------------------------------------
@@ -4711,14 +4699,14 @@ namespace eyes
             CornerDetector = new CornerDetection(L_eye);
             CornerDetector.VPF("L", out L_PupilROI, out L_Pupil);
             // Get the Corner (PointF)
-            L_CornerL = CornerDetector.WVPF("L_eye_CornerL", ref ppff);
-            L_CornerR = CornerDetector.WVPF("L_eye_CornerR", ref ppff);
+            L_CornerOuter = CornerDetector.WVPF("L_eye_CornerL", ref ppff);
+            L_CornerInner = CornerDetector.WVPF("L_eye_CornerR", ref ppff);
 
-            L_CornerR.Y += L_PupilROI.Y;
+            L_CornerInner.Y += L_PupilROI.Y;
 
             // Draw L_eye Corner
-            //L_eye.Draw(new Cross2DF(L_CornerL, 5, 5), new Bgr(0, 0, 255), 1);
-            //L_eye.Draw(new Cross2DF(L_CornerR, 5, 5), new Bgr(0, 0, 255), 1);
+            L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
 
             #endregion
 
@@ -4781,9 +4769,6 @@ namespace eyes
             timer2.Enabled = true;
             timer2.Start();
 
-            //L_eye.Save("L_eyeROI.jpg");
-            //R_eye.Save("R_eyeROI.jpg");
-
         }
         double[] sum = new double[4];
         Particle_parameter_for_fullimg ppff;
@@ -4791,19 +4776,20 @@ namespace eyes
         CircleF L_eye_Pupil, R_eye_Pupil;
         Image<Bgr, Byte> turn;
         Parcitle par;
-        Image<Bgr, byte> L_eye, R_eye;
+        Image<Bgr, byte> L_eye;/* Patient's left eye */
+        Image<Bgr, byte> R_eye;/* Patient's right eye */
         Image<Bgr, byte> L_eyeParticle, R_eyeParticle;
         Image<Bgr, byte> ParticleDraw;
-        PointF R_CornerL, R_CornerR;
-        PointF L_CornerL, L_CornerR;
-        Rectangle L_PupilROI, R_PupilROI;
+        PointF R_CornerInner, R_CornerOuter;/*  Patient's right eye corner*/
+        PointF L_CornerInner, L_CornerOuter;/*  Patient's left eye corner */
+        Rectangle L_PupilROI, R_PupilROI;/* Patient's Pupil ROI */
         List<List<PointF>> CtrlPoints = new List<List<PointF>>();
 
         Image<Bgr, byte> R_LevatorDown, L_LevatorDown;
         Image<Bgr, byte> R_LevatorUp, L_LevatorUp;
         public Image<Bgr, byte> LevatorFaceUp, LevatorFaceDown;
 
-        // The first item is R_eye , the second item is L_eye
+        // The first item is for R_eye , the second item is for L_eye
         List<double> MRD1;
         List<double> MRD2;
         List<double> PFH;
@@ -5365,12 +5351,12 @@ namespace eyes
 
             if (loopcounter == 0)// R_eye
             {
-                par = new Parcitle(ParticleDraw,CtrlPoints, ppff.ContoursPoint, R_eye_Pupil, R_PupilROI, R_CornerL, R_CornerR, "R");
+                par = new Parcitle(ParticleDraw,CtrlPoints, ppff.ContoursPoint, R_eye_Pupil, R_PupilROI, R_CornerInner, R_CornerOuter, "R");
                 ParticleDraw.Draw(R_PupilROI, new Bgr(0, 0, 255), 1);
             }
             else if (loopcounter == 1)// L_eye
             {
-                par = new Parcitle(ParticleDraw, CtrlPoints, ppff.ContoursPoint, L_eye_Pupil, L_PupilROI, L_CornerL, L_CornerR, "L");
+                par = new Parcitle(ParticleDraw, CtrlPoints, ppff.ContoursPoint, L_eye_Pupil, L_PupilROI, L_CornerOuter, L_CornerInner, "L");
                 ParticleDraw.Draw(L_PupilROI, new Bgr(0, 0, 255), 1);
             }
             
@@ -6361,8 +6347,13 @@ namespace eyes
             //CvInvoke.Threshold(eye_Ycc[2], Ycc_Bin, 127, 255, ThresholdType.BinaryInv);
             //Ycc_Bin.Save("L_eye_Bin.jpg");
 
-
-            Image<Gray, byte> colorSubtract = img[2] - img[0]; // R - B
+            img[0].Save("B.jpg");
+            img[1].Save("G.jpg");
+            img[2].Save("R.jpg");
+            Image<Gray, byte> his = img[2].CopyBlank();
+            CvInvoke.CLAHE(img[2], 5, new Size(2, 2), his);
+            his.Save("R_his.jpg");
+            Image <Gray, byte> colorSubtract = img[2] - img[0]; // R - B
             //CvInvoke.Normalize(colorSubtract, colorSubtract, 0, 255, NormType.MinMax);
             colorSubtract.Save("L_eyeRG.jpg");
             CvInvoke.Threshold(colorSubtract, colorSubtract, 10, 255, ThresholdType.Binary);

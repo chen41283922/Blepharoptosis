@@ -63,12 +63,9 @@ namespace eyes
             //轉灰階
             img_Gray = EyeRoi.Convert<Gray, Byte>();
             img_Gray._GammaCorrect(0.6);
-            //CvInvoke.Normalize(img_Gray, img_Gray, 0, 255, NormType.MinMax);
             img_Bgr = EyeRoi.Clone();
-            //img_Bgr._EqualizeHist();
             // Laplace 邊緣強化
             img_laplace = img_Gray.Convert<Gray, float>();
-            //img_laplace = img_laplace.Laplace(1);
             //Convert to 8-bit image
             Point[] minLoc, maxLoc;
             double[] mins, maxs;
@@ -133,31 +130,25 @@ namespace eyes
             List<VectorOfPoint> C = new List<VectorOfPoint>();
 
             CvInvoke.FindContours(img_Edge, Contours, null, RetrType.External, ChainApproxMethod.ChainApproxNone);
-            //Image<Gray, Byte> blackImage = img_Gray.CopyBlank();
             img_Edge = img_Gray.CopyBlank();
             img_EdgeText = EyeRoi.CopyBlank();
 
-            double maxArea = 0;
+            double maxLen = 0;
             int Inx = 0;
             if (Contours.Size > 0)
             {
                 for (int i = 0; i < Contours.Size; i++)
                 {
-                    double area = CvInvoke.ArcLength(Contours[i], true);
-                    if (area > maxArea)
+                    double len = CvInvoke.ArcLength(Contours[i], true);
+                    if (len > maxLen)
                     {
-                        maxArea = area;
+                        maxLen = len;
                         Inx = i;
                     }
-                    //if ((area > 250) || (area < 150)) continue;
-                    //if (area < 50)
-                    //{
-                    //    continue;
-                    //}
                     CvInvoke.DrawContours(img_Edge, Contours, i, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
                     CvInvoke.DrawContours(img_EdgeText, Contours, i, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
                     Rectangle rect = CvInvoke.BoundingRectangle(Contours[i]);
-                    CvInvoke.PutText(img_EdgeText, area.ToString("###.#"), new Point(rect.X, rect.Y + rect.Height), Emgu.CV.CvEnum.FontFace.HersheyDuplex, 0.2, new Bgr(Color.Red).MCvScalar);
+                    CvInvoke.PutText(img_EdgeText, len.ToString("###.#"), new Point(rect.X, rect.Y + rect.Height), Emgu.CV.CvEnum.FontFace.HersheyDuplex, 0.2, new Bgr(Color.Red).MCvScalar);
                     C.Add(Contours[i]);
                 }
 
@@ -197,7 +188,7 @@ namespace eyes
                 catch (Emgu.CV.Util.CvException ex) { Console.WriteLine(ex); }
 
                 // by  gradient 
-                list_Pupil = CircleVerify(list_Pupil/*, img_Edge, img_Threshold, img_laplaceByte*/);
+                list_Pupil = CircleVerify(list_Pupil);
 
             }
             else

@@ -227,27 +227,25 @@ namespace eyes
             if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")
             {
                 Image<Gray, float> CornerL_float = CornerL.Convert<Gray, float>();
-                CvInvoke.CornerHarris(CornerL, CornerL_float, 3);     //注意：角点检测传出的为Float类型的数据
-                CvInvoke.Normalize(CornerL_float, CornerL_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
+                CvInvoke.CornerHarris(CornerL, CornerL_float, 3);    
+                CvInvoke.Normalize(CornerL_float, CornerL_float, 0, 255, NormType.MinMax, DepthType.Cv32F); 
                 CornerL_float = CornerL_float.AbsDiff(new Gray(0));
 
                 CvInvoke.MinMaxLoc(CornerL_float, ref min, ref max, ref minP, ref maxP);
                 double scale = 255 / (max - min);
                 double shift = min * scale;
-                //CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
                 CornerL = CornerL_float.ConvertScale<byte>(scale, shift);
             }
             else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")
             {
                 Image<Gray, float> CornerR_float = CornerR.Convert<Gray, float>();
-                CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     //注意：角点检测传出的为Float类型的数据
-                CvInvoke.Normalize(CornerR_float, CornerR_float, 0, 255, NormType.MinMax, DepthType.Cv32F);  //标准化处理
+                CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     
+                CvInvoke.Normalize(CornerR_float, CornerR_float, 0, 255, NormType.MinMax, DepthType.Cv32F); 
                 CornerR_float = CornerR_float.AbsDiff(new Gray(0));
 
                 CvInvoke.MinMaxLoc(CornerR_float, ref min, ref max, ref minP, ref maxP);
                 double scale = 255 / (max - min);
                 double shift = min * scale;
-                //CvInvoke.ConvertScaleAbs(m_CornerImage, m_SourceImage, scale, shift);//进行缩放，转化为byte类型
                 CornerR = CornerR_float.ConvertScale<byte>(scale, shift);
             }
             #endregion
