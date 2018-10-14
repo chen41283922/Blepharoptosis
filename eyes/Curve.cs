@@ -6,42 +6,24 @@ using System.Text;
 
 namespace SomeCalibrations
 {
-    class Parabola
+    class Curve
     {
         double[] coefficient;//升冪, 0 based
         int Power;// 1 based
-        double a, b, c;
         Lagrange_Interpolation Lagrange;
 
-        public Parabola() { }
-        public Parabola(Parabola copy)
+        public Curve() { }
+        public Curve(Curve copy)
         {
             this.coefficient = copy.coefficient;
             this.Power = copy.Power;
             this.Lagrange = copy.Lagrange;
         }
 
-        public Parabola(List<PointF> points) {
+        public Curve(List<PointF> points,int Power) {
             
-            this.coefficient = FindPolynomialLeastSquaresFit(points,3);
-            this.Power = 3;
-        }
-
-        public Parabola(PointF c,PointF l,PointF r) {
-            double[,] ma = { 
-                { Math.Pow(c.X,2), c.X, 1, c.Y }, 
-                { Math.Pow(l.X,2), l.X, 1, l.Y }, 
-                { Math.Pow(r.X,2), r.X, 1, r.Y } };
-            double[] x = new double[3];
-            GaussEliminate.Gauss(3,ma,x);
-            this.a = x[0];
-            this.b = x[1];
-            this.c = x[2];
-        }
-        public Parabola(double a,double b,double c) {
-            this.a = a;
-            this.b = b;
-            this.c = c;
+            this.coefficient = FindPolynomialLeastSquaresFit(points, Power);
+            this.Power = Power;
         }
 
         // Input coordinate X , get coordinate Y
@@ -88,8 +70,6 @@ namespace SomeCalibrations
 
 
         }
-
-        
 
         // Find the least squares linear fit.
         public double[] FindPolynomialLeastSquaresFit(List<PointF> points, int degree)

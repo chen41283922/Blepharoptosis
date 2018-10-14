@@ -14,7 +14,7 @@ namespace eyes
 {
     class CornerDetection
     {
-        Image<Gray, byte> EyeROIGray;
+        Image<Gray, byte> img;
         Image<Gray, byte> CornerL;
         Image<Gray, byte> CornerR;
         
@@ -26,7 +26,7 @@ namespace eyes
 
         public CornerDetection () { }
         public CornerDetection (Image<Bgr, byte> EyeROI) {
-            EyeROIGray = EyeROI.Convert<Gray, byte>();
+            img = EyeROI.Convert<Gray, byte>();
             
             this.row = EyeROI.Height;
             this.col = EyeROI.Width;
@@ -45,8 +45,8 @@ namespace eyes
             {
                 for (int y = 0; y < row; ++y)
                 {
-                    sum += EyeROIGray[y, x].Intensity;
-                    if (EyeROIGray[y, x].Intensity <= 70) {
+                    sum += img[y, x].Intensity;
+                    if (img[y, x].Intensity <= 70) {
                         colBlack[x]++;
                         
                     }
@@ -59,8 +59,8 @@ namespace eyes
             {
                 for (int x = 0; x < col; ++x)
                 {
-                    sum += EyeROIGray[y, x].Intensity;
-                    if (EyeROIGray[y, x].Intensity <= 70)
+                    sum += img[y, x].Intensity;
+                    if (img[y, x].Intensity <= 70)
                     {
                         rowBlack[y]++;
                     }
@@ -72,14 +72,14 @@ namespace eyes
         public void VPF(String LorR ,out Rectangle PupilROI, out Image<Bgr,byte> Pupil) {
 
             //Draw the variance for visualization
-            Image<Gray, byte> variance = EyeROIGray.Clone();
-            Image<Gray, byte> varianceV = EyeROIGray.Clone();
-            Image<Gray, byte> varianceH = EyeROIGray.Clone();
+            Image<Gray, byte> variance = img.Clone();
+            Image<Gray, byte> varianceV = img.Clone();
+            Image<Gray, byte> varianceH = img.Clone();
 
             // Vertical part
             // Calculate vertical VPF
             Dictionary<int, Double> vVPF = new Dictionary<int, double>();
-            calculateVPF(vVPF, "Vertical",colBlack,rowBlack);
+            calculateVPF(vVPF, "Vertical");
 
 
             // Calculate the largest diffrient between the point of variance
@@ -103,7 +103,7 @@ namespace eyes
             // Horizontal part
             // Calculate horizontal VPF
             Dictionary<int, Double> hVPF = new Dictionary<int, double>();
-            calculateVPF(hVPF, "Horizontal",colBlack,rowBlack);
+            calculateVPF(hVPF, "Horizontal");
 
 
             // Calculate the diffrient between the point of variance
@@ -137,21 +137,21 @@ namespace eyes
             PupilROI.Width = CornerROI_Rx - CornerROI_Lx;
             PupilROI.Height = CornerROI_Dy - CornerROI_Uy;
 
-            Pupil = EyeROIGray.Convert<Bgr,byte>();
+            Pupil = img.Convert<Bgr,byte>();
             Pupil.ROI = PupilROI;
             Pupil.Save(LorR+ "\\Pupil.jpg");
 
             // Set Corner ROI
             int offset = 30;
-            Image<Gray, byte> Corner = EyeROIGray.Clone();
-            int CornerL_width = (CornerROI_Rx + offset) < EyeROIGray.Width ? offset : EyeROIGray.Width - CornerROI_Rx;
+            Image<Gray, byte> Corner = img.Clone();
+            int CornerL_width = (CornerROI_Rx + offset) < img.Width ? offset : img.Width - CornerROI_Rx;
             int CornerR_x = (CornerROI_Lx - offset) > 0 ? CornerROI_Lx - offset : 0;
             
-            CornerR = EyeROIGray.Clone();
+            CornerR = img.Clone();
             CornerR.ROI = new Rectangle(CornerR_x, CornerROI_Uy, offset, CornerROI_Dy - CornerROI_Uy);
             CornerR.Save(LorR + @"\\CornerR.jpg");
 
-            CornerL = EyeROIGray.Clone();
+            CornerL = img.Clone();
             CornerL.ROI = new Rectangle(CornerROI_Rx, CornerROI_Uy, CornerL_width, CornerROI_Dy - CornerROI_Uy);
             CornerL.Save(LorR + @"\\CornerL.jpg");
 
@@ -163,13 +163,13 @@ namespace eyes
         public int VPF_eyelidsDetect(String ImgName)
         {
             //Draw the variance for visualization
-            Image<Gray, byte> variance = EyeROIGray.Clone();
-            Image<Gray, byte> varianceH = EyeROIGray.Clone();
+            Image<Gray, byte> variance = img.Clone();
+            Image<Gray, byte> varianceH = img.Clone();
 
             // Horizontal part
             // Calculate horizontal VPF
             Dictionary<int, Double> hVPF = new Dictionary<int, double>();
-            calculateVPF(hVPF, "Horizontal", colBlack, rowBlack);
+            calculateVPF(hVPF, "Horizontal");
 
             // Calculate the diffrient between the point of variance
             Point[] p = new Point[row];
@@ -190,25 +190,21 @@ namespace eyes
             return CornerROI_Uy;
         }
 
-        public Point WVPF(String LorR,ref Particle_parameter_for_fullimg ppff) {
+        public Point WVPF(String Identifier) {
 
             #region setting
-            if (LorR.Last().ToString() == "R")
+            if (Identifier.Last().ToString() == "R")
             {
-
-
-                EyeROIGray = CornerR.Clone();
+                img = CornerR.Clone();
                 this.row = CornerR.Height;
                 this.col = CornerR.Width;
                 rowMean = new double[row];
                 colMean = new double[col];
                 col_row_Mean_Black();
             }
-            if (LorR.Last().ToString() == "L")
+            if (Identifier.Last().ToString() == "L")
             {
-
-
-                EyeROIGray = CornerL.Clone();
+                img = CornerL.Clone();
                 this.row = CornerL.Height;
                 this.col = CornerL.Width;
                 rowMean = new double[row];
@@ -219,44 +215,48 @@ namespace eyes
 
             #endregion
 
+            Dictionary<int, Double> vVPF = new Dictionary<int, double>();
+            Dictionary<int, Double> hVPF = new Dictionary<int, double>();
+
             #region harris
+
+            Image<Gray, float> CornerL_harris = img.Convert<Gray,float>().CopyBlank();
+            Image<Gray, float> CornerR_harris = img.Convert<Gray, float>().CopyBlank();
 
             double min = 0, max = 0;
             Point minP = new Point();
             Point maxP = new Point();
-            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")
+            if (Identifier.First().ToString() == "R" && Identifier.Last().ToString() == "L")// Patient's right eye inner corner
             {
-                Image<Gray, float> CornerL_float = CornerL.Convert<Gray, float>();
-                CvInvoke.CornerHarris(CornerL, CornerL_float, 3);    
-                CvInvoke.Normalize(CornerL_float, CornerL_float, 0, 255, NormType.MinMax, DepthType.Cv32F); 
-                CornerL_float = CornerL_float.AbsDiff(new Gray(0));
+                CornerL_harris = CornerL.Convert<Gray, float>();
+                CvInvoke.CornerHarris(CornerL, CornerL_harris, 3);
+                CvInvoke.Normalize(CornerL_harris, CornerL_harris, 0, 255, NormType.MinMax, DepthType.Cv32F);
+                CornerL_harris = CornerL_harris.AbsDiff(new Gray(0));
+                CvInvoke.MinMaxLoc(CornerL_harris, ref min, ref max, ref minP, ref maxP);
 
-                CvInvoke.MinMaxLoc(CornerL_float, ref min, ref max, ref minP, ref maxP);
-                double scale = 255 / (max - min);
-                double shift = min * scale;
-                CornerL = CornerL_float.ConvertScale<byte>(scale, shift);
+                vVPF = calculateVPF(vVPF, "Vertical",CornerR_harris);
+                hVPF = calculateVPF(hVPF, "Horizontal", CornerR_harris);
             }
-            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")
+            else if (Identifier.First().ToString() == "L" && Identifier.Last().ToString() == "R")// Patient's left eye  inner corner
             {
-                Image<Gray, float> CornerR_float = CornerR.Convert<Gray, float>();
-                CvInvoke.CornerHarris(CornerR, CornerR_float, 3);     
-                CvInvoke.Normalize(CornerR_float, CornerR_float, 0, 255, NormType.MinMax, DepthType.Cv32F); 
-                CornerR_float = CornerR_float.AbsDiff(new Gray(0));
+                CornerR_harris = CornerR.Convert<Gray, float>();
+                CvInvoke.CornerHarris(CornerR, CornerR_harris, 3);
+                CvInvoke.Normalize(CornerR_harris, CornerR_harris, 0, 255, NormType.MinMax, DepthType.Cv32F);
+                CornerR_harris = CornerR_harris.AbsDiff(new Gray(0));
+                CvInvoke.MinMaxLoc(CornerR_harris, ref min, ref max, ref minP, ref maxP);
 
-                CvInvoke.MinMaxLoc(CornerR_float, ref min, ref max, ref minP, ref maxP);
-                double scale = 255 / (max - min);
-                double shift = min * scale;
-                CornerR = CornerR_float.ConvertScale<byte>(scale, shift);
+                vVPF = calculateVPF(vVPF, "Vertical", CornerL_harris);
+                hVPF = calculateVPF(hVPF, "Horizontal", CornerL_harris);
+            }
+            else
+            {
+                vVPF = calculateVPF(vVPF, "Vertical");
+                hVPF = calculateVPF(hVPF, "Horizontal");
             }
             #endregion
 
             //Draw the variance for visualization
-            Image<Gray, byte> variance = EyeROIGray.Clone();
-
-            // Vertical part
-            // Calculate vertical VPF
-            Dictionary<int, Double> vVPF = new Dictionary<int, double>();
-            vVPF = calculateVPF(vVPF, "Vertical", ref ppff);
+            Image<Gray, byte> variance = img.Clone();
 
             // Calculate the diffrience between the point of variance
             Point[] p = new Point[col];
@@ -267,25 +267,21 @@ namespace eyes
             var dicSort = from objDic in diffMax orderby objDic.Value descending select objDic;
             int CornerX = 0;
 
-            if (LorR.Last().ToString() == "L")
+            if (Identifier.Last().ToString() == "L")
             {
                 CornerX = dicSort.ElementAt(0).Key + CornerL.ROI.X;
             }
-            if (LorR.Last().ToString() == "R")
+            if (Identifier.Last().ToString() == "R")
             {
                 CornerX = dicSort.ElementAt(0).Key + CornerR.ROI.X;
             }
 
             variance.Draw(new LineSegment2D(new Point(dicSort.ElementAt(0).Key, 0), new Point(dicSort.ElementAt(0).Key, variance.Height)), new Gray(0), 1);
             variance.DrawPolyline(p, false, new Gray(255));
-            variance.Save(LorR.First().ToString() + "\\varianceVertical" + LorR.Last().ToString() + ".jpg");
+            variance.Save(Identifier.First().ToString() + "\\varianceVertical" + Identifier.Last().ToString() + ".jpg");
 
 
 
-            // Horizontal part
-            // Calculate horizontal VPF
-            Dictionary<int, Double> hVPF = new Dictionary<int, double>();
-            hVPF = calculateVPF(hVPF, "Horizontal", ref ppff);
 
             // Calculate the diffrience between the point of variance
             p = new Point[row];
@@ -296,11 +292,11 @@ namespace eyes
 
             int CornerY = 0;
 
-            if (LorR.Last().ToString() == "L")
+            if (Identifier.Last().ToString() == "L")
             {
                 CornerY = dicSort.ElementAt(0).Key + CornerL.ROI.Y;
             }
-            else if (LorR.Last().ToString() == "R")
+            else if (Identifier.Last().ToString() == "R")
             {
                 CornerY = dicSort.ElementAt(0).Key + CornerR.ROI.Y;
             }
@@ -309,28 +305,20 @@ namespace eyes
             // Draw a line to segment the CORNER area
             variance.Draw(new LineSegment2D(new Point(0, dicSort.ElementAt(0).Key), new Point(variance.Width, dicSort.ElementAt(0).Key)), new Gray(0), 1);
             variance.DrawPolyline(p, false, new Gray(255));
-            variance.Save(LorR.First().ToString() + "\\varianceCross" + LorR.Last().ToString() + ".jpg");
+            variance.Save(Identifier.First().ToString() + "\\varianceCross" + Identifier.Last().ToString() + ".jpg");
 
-            variance = EyeROIGray.Clone();
+            variance = img.Clone();
             variance.Draw(new LineSegment2D(new Point(0, dicSort.ElementAt(0).Key), new Point(variance.Width, dicSort.ElementAt(0).Key)), new Gray(0), 1);
             variance.DrawPolyline(p, false, new Gray(255));
-            variance.Save(LorR.First().ToString() + "\\varianceHorizontal" + LorR.Last().ToString() + ".jpg");
+            variance.Save(Identifier.First().ToString() + "\\varianceHorizontal" + Identifier.Last().ToString() + ".jpg");
 
 
-            if (LorR.First().ToString() == "R" && LorR.Last().ToString() == "L")
+            if (Identifier.First().ToString() == "R" && Identifier.Last().ToString() == "L")// Patient's right eye inner corner
             {
-                CvInvoke.MinMaxLoc(CornerL, ref min, ref max, ref minP, ref maxP);
-                CornerL.Draw(new CircleF(maxP, 1), new Gray(0), 1);
-                CornerL.Save(LorR.First().ToString() + "/R_eye_CornerL_Harris.jpg");
-
                 return maxP;
             }
-            else if (LorR.First().ToString() == "L" && LorR.Last().ToString() == "R")
-            {                
-                CvInvoke.MinMaxLoc(CornerR, ref min, ref max, ref minP, ref maxP);
-                CornerR.Draw(new CircleF(maxP, 1), new Gray(0), 1);
-                CornerR.Save(LorR.First().ToString() + "/L_eye_CornerR_Harris.jpg");
-
+            else if (Identifier.First().ToString() == "L" && Identifier.Last().ToString() == "R")// Patient's left eye inner corner
+            {
                 return maxP;
             }
             else
@@ -341,18 +329,17 @@ namespace eyes
         }
 
         // Calculate Weighted VPF
-        private Dictionary<int, double> calculateVPF(Dictionary<int ,double> VPF, String direction, ref Particle_parameter_for_fullimg ppff)
+        private Dictionary<int, double> calculateVPF(Dictionary<int ,double> VPF, String direction, Image<Gray,float> harris)
         {
             double sum = 0;
-
+            
             if (direction == "Vertical")
             {
                 for (int x = 0; x < col; ++x)
                 {
                     for (int y = 0; y < row; ++y)
                     {
-                        sum += ppff.m_SourceImage[y + EyeROIGray.ROI.Y, x + EyeROIGray.ROI.X].Intensity *
-                                Math.Pow(EyeROIGray[y, x].Intensity - colMean[x], 2);
+                        sum += harris[y,x].Intensity * Math.Pow(img[y, x].Intensity - colMean[x], 2);
                     }
                     VPF.Add(x, sum / row);
                     sum = 0;
@@ -364,8 +351,7 @@ namespace eyes
                 {
                     for (int x = 0; x < col; ++x)
                     {
-                        sum += ppff.m_SourceImage[y + EyeROIGray.ROI.Y, x + EyeROIGray.ROI.X].Intensity *
-                                Math.Pow(EyeROIGray[y, x].Intensity - rowMean[y], 2);
+                        sum += harris[y, x].Intensity * Math.Pow(img[y, x].Intensity - rowMean[y], 2);
                     }
                     VPF.Add(y, sum / col);
                     sum = 0;
@@ -375,7 +361,7 @@ namespace eyes
             return VPF;
         }
         // Calculate Unweighted VPF
-        private Dictionary<int, double> calculateVPF(Dictionary<int, double> VPF, String direction,double[] colBlack,double[] rowBlack)
+        private Dictionary<int, double> calculateVPF(Dictionary<int, double> VPF, String direction)
         {
             double sum = 0;
             if (direction == "Vertical")
@@ -384,7 +370,7 @@ namespace eyes
                 {
                     for (int y = 0; y < row; ++y)
                     {
-                        sum += Math.Pow(EyeROIGray[y, x].Intensity - colMean[x], 2);
+                        sum += Math.Pow(img[y, x].Intensity - colMean[x], 2);
                     }
                     sum *= colBlack[x];
                     VPF.Add(x, sum / row);
@@ -397,7 +383,7 @@ namespace eyes
                 {
                     for (int x = 0; x < col; ++x)
                     {
-                        sum += Math.Pow(EyeROIGray[y, x].Intensity - rowMean[y], 2);
+                        sum += Math.Pow(img[y, x].Intensity - rowMean[y], 2);
                     }
                     sum *= rowBlack[y];
                     VPF.Add(y, sum / col);
@@ -408,7 +394,8 @@ namespace eyes
             return VPF;
         }
 
-        // Rerange the variance to the height of image and Calculate the largest diffrient between the point of variance
+        // Rerange the variance to the height of image
+        // Calculate the largest diffrient between the point of variance
         private Dictionary<int, int> VerticalDiffMax(Point[] p, Dictionary<int, int> diffMax, Dictionary<int, double> VPF)
         {
             p[0].X = 0;
@@ -419,8 +406,6 @@ namespace eyes
                 p[x].Y = (int)((VPF[x] - VPF.Values.Min()) * row / (VPF.Values.Max() - VPF.Values.Min()));
 
                 diffMax.Add(p[x].X, p[x].Y);
-
-                //Console.WriteLine("p[" + x + "].Y" + p[x].Y);
             }
             if (col == 1)
             {
@@ -433,15 +418,12 @@ namespace eyes
         {
             p[0].X = 0;
             p[0].Y = (int)((VPF[0] - VPF.Values.Min()) * col / (VPF.Values.Max() - VPF.Values.Min())); // Shift
-            //Console.WriteLine("WVPF : HorizontalDiffMax");
             for (int y = 1; y < row; ++y)
             {
                 p[y].Y = y;
                 p[y].X = (int)((VPF[y] - VPF.Values.Min()) * col / (VPF.Values.Max() - VPF.Values.Min())); // Shiht
 
                 diffMax.Add(p[y].Y, p[y].X);
-
-                //Console.WriteLine("p[" + y + "].Y" + p[y].X);
             }
             if (row == 1)
             {

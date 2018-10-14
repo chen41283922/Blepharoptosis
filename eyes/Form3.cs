@@ -1,16 +1,8 @@
 ﻿using Emgu.CV;
-using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
-using Emgu.CV.UI;
-using Emgu.CV.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using bearing;
 
@@ -315,7 +307,7 @@ namespace eyes
                 imageBox1.Image = camImage;
                 imageBox1.Image.Save(Application.StartupPath + @"\image\" + strPicFile);//照日期存檔
 
-                Form1.LevatorFaceDown = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
+                Form1.img_LevatorFaceDown = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
                 MessageBox.Show("拍攝完成！接著請用力往上看");
             }
             else if (turn == 2)// Take the picture of LevatorFaceUp
@@ -324,7 +316,7 @@ namespace eyes
                 imageBox1.Image = camImage;
                 imageBox1.Image.Save(Application.StartupPath + @"\image\" + strPicFile);//照日期存檔
 
-                Form1.LevatorFaceUp = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
+                Form1.img_LevatorFaceUp = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
             }
 
 

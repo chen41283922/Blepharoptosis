@@ -20,7 +20,7 @@ namespace eyes
         
         public Image<Gray, Byte> My_Image1;
         public Image<Bgr, Byte> My_Image2;
-        Image<Bgr, Byte> Ori_Image;
+        
 
         public Image<Bgr, Byte> facecut;
         public Image<Bgr, Byte> facecutori;
@@ -137,26 +137,71 @@ namespace eyes
             return PF;
         }
 
-        bool doppff;
-        int timercounter = 0;
-        int loopcounter = 0;
-        int numofpar = 30;
-        Parcitle maxPar,maxParRight;
-        double maxw = -100;
-        double maxd1 = -100;
-        double maxd2 = -100;
-        double maxd3 = -100;
-        double maxd4 = -100;
+        // For timer procedure control
+        /****************************************************************************/
+        bool isEyesInit; /* Flag of eyes initialization */
+        int timer_current = 0; /* Counter of timer */
+        int timer_end = 30; /* Determine the times of the loop for each eye */
+        int timer_stage = 0;/* 0 : R_eye
+                               1 : L_eye
+                               2 : Show the result */
+        /****************************************************************************/
+        double minWeight = double.MinValue; /* The minimum gradient score */
 
-        private void toolStripMenuItem12_Click(object sender, EventArgs e)//1000次
+        Eye Eye_Left; /* Patient's left eye */
+        Eye Eye_Right;/* Patient's right eye */
+        Eye Eye_temp;
+        Iris Iris_Left; /* Patient's left iris */
+        Iris Iris_Right; /* Patient's right iris */
+        
+
+        public Image<Bgr, byte> img_LevatorFaceUp, img_LevatorFaceDown;
+        Image<Bgr, byte> img_Periocular; /* Both eye ROI */
+
+        Image<Bgr, byte> img_L_eye;/* Patient's left eye ROI */
+        Image<Bgr, byte> img_R_eye;/* Patient's right eye ROI */
+        Image<Bgr, byte> img_Draw; /* For visualization propose */
+        Image<Bgr, byte> img_temp;
+        Image<Bgr, byte> img_L_CtrlPoints, img_R_CtrlPoints;/* For visualization propose */
+        Image<Bgr, byte> img_L_LevatorDown, img_R_LevatorDown;/* Patient's eye look down */
+        Image<Bgr, byte> img_L_LevatorUp, img_R_LevatorUp; /* Patient's eye look up */
+
+        PointF R_CornerInner, R_CornerOuter;/*  Patient's right eye corner*/
+        PointF L_CornerInner, L_CornerOuter;/*  Patient's left eye corner */
+        Rectangle L_IrisROI, R_IrisROI;/* Patient's Iris ROI */
+
+        /* CtrlPoints[0] : upper eyelid
+         * CtrlPoints[1] : lower eyelid  */
+        List<List<PointF>> CtrlPoints = new List<List<PointF>>();
+
+        /* Measurement */
+        /* The first item is for R_eye
+         * The second item is for L_eye*/
+        List<double> MRD1;
+        List<double> MRD2;
+        List<double> PFH;
+        List<double> PFW;
+        List<double> OSA;
+        List<double> PtosisSeverity;
+        List<double> Levetor;
+
+        public String name = String.Empty;
+        public String AgeSex = String.Empty;
+        public String NoChart = String.Empty;
+        public String Address = String.Empty;
+        public String Phone = String.Empty;
+        public String Date = String.Empty;
+
+
+        private void toolStripMenuItem12_Click(object sender, EventArgs e)//眼睛 Ctrl + V
         {
             
             #region imgLoading & UI setting
-            if (My_Image2 == null || LevatorFaceDown == null || LevatorFaceUp == null )
+            if (My_Image2 == null || img_LevatorFaceDown == null || img_LevatorFaceUp == null )
             {
                 toolStripMenuItem20_Click(sender, e);
                 // If user click 'Cancel' ,return
-                if (My_Image2 == null || LevatorFaceDown == null || LevatorFaceUp == null)
+                if (My_Image2 == null || img_LevatorFaceDown == null || img_LevatorFaceUp == null)
                 {
                     MessageBox.Show("取消執行");
                     return;
@@ -193,33 +238,21 @@ namespace eyes
             PtosisSeverity = new List<double>();
             Levetor = new List<double>();
 
-            loopcounter = 0;
-
-            Image<Hsv, Byte> HSVimg;
-            // Seperate Eye Region by relative position
+            // Set periocular ROI by relative position of CascadeClassifier outcome
             if (facecutori != null)
             {
                 facecutori.ROI = facesori;
-                Ori_Image = facecutori.Clone();
-                int Eye_X = facecutori.ROI.Width * 15 / 100;
-                int Eye_Y = facecutori.ROI.Height * 25 / 100;
-                int Eye_Width = facecutori.ROI.Width * 70 / 100;
-                int Eye_Height = facecutori.ROI.Height * 20 / 100;
-                Ori_Image.ROI = new Rectangle(Eye_X + facecutori.ROI.X, Eye_Y + facecutori.ROI.Y, Eye_Width, Eye_Height);
+                img_Periocular = facecutori.Clone();
+                int X = facecutori.ROI.Width * 15 / 100 + +facecutori.ROI.X;
+                int Y = facecutori.ROI.Height * 25 / 100 + facecutori.ROI.Y;
+                int Width = facecutori.ROI.Width * 70 / 100;
+                int Height = facecutori.ROI.Height * 20 / 100;
+                img_Periocular.ROI = new Rectangle(X , Y , Width, Height);
+                img_LevatorFaceDown.ROI = new Rectangle(X, Y, Width, Height);
+                img_LevatorFaceUp.ROI = new Rectangle(X, Y, Width, Height);
 
-                HSVimg = new Image<Hsv, byte>(Ori_Image.Width, Ori_Image.Height); //HSV類型要定義為float類型，因為BGR轉化後數值非整數
-                Image<Bgr, float> oriBgr_float = new Image<Bgr, float>(Ori_Image.Width, Ori_Image.Height);
-                CvInvoke.cvConvertScale(Ori_Image, oriBgr_float, 1.0, 0); //將原圖轉化為float類型的數據
-                CvInvoke.CvtColor(Ori_Image, HSVimg, ColorConversion.Bgr2HsvFull); //根據圖像的類型選擇轉換方式BGR2HSV，還有RGB2HSV
-                Image<Gray, byte> saturation = HSVimg[1];
-                CvInvoke.Normalize(saturation, saturation, 0, 255, NormType.MinMax);
-                saturation.Save("HSVimg0.jpg");
-
-                LevatorFaceDown.ROI = new Rectangle(Eye_X + facecutori.ROI.X, Eye_Y + facecutori.ROI.Y, Eye_Width, Eye_Height);
-                LevatorFaceUp.ROI = new Rectangle(Eye_X + facecutori.ROI.X, Eye_Y + facecutori.ROI.Y, Eye_Width, Eye_Height);
-
-                LevatorFaceDown.Save("LevatorFaceDown.jpg");
-                LevatorFaceUp.Save("LevatorFaceUp.jpg");
+                img_LevatorFaceDown.Save("LevatorFaceDown.jpg");
+                img_LevatorFaceUp.Save("LevatorFaceUp.jpg");
 
             }
             else
@@ -229,34 +262,30 @@ namespace eyes
             }
 
 
-            // Particle Filter method
-            doppff = true;
-            LorR_flag = 0;
-            maxw = double.MinValue;
-            timercounter = 0;
-            loopcounter = 0;
-            maxPar = null;
-            maxParRight = null;
-            sum[0] = 0;
-            sum[1] = 0;
-            sum[2] = 0;
-            sum[3] = 0;
+            // timer procedure control
+            isEyesInit = true;
+            timer_current = 0;
+            timer_stage = 0;
+            Eye_Left = null;
+            Eye_Right = null;
 
-            ppff = new Particle_parameter_for_fullimg(Ori_Image);
 
             #region EyeROI
-            // Find EyeROI base on faceROI and FRST outcome
+
+            Eye_temp = new Eye();
+            Eye_temp.RunFRST(img_Periocular);
+            // Find eye ROI base on FRST
             int BlockWidth = 100;
             int BlockHeight = 60;
-            Point EyeRoi_R = ppff.FindEyeROIbyFRST(BlockWidth, BlockHeight);
+            Point EyeRoi_R = Eye_temp.FindEyeROIbyFRST(BlockWidth, BlockHeight);
             Point EyeRoi_L;
-            if (EyeRoi_R.X >= (Ori_Image.Width / 2)){
+            if (EyeRoi_R.X >= (img_Periocular.Width / 2)){
                 //RightEye
-                EyeRoi_L = ppff.FindEyeROIbyFRST(BlockWidth, BlockHeight, "R");
+                EyeRoi_L = Eye_temp.FindEyeROIbyFRST(BlockWidth, BlockHeight, "R");
             }
             else{
                 //LeftEye
-                EyeRoi_L = ppff.FindEyeROIbyFRST(BlockWidth, BlockHeight, "L");
+                EyeRoi_L = Eye_temp.FindEyeROIbyFRST(BlockWidth, BlockHeight, "L");
             }
 
             if (EyeRoi_R.X > EyeRoi_L.X){
@@ -266,91 +295,87 @@ namespace eyes
             }
 
             // Set L_eye, R_eye, R_LevatorDown,L_LevatorDown,R_LevatorUp,L_LevatorUp ROI
-            R_eye = Ori_Image.Copy();
-            R_eye.ROI = new Rectangle(EyeRoi_R, new Size(BlockWidth, BlockHeight));
-            R_eyeParticle = R_eye.Copy();
-            L_eye = Ori_Image.Copy();
-            L_eye.ROI = new Rectangle(EyeRoi_L, new Size(BlockWidth, BlockHeight));
-            L_eyeParticle = L_eye.Copy();
+            img_R_eye = img_Periocular.Copy();
+            img_R_eye.ROI = new Rectangle(EyeRoi_R, new Size(BlockWidth, BlockHeight));
+            img_R_CtrlPoints = img_R_eye.Copy();
+            img_L_eye = img_Periocular.Copy();
+            img_L_eye.ROI = new Rectangle(EyeRoi_L, new Size(BlockWidth, BlockHeight));
+            img_L_CtrlPoints = img_L_eye.Copy();
 
-            R_LevatorDown = LevatorFaceDown.Copy();
-            L_LevatorDown = LevatorFaceDown.Copy();
-            R_LevatorUp = LevatorFaceUp.Copy();
-            L_LevatorUp = LevatorFaceUp.Copy();
+            img_R_LevatorDown = img_LevatorFaceDown.Copy();
+            img_L_LevatorDown = img_LevatorFaceDown.Copy();
+            img_R_LevatorUp = img_LevatorFaceUp.Copy();
+            img_L_LevatorUp = img_LevatorFaceUp.Copy();
 
-            R_LevatorDown.ROI = R_eye.ROI;
-            R_LevatorUp.ROI = R_eye.ROI;
-            L_LevatorDown.ROI = L_eye.ROI;
-            L_LevatorUp.ROI = L_eye.ROI;
+            img_R_LevatorDown.ROI = img_R_eye.ROI;
+            img_R_LevatorUp.ROI = img_R_eye.ROI;
+            img_L_LevatorDown.ROI = img_L_eye.ROI;
+            img_L_LevatorUp.ROI = img_L_eye.ROI;
 
-            R_LevatorDown.Save("R_LevatorDown.jpg");
-            R_LevatorUp.Save("R_LevatorUp.jpg");
-            L_LevatorDown.Save("L_LevatorDown.jpg");
-            L_LevatorUp.Save("L_LevatorUp.jpg");
+            img_R_LevatorDown.Save("R_LevatorDown.jpg");
+            img_R_LevatorUp.Save("R_LevatorUp.jpg");
+            img_L_LevatorDown.Save("L_LevatorDown.jpg");
+            img_L_LevatorUp.Save("L_LevatorUp.jpg");
 
             #endregion
 
             #region LevatorFunction
 
             int Down, Up;
-            CornerDetection levator = new CornerDetection(R_LevatorDown);
+            CornerDetection levator = new CornerDetection(img_R_LevatorDown);
             Down = levator.VPF_eyelidsDetect("R_LevatorDown");
-            levator = new CornerDetection(R_LevatorUp);
+            levator = new CornerDetection(img_R_LevatorUp);
             Up = levator.VPF_eyelidsDetect("R_LevatorUp");
             Levetor.Add((Down - Up)* mmperpixel);
 
-            levator = new CornerDetection(L_LevatorDown);
+            levator = new CornerDetection(img_L_LevatorDown);
             Down = levator.VPF_eyelidsDetect("L_LevatorDown");
-            levator = new CornerDetection(L_LevatorUp);
+            levator = new CornerDetection(img_L_LevatorUp);
             Up = levator.VPF_eyelidsDetect("L_LevatorUp");
             Levetor.Add((Down - Up)* mmperpixel);
-
-            Console.WriteLine("Levetor R :" + Levetor[0]+ " Levetor L : "+ Levetor[1]);
-
-
 
             #endregion
 
             #region Corner
 
 
-            Image<Bgr, byte> R_Pupil, L_Pupil;
+            Image<Bgr, byte> R_Iris, L_Iris;
 
-            CornerDetection CornerDetector = new CornerDetection(R_eye);
-            CornerDetector.VPF("R", out R_PupilROI, out R_Pupil);
+            CornerDetection CornerDetector = new CornerDetection(img_R_eye);
+            CornerDetector.VPF("R", out R_IrisROI, out R_Iris);
             // Get the Corner (PointF)
-            R_CornerInner = CornerDetector.WVPF("R_eye_CornerL", ref ppff);
-            R_CornerOuter = CornerDetector.WVPF("R_eye_CornerR", ref ppff);
-            R_CornerInner.X += R_PupilROI.Right;
-            R_CornerInner.Y += R_PupilROI.Top;
+            R_CornerInner = CornerDetector.WVPF("R_eye_CornerL");
+            R_CornerOuter = CornerDetector.WVPF("R_eye_CornerR");
+            R_CornerInner.X += R_IrisROI.Right;
+            R_CornerInner.Y += R_IrisROI.Top;
 
 
             // Draw R_eye Corner
-            R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
-            R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            //img_R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            //img_R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
 
 
             //---------------------------------------------------------------------------------------
 
-            CornerDetector = new CornerDetection(L_eye);
-            CornerDetector.VPF("L", out L_PupilROI, out L_Pupil);
+            CornerDetector = new CornerDetection(img_L_eye);
+            CornerDetector.VPF("L", out L_IrisROI, out L_Iris);
             // Get the Corner (PointF)
-            L_CornerOuter = CornerDetector.WVPF("L_eye_CornerL", ref ppff);
-            L_CornerInner = CornerDetector.WVPF("L_eye_CornerR", ref ppff);
+            L_CornerOuter = CornerDetector.WVPF("L_eye_CornerL");
+            L_CornerInner = CornerDetector.WVPF("L_eye_CornerR");
 
-            L_CornerInner.Y += L_PupilROI.Y;
+            L_CornerInner.Y += L_IrisROI.Y;
 
             // Draw L_eye Corner
-            L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
-            L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            //img_L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            //img_L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
 
             #endregion
 
-            #region PupilMark
+            #region IrisMark
 
             // HoughCircle outcome
-            List<CircleF> list_LeftPupil = new List<CircleF>();
-            List<CircleF> list_RightPupil = new List<CircleF>();
+            List<CircleF> list_LeftIris = new List<CircleF>();
+            List<CircleF> list_RightIris = new List<CircleF>();
 
             // For debuging 
             List<Image<Bgr, byte>> list_draw = new List<Image<Bgr, byte>>();
@@ -359,12 +384,12 @@ namespace eyes
             int minRadius = 12; // hospital : 29
             int maxRadius = 16; // hospital : 38
 
-            // Right Pupil Detect
-            pupilDection_R = new PupilDetection();
-            list_RightPupil = pupilDection_R.HoughCircles(R_Pupil, minRadius, maxRadius,0.1);
-            if (list_RightPupil.Count != 0)
+            // Right Iris Detect
+            Iris_Right = new Iris();
+            list_RightIris = Iris_Right.HoughCircles(R_Iris, minRadius, maxRadius,0.1);
+            if (list_RightIris.Count != 0)
             {
-                pupilDection_R.SavePreprocess(list_RightPupil, "R");
+                Iris_Right.SavePreprocess(list_RightIris, "R");
             }
             else
             {
@@ -372,12 +397,12 @@ namespace eyes
                 return;
             }
 
-            // Left Pupil Detect
-            pupilDection_L = new PupilDetection();
-            list_LeftPupil = pupilDection_L.HoughCircles(L_Pupil, minRadius, maxRadius,0.1);
-            if (list_LeftPupil.Count != 0)
+            // Left Iris Detect
+            Iris_Left = new Iris();
+            list_LeftIris = Iris_Left.HoughCircles(L_Iris, minRadius, maxRadius,0.1);
+            if (list_LeftIris.Count != 0)
             {
-                pupilDection_L.SavePreprocess(list_LeftPupil, "L");
+                Iris_Left.SavePreprocess(list_LeftIris, "L");
             }
             else
             {
@@ -386,91 +411,48 @@ namespace eyes
             }
 
             // Visualization
-            Image<Bgr, byte> draw = Ori_Image.Clone();
-            pupilDection_L.DrawEyeRoi(list_LeftPupil, list_RightPupil, ref draw, ref L_eye, ref R_eye, R_PupilROI, L_PupilROI);
-            if (list_LeftPupil.Count != 0 && list_RightPupil.Count != 0)
-            {
-                L_eye_Pupil = list_LeftPupil[0];
-                R_eye_Pupil = list_RightPupil[0];
-            }
-
+            Image<Bgr, byte> draw = img_Periocular.Clone();
+            Iris_Left.DrawEyeRoi(list_LeftIris, list_RightIris, ref draw, img_L_eye, img_R_eye, R_IrisROI, L_IrisROI);
+            
             #endregion
-            Ori_Image.Save("Ori_Image.jpg");
-            Ori_Image.Draw(new Rectangle(EyeRoi_R, new Size(BlockWidth, BlockHeight)), new Bgr(0, 0, 255), 1);
-            Ori_Image.Draw(new Rectangle(EyeRoi_L, new Size(BlockWidth, BlockHeight)), new Bgr(0, 0, 255), 1);
-            imageBox1.Image = Ori_Image;
-            imageBox5.Image = R_eye;
-            imageBox6.Image = L_eye;
+
+            img_Periocular.Save("img_Periocular.jpg");
+            img_Periocular.Draw(new Rectangle(EyeRoi_R, new Size(BlockWidth, BlockHeight)), new Bgr(0, 0, 255), 1);
+            img_Periocular.Draw(new Rectangle(EyeRoi_L, new Size(BlockWidth, BlockHeight)), new Bgr(0, 0, 255), 1);
+            imageBox1.Image = img_Periocular;
 
             timer2.Enabled = true;
             timer2.Start();
 
         }
-        double[] sum = new double[4];
-        Particle_parameter_for_fullimg ppff;
-        PupilDetection pupilDection_R, pupilDection_L;
-        CircleF L_eye_Pupil, R_eye_Pupil;
-        Image<Bgr, Byte> turn;
-        Parcitle par;
-        Image<Bgr, byte> L_eye;/* Patient's left eye */
-        Image<Bgr, byte> R_eye;/* Patient's right eye */
-        Image<Bgr, byte> L_eyeParticle, R_eyeParticle;
-        Image<Bgr, byte> ParticleDraw;
-        PointF R_CornerInner, R_CornerOuter;/*  Patient's right eye corner*/
-        PointF L_CornerInner, L_CornerOuter;/*  Patient's left eye corner */
-        Rectangle L_PupilROI, R_PupilROI;/* Patient's Pupil ROI */
-        List<List<PointF>> CtrlPoints = new List<List<PointF>>();
-
-        Image<Bgr, byte> R_LevatorDown, L_LevatorDown;
-        Image<Bgr, byte> R_LevatorUp, L_LevatorUp;
-        public Image<Bgr, byte> LevatorFaceUp, LevatorFaceDown;
-
-        // The first item is for R_eye , the second item is for L_eye
-        List<double> MRD1;
-        List<double> MRD2;
-        List<double> PFH;
-        List<double> PFW;
-        List<double> OSA;
-        List<double> PtosisSeverity;
-        List<double> Levetor;
-
-        public String name = String.Empty;
-        public String AgeSex = String.Empty;
-        public String NoChart = String.Empty;
-        public String Address = String.Empty;
-        public String Phone = String.Empty;
-        public String Date = String.Empty;
-
-
-        int parcount;
-        int LorR_flag = 0;
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            label4.Text = timercounter.ToString();
-
-            if (timercounter == numofpar)
+            // If true, go on to the next stage
+            if (timer_current == timer_end)
             {
-                doppff = true;
-                LorR_flag++;
-                timercounter = 0;
-                loopcounter++;
-                Console.WriteLine("next loop" + loopcounter.ToString());
-                sum[0] = 0;
-                sum[1] = 0;
-                sum[2] = 0;
-                sum[3] = 0;
-                this.imageBox2.Image = ParticleDraw;
+                isEyesInit = true;
+                timer_current = 0;
+                timer_stage++;
+                Console.WriteLine("next loop" + timer_stage.ToString());
 
                 #region The last step
-                if (loopcounter == 2)
+                if (timer_stage == 2)
                 {
-                    maxPar.Graddraw(ref L_eye);
-                    maxPar.drawtest(ref L_eye);
+                    Eye_Left.DrawEyelid(ref img_L_eye);
+                    
+                    // Draw Iris
+                    float iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+                    float iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
+                    img_L_eye.Draw(new CircleF(new PointF(iris_x * 16, iris_y * 16), (Iris_Left.get_Iris().Radius + 1) * 16), new Bgr(0, 0, 255), 1, LineType.AntiAlias, 4);
+
+                    iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+                    iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
+                    img_R_eye.Draw(new CircleF(new PointF(iris_x * 16, iris_y * 16), (Iris_Right.get_Iris().Radius + 1) * 16), new Bgr(0, 0, 255), 1, LineType.AntiAlias, 4);
                     Console.WriteLine("end");
 
-                    L_eye.Save("L_eyeROI.jpg");
-                    R_eye.Save("R_eyeROI.jpg");
+                    img_L_eye.Save("L_eyeROI.jpg");
+                    img_R_eye.Save("R_eyeROI.jpg");
 
                     panel1.Visible = true;
                     label6.Visible = true;
@@ -480,12 +462,12 @@ namespace eyes
                     imageBox6.Visible = true;
 
                     imageBox1.Image = My_Image2;
-                    imageBox5.Image = R_eye;
-                    imageBox6.Image = L_eye;
+                    imageBox5.Image = img_R_eye;
+                    imageBox6.Image = img_L_eye;
 
-
-                    // Calculate L_eye measurement
-                    measurementCalculate(L_PupilROI, L_eye_Pupil, maxPar);
+                    // Calculate measurement
+                    measurementCalculate(L_IrisROI, Iris_Left.get_Iris(), Eye_Left);
+                    measurementCalculate(R_IrisROI, Iris_Right.get_Iris(), Eye_Right);
 
                     // Output result
                     // R_eye measurement
@@ -930,128 +912,86 @@ namespace eyes
                     #endregion
                 }
 
-
-
                 #endregion
             }
 
 
-            if (doppff && LorR_flag == 0)
+            if (isEyesInit && timer_stage == 0)
             {
-                ppff = new Particle_parameter_for_fullimg(R_eyeParticle);
-                turn = R_eyeParticle.Clone();
-                doppff = false;
+               
+                img_temp = img_R_CtrlPoints.Clone();
+                isEyesInit = false;
 
-                CtrlPoints = ContourSampling(getContour(R_eyeParticle),10,"R");
+                CtrlPoints = ContourSampling(getContour(img_R_CtrlPoints),10,"R");
 
-                foreach (var p in CtrlPoints[1])
-                {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                }
+                // Draw Control Points
                 foreach (var p in CtrlPoints[0])
                 {
-                    R_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                    img_R_CtrlPoints.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
                 }
-                R_eyeParticle.Save("R_Ctrl.jpg");
+                foreach (var p in CtrlPoints[1])
+                {
+                    img_R_CtrlPoints.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                }
+                img_R_CtrlPoints.Save("R_Ctrl.jpg");
             }
-            if (doppff && LorR_flag == 1)
+            if (isEyesInit && timer_stage == 1)
             {
-                maxParRight = new Parcitle(maxPar);
-                maxParRight.Graddraw(ref R_eye);
-                maxParRight.drawtest(ref R_eye);
-                // Calculate R_eye measurement
-                measurementCalculate(R_PupilROI, R_eye_Pupil, maxParRight);
-
-                ppff = new Particle_parameter_for_fullimg(L_eyeParticle);
-                turn = L_eyeParticle.Clone();
-                doppff = false;
+                Eye_Right = new Eye(Eye_Left);
+                Eye_Right.DrawEyelid(ref img_R_eye);
                 
-                CtrlPoints =  ContourSampling(getContour(L_eyeParticle),10,"L");
 
-                foreach (var p in CtrlPoints[1])
-                {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
-                }
+                img_temp = img_L_CtrlPoints.Clone();
+                isEyesInit = false;
+                
+                CtrlPoints =  ContourSampling(getContour(img_L_CtrlPoints),10,"L");
+
+                // Draw Control Points
                 foreach (var p in CtrlPoints[0])
                 {
-                    L_eyeParticle.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
+                    img_L_CtrlPoints.Draw(new CircleF(p, 1), new Bgr(0, 0, 255), 0);
                 }
-                L_eyeParticle.Save("L_Ctrl.jpg");
-
-                maxPar = null;
-                maxw = -100;
-
-            }
-            ParticleDraw = turn.Clone();
-
-
-            if (loopcounter == 0)// R_eye
-            {
-                par = new Parcitle(ParticleDraw,CtrlPoints, ppff.ContoursPoint, R_eye_Pupil, R_PupilROI, R_CornerInner, R_CornerOuter, "R");
-                ParticleDraw.Draw(R_PupilROI, new Bgr(0, 0, 255), 1);
-            }
-            else if (loopcounter == 1)// L_eye
-            {
-                par = new Parcitle(ParticleDraw, CtrlPoints, ppff.ContoursPoint, L_eye_Pupil, L_PupilROI, L_CornerOuter, L_CornerInner, "L");
-                ParticleDraw.Draw(L_PupilROI, new Bgr(0, 0, 255), 1);
-            }
-            
-            
-            double d1 = par.Gradient(ref ppff);
-            double d2 = par.Saturation(ref ppff);
-            double d3 = par.symmetric(ref ppff);
-            double d4 = par.corner(ref ppff);
-            double weightnow = par.getweight(d1, sum[0] / parcount, d2, sum[1] / parcount, d3, sum[2] / parcount, d4, sum[3] / parcount, loopcounter);
-            sum[0] += d1;
-            
-            parcount++;
-
-            par.Graddraw(ref ParticleDraw);
-            par.drawtest(ref ParticleDraw);
-
-            if (maxPar != null)// ma : max(eye)
-            {
-                maxPar.Graddraw(ref ParticleDraw);
-            }
-            this.imageBox2.Image = ParticleDraw;
-
-            if (timercounter != 0)
-                label7.Text = "\n" + d1.ToString("##0.####") +
-                              "\n" + weightnow.ToString("##0.########");
-
-            if (maxPar != null)
-                maxw = maxPar.getweight(maxd1, sum[0] / parcount, maxd2, sum[1] / parcount, maxd3, sum[2] / parcount, maxd4, sum[3] / parcount, loopcounter);
-            if (timercounter != 0)
-            {
-                label5.Text = "\ngradient     : ";
-                              
-                label6.Text = "\n" + maxd1.ToString("##0.####") +
-                              "\n" + maxw.ToString("##0.########");
-            }
-
-            if (loopcounter == 0)
-            {
-                if (d3 > maxd3 || (d3 == maxd3 && weightnow < maxw) || maxPar == null)
+                foreach (var p in CtrlPoints[1])
                 {
-                    maxw = weightnow;
-                    maxPar = new Parcitle(CtrlPoints,par.getbasic(), par.getPoint(), par.left, par.right, "R");
-                    maxd1 = d1;
-                    
+                    img_L_CtrlPoints.Draw(new CircleF(p, 1), new Bgr(255, 0, 0), 0);
                 }
+                img_L_CtrlPoints.Save("L_Ctrl.jpg");
+
+                Eye_Left = null;
             }
-            else
+
+            img_Draw = img_temp.Clone();
+
+            double weight = 0;
+            if (timer_stage == 0)// R_eye
             {
-                if (weightnow < maxw || maxPar == null)
-                {
-                    maxw = weightnow;
-                    maxPar = new Parcitle(CtrlPoints,par.getbasic(), par.getPoint(), par.left, par.right, "L");
-                    maxd1 = d1;
-                    
-                }
+                Eye_temp = new Eye(CtrlPoints, R_CornerInner, R_CornerOuter, "R");
+                weight = Eye_temp.Gradient(img_R_eye.Convert<Gray, byte>());
             }
-            timercounter++;
+            else if (timer_stage == 1)// L_eye
+            {
+                Eye_temp = new Eye( CtrlPoints, L_CornerOuter, L_CornerInner, "L");
+                weight = Eye_temp.Gradient(img_L_eye.Convert<Gray, byte>());
+            }
+
+            Eye_temp.DrawEyelid(ref img_Draw);
+            
+            if (Eye_Left != null)
+            {
+                Eye_Left.DrawEyelid(ref img_Draw);
+            }
+            this.imageBox2.Image = img_Draw;
+
+
+
+            if (weight < minWeight || Eye_Left == null)
+            {
+                minWeight = weight;
+                Eye_Left = Eye_temp;
+            }
+
+            timer_current++;
         }
-
 
         private void toolStripMenuItem20_Click(object sender, EventArgs e)//開檔
         {
@@ -1059,7 +999,6 @@ namespace eyes
             imageBox3.Visible = false;            
             imageBox5.Visible = false;
             imageBox6.Visible = false;
-
 
             label5.Visible = false;
             label6.Visible = false;
@@ -1131,14 +1070,14 @@ namespace eyes
                 try
                 {
                     Openfile.Title = "請選取往下看圖";
-                    LevatorFaceDown = new Image<Bgr, byte>(Openfile.FileName);
+                    img_LevatorFaceDown = new Image<Bgr, byte>(Openfile.FileName);
                     MessageBox.Show("請選取往上看照片");
                 }
                 catch (NullReferenceException excpt) { MessageBox.Show(excpt.Message); }
             }
             else
             {
-                LevatorFaceDown = null;
+                img_LevatorFaceDown = null;
             }
 
             //第三次選取 往上看圖
@@ -1147,17 +1086,16 @@ namespace eyes
                 try
                 {
                     Openfile.Title = "請選取往上看圖";
-                    LevatorFaceUp = new Image<Bgr, byte>(Openfile.FileName);
+                    img_LevatorFaceUp = new Image<Bgr, byte>(Openfile.FileName);
                 }
                 catch (NullReferenceException excpt) { MessageBox.Show(excpt.Message); }
             }
             else
             {
-                LevatorFaceUp = null;
+                img_LevatorFaceUp = null;
             }
         }
 
-        
         int LineLength = -30;
         int LineThickness = 1;
         Bgr LineColor = new Bgr(0, 0, 255);
@@ -1168,9 +1106,9 @@ namespace eyes
         private void radioButtonOri_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */  
-            imageBox5.Image = R_eye;
+            imageBox5.Image = img_R_eye;
             /* L_eye */ 
-            imageBox6.Image = L_eye;
+            imageBox6.Image = img_L_eye;
 
 
         }
@@ -1178,65 +1116,65 @@ namespace eyes
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            Point pupil = new Point((int)pupil_x, (int)pupil_y);
-            Point upperEyelid = new Point((int)pupil_x, (int)maxParRight.above.FY(pupil_x));
-            imageBox5.Image = measurementVisualize(MeasurementImage,upperEyelid,pupil, MRD1[0]);
+            Point Iris = new Point((int)Iris_x, (int)Iris_y);
+            Point upperEyelid = new Point((int)Iris_x, (int)Eye_Right.above.FY(Iris_x));
+            imageBox5.Image = measurementVisualize(MeasurementImage,upperEyelid,Iris, MRD1[0]);
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
 
-            pupil = new Point((int)pupil_x, (int)pupil_y);
-            upperEyelid = new Point((int)pupil_x, (int)maxPar.above.FY(pupil_x));
+            Iris = new Point((int)Iris_x, (int)Iris_y);
+            upperEyelid = new Point((int)Iris_x, (int)Eye_Left.above.FY(Iris_x));
 
-            imageBox6.Image = measurementVisualize(MeasurementImage, upperEyelid, pupil, MRD1[1]);
+            imageBox6.Image = measurementVisualize(MeasurementImage, upperEyelid, Iris, MRD1[1]);
         }
         // MRD2 radioButton
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            Point pupil = new Point((int)pupil_x, (int)pupil_y);
-            Point lowerEyelid = new Point((int)pupil_x, (int)maxParRight.below.FY(pupil_x));
-            imageBox5.Image = measurementVisualize(MeasurementImage, pupil, lowerEyelid, MRD2[0]);
+            Point Iris = new Point((int)Iris_x, (int)Iris_y);
+            Point lowerEyelid = new Point((int)Iris_x, (int)Eye_Right.below.FY(Iris_x));
+            imageBox5.Image = measurementVisualize(MeasurementImage, Iris, lowerEyelid, MRD2[0]);
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
             
-            pupil = new Point((int)pupil_x, (int)pupil_y);
-            lowerEyelid = new Point((int)pupil_x, (int)maxPar.below.FY(pupil_x));
+            Iris = new Point((int)Iris_x, (int)Iris_y);
+            lowerEyelid = new Point((int)Iris_x, (int)Eye_Left.below.FY(Iris_x));
             
-            imageBox6.Image = measurementVisualize(MeasurementImage, pupil, lowerEyelid, MRD2[1]);
+            imageBox6.Image = measurementVisualize(MeasurementImage, Iris, lowerEyelid, MRD2[1]);
         }
         // PFH radioButton
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            Point upperEyelid = new Point((int)pupil_x, (int)maxParRight.above.FY(pupil_x));
-            Point lowerEyelid = new Point((int)pupil_x, (int)maxParRight.below.FY(pupil_x));
+            Point upperEyelid = new Point((int)Iris_x, (int)Eye_Right.above.FY(Iris_x));
+            Point lowerEyelid = new Point((int)Iris_x, (int)Eye_Right.below.FY(Iris_x));
             imageBox5.Image = measurementVisualize(MeasurementImage, upperEyelid, lowerEyelid, PFH[0]);
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
 
-            upperEyelid = new Point((int)pupil_x, (int)maxPar.above.FY(pupil_x));
-            lowerEyelid = new Point((int)pupil_x, (int)maxPar.below.FY(pupil_x));
+            upperEyelid = new Point((int)Iris_x, (int)Eye_Left.above.FY(Iris_x));
+            lowerEyelid = new Point((int)Iris_x, (int)Eye_Left.below.FY(Iris_x));
 
             imageBox6.Image = measurementVisualize(MeasurementImage, upperEyelid, lowerEyelid, PFH[1]);
         }
@@ -1244,14 +1182,14 @@ namespace eyes
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
 
-            Point right = Point.Round(maxParRight.right);
+            Point right = Point.Round(Eye_Right.get_Right_endPoint());
             Point right_end = new Point(right.X, right.Y + LineLength);
             MeasurementImage.Draw(new LineSegment2D(right, right_end), LineColor, LineThickness);
             MeasurementImage.Draw(new CircleF(right_end,2), LineColor, LineThickness);
 
-            Point left = new Point((int)maxParRight.left.X, right.Y);
+            Point left = new Point((int)Eye_Right.get_Left_endPoint().X, right.Y);
             Point left_end = new Point(left.X, left.Y + LineLength);
             MeasurementImage.Draw(new LineSegment2D(left, left_end), LineColor, LineThickness);
             MeasurementImage.Draw(new CircleF(left_end, 2), LineColor, LineThickness);
@@ -1262,14 +1200,14 @@ namespace eyes
             imageBox5.Image = MeasurementImage;
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
+            MeasurementImage = img_L_CtrlPoints.Clone();
 
-            left = Point.Round(maxPar.left);
+            left = Point.Round(Eye_Left.get_Left_endPoint());
             left_end = new Point(left.X, left.Y + LineLength);
             MeasurementImage.Draw(new LineSegment2D(left, left_end), LineColor, LineThickness);
             MeasurementImage.Draw(new CircleF(left_end, 2), LineColor, LineThickness);
 
-            right = new Point((int)maxPar.right.X, left.Y);
+            right = new Point((int)Eye_Left.get_Right_endPoint().X, left.Y);
             right_end = new Point(right.X, right.Y + LineLength);
             MeasurementImage.Draw(new LineSegment2D(right, right_end), LineColor, LineThickness);
             MeasurementImage.Draw(new CircleF(right_end, 2), LineColor, LineThickness);
@@ -1289,56 +1227,56 @@ namespace eyes
             imageBox10.Visible = true;
 
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            Point pupil = new Point((int)pupil_x, (int)pupil_y);
-            Point upperEyelid = new Point((int)pupil_x, (int)maxParRight.above.FY(pupil_x));
+            Point Iris = new Point((int)Iris_x, (int)Iris_y);
+            Point upperEyelid = new Point((int)Iris_x, (int)Eye_Right.above.FY(Iris_x));
             imageBox5.Image = measurementVisualize(MeasurementImage, upperEyelid, upperEyelid, Levetor[0]);
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
 
-            pupil = new Point((int)pupil_x, (int)pupil_y);
-            upperEyelid = new Point((int)pupil_x, (int)maxPar.above.FY(pupil_x));
+            Iris = new Point((int)Iris_x, (int)Iris_y);
+            upperEyelid = new Point((int)Iris_x, (int)Eye_Left.above.FY(Iris_x));
 
             imageBox6.Image = measurementVisualize(MeasurementImage, upperEyelid, upperEyelid, Levetor[1]);
 
-            imageBox7.Image = R_LevatorUp.Clone();
-            imageBox8.Image = L_LevatorUp.Clone();
-            imageBox9.Image = R_LevatorDown.Clone();
-            imageBox10.Image = L_LevatorDown.Clone();
+            imageBox7.Image = img_R_LevatorUp.Clone();
+            imageBox8.Image = img_L_LevatorUp.Clone();
+            imageBox9.Image = img_R_LevatorDown.Clone();
+            imageBox10.Image = img_L_LevatorDown.Clone();
         }
 
         // PS radioButton
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            Point pupil = new Point((int)pupil_x, (int)(pupil_y - R_eye_Pupil.Radius));
-            Point upperEyelid = new Point((int)pupil_x, (int)maxParRight.above.FY(pupil_x));
+            Point Iris = new Point((int)Iris_x, (int)(Iris_y - Iris_Right.get_Iris().Radius));
+            Point upperEyelid = new Point((int)Iris_x, (int)Eye_Right.above.FY(Iris_x));
 
-            MeasurementImage = measurementVisualize(MeasurementImage, pupil, upperEyelid, PtosisSeverity[0]);
-            MeasurementImage.Draw(new CircleF(new PointF(pupil_x*16, pupil_y*16), (R_eye_Pupil.Radius + 1)*16), new Bgr(0, 0, 255), 1,LineType.AntiAlias,4);
+            MeasurementImage = measurementVisualize(MeasurementImage, Iris, upperEyelid, PtosisSeverity[0]);
+            MeasurementImage.Draw(new CircleF(new PointF(Iris_x*16, Iris_y*16), (Iris_Right.get_Iris().Radius + 1)*16), new Bgr(0, 0, 255), 1,LineType.AntiAlias,4);
 
             imageBox5.Image = MeasurementImage;
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
 
-            pupil = new Point((int)pupil_x, (int)(pupil_y - L_eye_Pupil.Radius));
-            upperEyelid = new Point((int)pupil_x, (int)maxPar.above.FY(pupil_x));
+            Iris = new Point((int)Iris_x, (int)(Iris_y - Iris_Left.get_Iris().Radius));
+            upperEyelid = new Point((int)Iris_x, (int)Eye_Left.above.FY(Iris_x));
 
-            MeasurementImage = measurementVisualize(MeasurementImage, pupil, upperEyelid, PtosisSeverity[1]);
-            MeasurementImage.Draw(new CircleF(new PointF(pupil_x*16, pupil_y*16), (L_eye_Pupil.Radius + 1)*16), new Bgr(0, 0, 255), 1,LineType.AntiAlias,4);
+            MeasurementImage = measurementVisualize(MeasurementImage, Iris, upperEyelid, PtosisSeverity[1]);
+            MeasurementImage.Draw(new CircleF(new PointF(Iris_x*16, Iris_y*16), (Iris_Left.get_Iris().Radius + 1)*16), new Bgr(0, 0, 255), 1,LineType.AntiAlias,4);
 
             imageBox6.Image = MeasurementImage;
         }
@@ -1346,23 +1284,23 @@ namespace eyes
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             /* R_eye */
-            Image<Bgr, byte> MeasurementImage = R_eyeParticle.Clone();
-            float pupil_x = R_PupilROI.X + R_eye_Pupil.Center.X;
-            float pupil_y = R_PupilROI.Y + R_eye_Pupil.Center.Y;
+            Image<Bgr, byte> MeasurementImage = img_R_CtrlPoints.Clone();
+            float Iris_x = R_IrisROI.X + Iris_Right.get_Iris().Center.X;
+            float Iris_y = R_IrisROI.Y + Iris_Right.get_Iris().Center.Y;
 
-            // Calculate OSA : Pupil Within Eyelids Area
-            for (float i = pupil_x - R_eye_Pupil.Radius; i <= pupil_x + R_eye_Pupil.Radius; i += 0.1f)
+            // Calculate OSA : Iris Within Eyelids Area
+            for (float i = Iris_x - Iris_Right.get_Iris().Radius; i <= Iris_x + Iris_Right.get_Iris().Radius; i += 0.1f)
             {
-                for (float j = pupil_y - R_eye_Pupil.Radius; j <= pupil_y + R_eye_Pupil.Radius; j += 0.1f)
+                for (float j = Iris_y - Iris_Right.get_Iris().Radius; j <= Iris_y + Iris_Right.get_Iris().Radius; j += 0.1f)
                 {
-                    if ((Math.Pow(pupil_x - i, 2) + Math.Pow(pupil_y - j, 2) < Math.Pow(R_eye_Pupil.Radius, 2)) &&
-                         pupil_y - j < pupil_y - maxParRight.above.FY(i))
+                    if ((Math.Pow(Iris_x - i, 2) + Math.Pow(Iris_y - j, 2) < Math.Pow(Iris_Right.get_Iris().Radius, 2)) &&
+                         Iris_y - j < Iris_y - Eye_Right.above.FY(i))
                     {
                         MeasurementImage.Draw(new CircleF(new PointF(i, j), 0), LineColor, 0);
                     }
                 }
             }
-            Point TextPoint = new Point((int)(pupil_x - R_eye_Pupil.Radius*2), (int)(pupil_y - R_eye_Pupil.Radius));
+            Point TextPoint = new Point((int)(Iris_x - Iris_Right.get_Iris().Radius*2), (int)(Iris_y - Iris_Right.get_Iris().Radius));
             String Text = OSA[0].ToString("#0.#0") + "mm^2";
             CvInvoke.PutText(MeasurementImage, Text, TextPoint,
                 fontface, fontscale, textColor, 1, LineType.AntiAlias);
@@ -1370,23 +1308,23 @@ namespace eyes
 
 
             /* L_eye */
-            MeasurementImage = L_eyeParticle.Clone();
-            pupil_x = L_PupilROI.X + L_eye_Pupil.Center.X;
-            pupil_y = L_PupilROI.Y + L_eye_Pupil.Center.Y;
+            MeasurementImage = img_L_CtrlPoints.Clone();
+            Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
+            Iris_y = L_IrisROI.Y + Iris_Left.get_Iris().Center.Y;
 
-            // Calculate OSA : Pupil Within Eyelids Area
-            for (float i = pupil_x - L_eye_Pupil.Radius; i <= pupil_x + L_eye_Pupil.Radius; i += 0.1f)
+            // Calculate OSA : Iris Within Eyelids Area
+            for (float i = Iris_x - Iris_Left.get_Iris().Radius; i <= Iris_x + Iris_Left.get_Iris().Radius; i += 0.1f)
             {
-                for (float j = pupil_y - L_eye_Pupil.Radius; j <= pupil_y + L_eye_Pupil.Radius; j += 0.1f)
+                for (float j = Iris_y - Iris_Left.get_Iris().Radius; j <= Iris_y + Iris_Left.get_Iris().Radius; j += 0.1f)
                 {
-                    if ((Math.Pow(pupil_x - i, 2) + Math.Pow(pupil_y - j, 2) < Math.Pow(L_eye_Pupil.Radius, 2)) &&
-                         pupil_y - j < pupil_y - maxPar.above.FY(i))
+                    if ((Math.Pow(Iris_x - i, 2) + Math.Pow(Iris_y - j, 2) < Math.Pow(Iris_Left.get_Iris().Radius, 2)) &&
+                         Iris_y - j < Iris_y - Eye_Left.above.FY(i))
                     {
                         MeasurementImage.Draw(new CircleF(new PointF(i, j), 0), LineColor, 0);
                     }
                 }
             }
-            TextPoint = new Point((int)(pupil_x - L_eye_Pupil.Radius*2), (int)(pupil_y - L_eye_Pupil.Radius));
+            TextPoint = new Point((int)(Iris_x - Iris_Left.get_Iris().Radius*2), (int)(Iris_y - Iris_Left.get_Iris().Radius));
             Text = OSA[1].ToString("#0.#0") + "mm^2";
             CvInvoke.PutText(MeasurementImage, Text, TextPoint,
                 fontface, fontscale, textColor, 1, LineType.AntiAlias);
@@ -1416,37 +1354,37 @@ namespace eyes
             return img_measurement;
         }
 
-        private void measurementCalculate(Rectangle PupilROI, CircleF Pupil, Parcitle maxPar)
+        private void measurementCalculate(Rectangle IrisROI, CircleF Iris, Eye eye)
         {
             // Calculate MRD1, MRD2, PFH ,PFW ,PtosisSeverity
-            float pupil_x = PupilROI.X + Pupil.Center.X;
-            float pupil_y = PupilROI.Y + Pupil.Center.Y;
-            double mrd1 = (pupil_y - maxPar.above.FY(pupil_x)) * mmperpixel;
-            double mrd2 = (maxPar.below.FY(pupil_x) - pupil_y) * mmperpixel;
+            float Iris_x = IrisROI.X + Iris.Center.X;
+            float Iris_y = IrisROI.Y + Iris.Center.Y;
+            double mrd1 = (Iris_y - eye.above.FY(Iris_x)) * mmperpixel;
+            double mrd2 = (eye.below.FY(Iris_x) - Iris_y) * mmperpixel;
             if (mrd1 < 0) mrd1 = 0;
             if (mrd2 < 0) mrd2 = 0;
-            double ps = Pupil.Radius * mmperpixel - mrd1;
+            double ps = Iris.Radius * mmperpixel - mrd1;
             if (ps < 0) ps = 0;
             MRD1.Add(mrd1);
             MRD2.Add(mrd2);
             PFH.Add(MRD1[MRD1.Count-1] + MRD2[MRD2.Count-1]);
-            PFW.Add((maxPar.right.X - maxPar.left.X) * mmperpixel);
+            PFW.Add((eye.get_Right_endPoint().X - eye.get_Left_endPoint().X) * mmperpixel);
             PtosisSeverity.Add(ps);
 
-            double pupil_Area = 0.0;
-            // Calculate OSA : Pupil Within Eyelids Area
-            for (float i = pupil_x - Pupil.Radius; i <= pupil_x + Pupil.Radius; i += 0.1f)
+            double Iris_Area = 0.0;
+            // Calculate OSA : Iris Within Eyelids Area
+            for (float i = Iris_x - Iris.Radius; i <= Iris_x + Iris.Radius; i += 0.1f)
             {
-                for (float j = pupil_y - Pupil.Radius; j <= pupil_y + Pupil.Radius; j += 0.1f)
+                for (float j = Iris_y - Iris.Radius; j <= Iris_y + Iris.Radius; j += 0.1f)
                 {
-                    if ((Math.Pow(pupil_x - i, 2) + Math.Pow(pupil_y - j, 2) < Math.Pow(Pupil.Radius, 2)) &&
-                         pupil_y - j < pupil_y - maxPar.above.FY(i))
+                    if ((Math.Pow(Iris_x - i, 2) + Math.Pow(Iris_y - j, 2) < Math.Pow(Iris.Radius, 2)) &&
+                         Iris_y - j < Iris_y - eye.above.FY(i))
                     {
-                        pupil_Area += 0.1;
+                        Iris_Area += 0.1;
                     }
                 }
             }
-            OSA.Add(pupil_Area * mmperpixel);
+            OSA.Add(Iris_Area * mmperpixel);
 
         }
 

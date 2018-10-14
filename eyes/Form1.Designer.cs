@@ -44,7 +44,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.imageBox6 = new Emgu.CV.UI.ImageBox();
@@ -170,7 +169,6 @@
             this.toolStripMenuItem18.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.toolStripMenuItem18.Size = new System.Drawing.Size(75, 24);
             this.toolStripMenuItem18.Text = "說明(&H)";
-            
             // 
             // toolStripMenuItem3
             // 
@@ -221,18 +219,6 @@
             // 
             this.timer2.Interval = 1;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Enabled = false;
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(16, 401);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "0";
-            this.label4.Visible = false;
             // 
             // label5
             // 
@@ -527,7 +513,6 @@
             this.Controls.Add(this.imageBox9);
             this.Controls.Add(this.imageBox7);
             this.Controls.Add(this.imageBox5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -572,7 +557,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Label label4;
         private Emgu.CV.UI.ImageBox imageBox5;
         private Emgu.CV.UI.ImageBox imageBox6;
         private System.Windows.Forms.Label label5;

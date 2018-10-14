@@ -13,8 +13,10 @@ using System.Windows.Forms.VisualStyles;
 
 namespace eyes
 {
-    class PupilDetection
+    class Iris
     {
+        CircleF iris;
+
         Image<Gray, byte> img_Gray;
         Image<Bgr, byte> img_Bgr;
         Image<Gray, byte> img_Threshold;
@@ -23,33 +25,25 @@ namespace eyes
         Image<Gray, float> img_Sobel;
         Image<Gray, float> img_laplace;
         Image<Gray, byte> img_laplaceByte;
-        public Image<Gray, Byte> sobelImage;
+        Image<Gray, byte> sobelImage;
         Image<Gray, byte> img_Edge;
-        Image<Gray, byte> img_Ada3;
-        Image<Gray, byte> img_Ada5;
-        Image<Gray, byte> img_Ada7;
-        Image<Gray, byte> img_Ada9;
-        Image<Gray, byte> img_Ada11;
-        Image<Gray, byte> img_Ada13;
-        Image<Gray, byte> img_Ada15;
-        Image<Gray, byte> img_Ada17;
-        Image<Gray, byte> img_Ada19;
-        Image<Gray, byte> img_Ada21;
-        Image<Gray, byte> img_Ada23;
-        Image<Gray, byte> img_Ada35;
+        Image<Gray, byte> img_Ada;
+
         Image<Bgr, byte> img_EdgeText;
         Image<Gray, byte> img_overlap;
 
         CircleF[] Circles;
-        List<CircleF> list_Pupil;
+        List<CircleF> list_Iris;
         List<Image<Bgr, byte>> list_draw;
         
         int cyble_thickness = 0;
-        public PupilDetection()
+        public Iris()
         {
             list_draw = new List<Image<Bgr, byte>>();
-
+            iris = new CircleF();
         }
+
+        public CircleF get_Iris() { return this.iris; }
 
         public List<CircleF> HoughCircles(Image<Bgr, byte> EyeRoi,// Input image
                                            int minRadius, // Circle Radius
@@ -87,42 +81,15 @@ namespace eyes
             sobelImage = img_Sobel.ConvertScale<byte>(255 / maxs[0], 0);
 
 
-            //二值化
-            #region Adaptive Threshold
-            img_Ada3 = img_Gray.Clone();
-            img_Ada5 = img_Gray.Clone();
-            img_Ada7 = img_Gray.Clone();
-            img_Ada9 = img_Gray.Clone();
-            img_Ada11 = img_Gray.Clone();
-            img_Ada13 = img_Gray.Clone();
-            img_Ada15 = img_Gray.Clone();
-            img_Ada17 = img_Gray.Clone();
-            img_Ada19 = img_Gray.Clone();
-            img_Ada21 = img_Gray.Clone();
-            img_Ada23 = img_Gray.Clone();
-            img_Ada35 = img_Gray.Clone();
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada3, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 3, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada5, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 5, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada7, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 7, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada9, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 9, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada11, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 11, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada13, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 13, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada15, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 15, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada17, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 17, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada19, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 19, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada21, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 21, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada23, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 23, 0);
-            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada35, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 35, 0);
-            #endregion
-            
-            img_Threshold = img_Gray.CopyBlank();
+            //Adaptive Threshold
+            img_Ada = img_Gray.Clone();
+            CvInvoke.AdaptiveThreshold(img_laplaceByte, img_Ada, 255, AdaptiveThresholdType.GaussianC, ThresholdType.Binary, 7, 0);
+            img_Threshold = img_Ada.Clone();
 
-            img_Threshold = img_Ada7.Clone();
-
-            //Median Filter 去除雜訊
+            //Median Filter
             CvInvoke.MedianBlur(img_Threshold, img_Threshold, 3);
 
-            // Canny 取得邊緣
+            // Canny
             img_Edge = img_Gray.CopyBlank();
             img_Edge = img_Threshold.Canny(30, 90);
 
@@ -166,7 +133,7 @@ namespace eyes
                                     maxRadius//max radius
                                     );
 
-                        list_Pupil = new List<CircleF>();
+                        list_Iris = new List<CircleF>();
 
                         HoughThres -= 5;
                         if (HoughThres <= 0)
@@ -176,19 +143,19 @@ namespace eyes
                             int limit = 0;
                             foreach (CircleF cy in Circles)
                             {
-                                list_Pupil.Add(cy);
+                                list_Iris.Add(cy);
                                 limit++;
                                 if (limit == 60 || limit > Circles.Length) break;
                             }
 
                         }
 
-                    } while (list_Pupil.Count <= 5);
+                    } while (list_Iris.Count <= 5);
                 }
                 catch (Emgu.CV.Util.CvException ex) { Console.WriteLine(ex); }
 
                 // by  gradient 
-                list_Pupil = CircleVerify(list_Pupil);
+                list_Iris = CircleVerify(list_Iris);
 
             }
             else
@@ -197,7 +164,11 @@ namespace eyes
                 return null;
             }
 
-            return list_Pupil;
+            if (list_Iris.Count != 0) {
+                this.iris = list_Iris[0];
+            }
+
+            return list_Iris;
         }
 
         private List<CircleF> CircleVerify(List<CircleF> Circles)
@@ -395,7 +366,7 @@ namespace eyes
         }
 
         
-        public void DrawEyeRoi(List<CircleF> list_LeftPupil, List<CircleF> list_RightPupil, ref Image<Bgr, byte> draw, ref Image<Bgr, byte> L_eye, ref Image<Bgr, byte> R_eye, Rectangle R_PupilROI, Rectangle L_PupilROI)
+        public void DrawEyeRoi(List<CircleF> list_LeftPupil, List<CircleF> list_RightPupil, ref Image<Bgr, byte> draw, Image<Bgr, byte> L_eye, Image<Bgr, byte> R_eye, Rectangle R_PupilROI, Rectangle L_PupilROI)
         {
             Bgr color = new Bgr(Color.Red);
 
@@ -429,35 +400,6 @@ namespace eyes
             }
 
 
-            float Circle_X, Circle_Y;
-            float Circle_radius;
-            // Show the best result
-            if (list_LeftPupil.Count != 0)
-            {
-                Circle_X = list_LeftPupil[0].Center.X + L_PupilROI.X;
-                Circle_Y = list_LeftPupil[0].Center.Y + L_PupilROI.Y;
-                Circle_radius = list_LeftPupil[0].Radius + 1;
-
-                // Draw Circle
-                L_eye.Draw(new CircleF(new PointF(Circle_X*16, Circle_Y*16), Circle_radius*16), color, 1, LineType.AntiAlias, 4);
-                //L_eye.Draw(new CircleF(new PointF((int)(Circle_X + 0.5), (int)(Circle_Y + 0.5)), Circle_radius), color);
-                //Draw center
-                L_eye.Draw(new CircleF(new PointF(Circle_X, Circle_Y), 0), color, 3);
-            }
-            if (list_RightPupil.Count != 0)
-            {
-                Circle_X = list_RightPupil[0].Center.X + R_PupilROI.X ;
-                Circle_Y = list_RightPupil[0].Center.Y + R_PupilROI.Y ;
-                Circle_radius = list_RightPupil[0].Radius + 1;
-
-                // Draw Circle
-                R_eye.Draw(new CircleF(new PointF(Circle_X*16, Circle_Y*16), Circle_radius*16), color, 1,LineType.AntiAlias,4);
-                //R_eye.Draw(new CircleF(new PointF((int)(Circle_X + 0.5), (int)(Circle_Y + 0.5)), Circle_radius), color);
-                //Draw center
-                R_eye.Draw(new CircleF(new PointF(Circle_X, Circle_Y), 0), color, 3);
-            }
-
-
         }
 
         public void SavePreprocess(List<CircleF> list_Pupil, String LorR)
@@ -469,18 +411,8 @@ namespace eyes
                 img_Bgr.Save(LorR + "\\" + "img_Bgr_" + LorR + ".jpg");
                 img_Threshold.Save(LorR + "\\" + "img_Threshold" + LorR + ".jpg");
                 img_Edge.Save(LorR + "\\" + "img_Edge" + LorR + ".jpg");
-                img_Ada3.Save(LorR + "\\" + "img_Ada3" + LorR + ".jpg");
-                img_Ada5.Save(LorR + "\\" + "img_Ada5" + LorR + ".jpg");
-                img_Ada7.Save(LorR + "\\" + "img_Ada7" + LorR + ".jpg");
-                img_Ada9.Save(LorR + "\\" + "img_Ada9" + LorR + ".jpg");
-                img_Ada11.Save(LorR + "\\" + "img_Ada11" + LorR + ".jpg");
-                img_Ada13.Save(LorR + "\\" + "img_Ada13" + LorR + ".jpg");
-                img_Ada15.Save(LorR + "\\" + "img_Ada15" + LorR + ".jpg");
-                img_Ada17.Save(LorR + "\\" + "img_Ada17" + LorR + ".jpg");
-                img_Ada19.Save(LorR + "\\" + "img_Ada19" + LorR + ".jpg");
-                img_Ada21.Save(LorR + "\\" + "img_Ada21" + LorR + ".jpg");
-                img_Ada23.Save(LorR + "\\" + "img_Ada23" + LorR + ".jpg");
-                img_Ada35.Save(LorR + "\\" + "img_Ada35" + LorR + ".jpg");
+                img_Ada.Save(LorR + "\\" + "img_Ada7" + LorR + ".jpg");
+                
                 img_Sobel.Save(LorR + "\\" + "img_Sobel" + LorR + ".jpg");
                 img_SobelX.Save(LorR + "\\" + "img_SobelX" + LorR + ".jpg");
                 img_SobelY.Save(LorR + "\\" + "img_SobelY" + LorR + ".jpg");
@@ -492,11 +424,7 @@ namespace eyes
 
                 img_EdgeText.Save(LorR + "\\" + "img_EdgeText" + LorR + ".jpg");
 
-                Mat kernelOp = CvInvoke.GetStructuringElement(ElementShape.Ellipse, new Size(3, 3), new Point(-1, -1));
-                img_Ada35._MorphologyEx(MorphOp.Open, kernelOp, new Point(-1, -1), 1, Emgu.CV.CvEnum.BorderType.Constant, new MCvScalar(0, 0, 0));
-                img_Ada35.Save(LorR + "\\" + "img_Ada35Morph" + LorR + ".jpg");
-
-
+                
                 img_overlap = img_Gray.CopyBlank();
                 CvInvoke.AddWeighted(img_Edge, 0.3, img_Gray, 0.7, 0, img_overlap);
                 img_overlap.Save(LorR + "\\" + "img_overlap" + LorR + ".jpg");
