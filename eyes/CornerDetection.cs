@@ -34,9 +34,10 @@ namespace eyes
             
             col_row_Mean_Black();
 
-            // Create directory to save image
+            // Create directory to save image 000
             if (!Directory.Exists("R")){ Directory.CreateDirectory("R"); }
             if (!Directory.Exists("L")){ Directory.CreateDirectory("L"); }
+            Console.Write("testc");
         }
 
         private void col_row_Mean_Black() {

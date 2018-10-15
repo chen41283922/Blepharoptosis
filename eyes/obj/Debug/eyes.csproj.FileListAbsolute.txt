@@ -899,3 +899,26 @@ C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.csproj.GenerateRes
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form6.resources
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\bin\Debug\itextsharp.xml
 C:\Users\chen41283922\Downloads\eyes 0822\eyes\obj\Debug\eyes.Form7.resources
+E:\code\testing\eyes\bin\Debug\eyes.exe.config
+E:\code\testing\eyes\bin\Debug\eyes.exe
+E:\code\testing\eyes\bin\Debug\eyes.pdb
+E:\code\testing\eyes\bin\Debug\ZedGraph.dll
+E:\code\testing\eyes\bin\Debug\Emgu.CV.UI.xml
+E:\code\testing\eyes\bin\Debug\Emgu.CV.World.xml
+E:\code\testing\eyes\bin\Debug\itextsharp.xml
+E:\code\testing\eyes\bin\Debug\PdfiumViewer.xml
+E:\code\testing\eyes\bin\Debug\nl\PdfiumViewer.resources.dll
+E:\code\testing\eyes\obj\Debug\eyes.csprojAssemblyReference.cache
+E:\code\testing\eyes\obj\Debug\eyes.Form1.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form2.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form3.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form4.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form5.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form6.resources
+E:\code\testing\eyes\obj\Debug\eyes.Form7.resources
+E:\code\testing\eyes\obj\Debug\eyes.Properties.Resources.resources
+E:\code\testing\eyes\obj\Debug\eyes.csproj.GenerateResource.cache
+E:\code\testing\eyes\obj\Debug\eyes.csproj.CoreCompileInputs.cache
+E:\code\testing\eyes\obj\Debug\eyes.csproj.CopyComplete
+E:\code\testing\eyes\obj\Debug\eyes.exe
+E:\code\testing\eyes\obj\Debug\eyes.pdb
