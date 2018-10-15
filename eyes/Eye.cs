@@ -125,18 +125,18 @@ namespace SomeCalibrations
             }
             return (D_grad / counter);
         }
-        public void DrawEyelid(ref Image<Bgr, Byte> pic)
+        public void DrawEyelid(ref Image<Bgr, Byte> pic,Rectangle ROI = default(Rectangle))
         {
             for (int x = ((int)Left_endPoint.X > 0) ? (int)Left_endPoint.X : 0; x < Right_endPoint.X && x < pic.Width; x++)
             {
                 float y = (float)above.FY(x);
                 float y2 = (float)below.FY(x);
                 pic.Draw(
-                    new CircleF(new PointF(x*16, y*16), 4), new Bgr(Color.Red), 1,LineType.AntiAlias,4
+                    new CircleF(new PointF((x + ROI.X) * 16, (y + ROI.Y) * 16), 4), new Bgr(Color.Red), 1, LineType.AntiAlias, 4
                  );
-                
+
                 pic.Draw(
-                    new CircleF(new PointF(x*16, y2*16), 4), new Bgr(Color.Blue), 1, LineType.AntiAlias, 4
+                    new CircleF(new PointF((x + ROI.X) * 16, (y2 + ROI.Y) * 16), 4), new Bgr(Color.Blue), 1, LineType.AntiAlias, 4
                  );
             }
         }
