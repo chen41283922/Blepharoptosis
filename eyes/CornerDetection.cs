@@ -1,14 +1,11 @@
 ﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
-using Emgu.CV.Util;
-using SomeCalibrations;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace eyes
 {
@@ -36,6 +33,10 @@ namespace eyes
             colBlack = new double[col];
             
             col_row_Mean_Black();
+
+            // Create directory to save image
+            if (!Directory.Exists("R")){ Directory.CreateDirectory("R"); }
+            if (!Directory.Exists("L")){ Directory.CreateDirectory("L"); }
         }
 
         private void col_row_Mean_Black() {
@@ -69,7 +70,7 @@ namespace eyes
                 sum = 0;
             }
         }
-        public void VPF(String LorR ,out Rectangle PupilROI, out Image<Bgr,byte> Pupil) {
+        public void VPF(String LorR ,out Rectangle IrisROI, out Image<Bgr,byte> Iris) {
 
             //Draw the variance for visualization
             Image<Gray, byte> variance = img.Clone();
@@ -99,7 +100,7 @@ namespace eyes
 
             //varianceV.DrawPolyline(p, false, new Gray(255));
             varianceV.Save(LorR + "\\varianceV.jpg");
-
+            
             // Horizontal part
             // Calculate horizontal VPF
             Dictionary<int, Double> hVPF = new Dictionary<int, double>();
@@ -130,16 +131,16 @@ namespace eyes
             varianceV.Save(LorR + "\\varianceWave.jpg");
 
 
-            // Set Pupil ROI
-            PupilROI = new Rectangle();
-            PupilROI.X = CornerROI_Lx;
-            PupilROI.Y = CornerROI_Uy;
-            PupilROI.Width = CornerROI_Rx - CornerROI_Lx;
-            PupilROI.Height = CornerROI_Dy - CornerROI_Uy;
+            // Set Iris ROI
+            IrisROI = new Rectangle();
+            IrisROI.X = CornerROI_Lx;
+            IrisROI.Y = CornerROI_Uy;
+            IrisROI.Width = CornerROI_Rx - CornerROI_Lx;
+            IrisROI.Height = CornerROI_Dy - CornerROI_Uy;
 
-            Pupil = img.Convert<Bgr,byte>();
-            Pupil.ROI = PupilROI;
-            Pupil.Save(LorR+ "\\Pupil.jpg");
+            Iris = img.Convert<Bgr,byte>();
+            Iris.ROI = IrisROI;
+            Iris.Save(LorR+ "\\Iris.jpg");
 
             // Set Corner ROI
             int offset = 30;
@@ -179,7 +180,9 @@ namespace eyes
             // Draw the horizontal line to segment the CORNER area
             variance.Draw(new LineSegment2D(new Point(0, CornerROI_Uy), new Point(variance.Width, CornerROI_Uy)), new Gray(255), 1);
             variance.Draw(new LineSegment2D(new Point(0, CornerROI_Dy), new Point(variance.Width, CornerROI_Dy)), new Gray(255), 1);
-            variance.Save(ImgName.First() + "\\"+ ImgName + "Segment.jpg");
+
+            variance.Save(ImgName.First() + "\\" + ImgName + "Segment.jpg");
+            
 
             foreach (var dot in p)
             {

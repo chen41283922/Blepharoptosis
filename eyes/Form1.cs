@@ -1123,7 +1123,7 @@ namespace eyes
             Point Iris = new Point((int)Iris_x, (int)Iris_y);
             Point upperEyelid = new Point((int)Iris_x, (int)Eye_Right.above.FY(Iris_x));
             imageBox5.Image = measurementVisualize(MeasurementImage,upperEyelid,Iris, MRD1[0]);
-
+            
             /* L_eye */
             MeasurementImage = img_L_CtrlPoints.Clone();
             Iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
