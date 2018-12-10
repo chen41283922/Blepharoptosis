@@ -25,8 +25,10 @@ namespace eyes
         public Image<Bgr, Byte> facecut;
         public Image<Bgr, Byte> facecutori;
         public Image<Gray, Byte> facecutorigray;
+        public string filename,faceupfilename,facedownfilename;
         public Bitmap camera;
-        
+
+        public Point offset;
         public Form1()
         {
             InitializeComponent();
@@ -156,7 +158,7 @@ namespace eyes
         
 
         public Image<Bgr, byte> img_LevatorFaceUp, img_LevatorFaceDown;
-        Image<Bgr, byte> img_Periocular; /* Both eye ROI */
+        public Image<Bgr, byte> img_Periocular; /* Both eye ROI */
 
         Image<Bgr, byte> img_L_eye;/* Patient's left eye ROI */
         Image<Bgr, byte> img_R_eye;/* Patient's right eye ROI */
@@ -241,18 +243,49 @@ namespace eyes
             // Set periocular ROI by relative position of CascadeClassifier outcome
             if (facecutori != null)
             {
+                /*
                 facecutori.ROI = facesori;
                 img_Periocular = facecutori.Clone();
                 int X = facecutori.ROI.Width * 15 / 100 + +facecutori.ROI.X;
                 int Y = facecutori.ROI.Height * 25 / 100 + facecutori.ROI.Y;
                 int Width = facecutori.ROI.Width * 70 / 100;
                 int Height = facecutori.ROI.Height * 20 / 100;
+                img_Periocular.Save("Img_P_test_1.jpg");
                 img_Periocular.ROI = new Rectangle(X , Y , Width, Height);
+                Console.WriteLine("img_Per.X={0}, img_Per.Y={1}, img_Per.Width={2}, img_Per.Height={3}"
+                            , X, Y,Width, Height);
+                offset.X += X;
+                offset.Y += Y;
                 img_LevatorFaceDown.ROI = new Rectangle(X, Y, Width, Height);
-                img_LevatorFaceUp.ROI = new Rectangle(X, Y, Width, Height);
+                img_LevatorFaceUp.ROI = new Rectangle(X, Y, Width, Height);*/
 
+                //12.01 update
+                /*
+                facesori = new Rectangle(250, 190, 1300, 230);
+                facecutori.ROI = facesori;
+                img_Periocular = facecutori.Clone();
+
+                img_LevatorFaceDown.ROI = new Rectangle(250, 240, 1300, 180);
+                img_LevatorFaceUp.ROI = new Rectangle(250, 240, 1300, 180);
+
+                facecutori.Save("Facecutori_test.jpg");
+                img_Periocular.Save("Img_P_test_2.jpg");
                 img_LevatorFaceDown.Save("LevatorFaceDown.jpg");
-                img_LevatorFaceUp.Save("LevatorFaceUp.jpg");
+                img_LevatorFaceUp.Save("LevatorFaceUp.jpg");*/
+
+                //12.10 update
+                AICornerDetection aICornerDetection = new AICornerDetection(filename);
+                aICornerDetection.findEyeROI(out facesori);
+                facecutori.ROI = facesori;
+                img_Periocular = facecutori.Clone();
+
+                aICornerDetection.setfilename(facedownfilename);
+                aICornerDetection.findEyeROI(out facesori);
+                img_LevatorFaceDown.ROI = facesori;
+
+                aICornerDetection.setfilename(faceupfilename);
+                aICornerDetection.findEyeROI(out facesori);
+                img_LevatorFaceUp.ROI = facesori;
 
             }
             else
@@ -274,9 +307,10 @@ namespace eyes
 
             Eye_temp = new Eye();
             Eye_temp.RunFRST(img_Periocular);
+            
             // Find eye ROI base on FRST
-            int BlockWidth = 100;
-            int BlockHeight = 60;
+            int BlockWidth = 350;
+            int BlockHeight = 150;
             Point EyeRoi_R = Eye_temp.FindEyeROIbyFRST(BlockWidth, BlockHeight);
             Point EyeRoi_L;
             if (EyeRoi_R.X >= (img_Periocular.Width / 2)){
@@ -288,18 +322,30 @@ namespace eyes
                 EyeRoi_L = Eye_temp.FindEyeROIbyFRST(BlockWidth, BlockHeight, "L");
             }
 
+            
             if (EyeRoi_R.X > EyeRoi_L.X){
                 Point temp = EyeRoi_R;
                 EyeRoi_R = EyeRoi_L;
                 EyeRoi_L = temp;
             }
-
+            EyeRoi_R.X -= 150;
+            EyeRoi_L.X += 150;
             // Set L_eye, R_eye, R_LevatorDown,L_LevatorDown,R_LevatorUp,L_LevatorUp ROI
             img_R_eye = img_Periocular.Copy();
             img_R_eye.ROI = new Rectangle(EyeRoi_R, new Size(BlockWidth, BlockHeight));
+
+            Console.WriteLine("img_R ={0},img_R_W = {1},img_R_H ={2}"
+                            , EyeRoi_R, BlockWidth, BlockHeight);
+            img_R_eye.Save("img_R_eye_test.jpg");
+
             img_R_CtrlPoints = img_R_eye.Copy();
             img_L_eye = img_Periocular.Copy();
             img_L_eye.ROI = new Rectangle(EyeRoi_L, new Size(BlockWidth, BlockHeight));
+
+            Console.WriteLine("img_L ={0},img_L_W = {1},img_L_H ={2}"
+                            , EyeRoi_L, BlockWidth, BlockHeight);
+            img_L_eye.Save("img_L_eye_test.jpg");
+
             img_L_CtrlPoints = img_L_eye.Copy();
 
             img_R_LevatorDown = img_LevatorFaceDown.Copy();
@@ -339,20 +385,24 @@ namespace eyes
             #region Corner
 
 
-            Image<Bgr, byte> R_Iris, L_Iris;
+            
 
+            Image<Bgr, byte> R_Iris, L_Iris;
+            
             CornerDetection CornerDetector = new CornerDetection(img_R_eye);
             CornerDetector.VPF("R", out R_IrisROI, out R_Iris);
+            
             // Get the Corner (PointF)
             R_CornerInner = CornerDetector.WVPF("R_eye_CornerL");
             R_CornerOuter = CornerDetector.WVPF("R_eye_CornerR");
             R_CornerInner.X += R_IrisROI.Right;
             R_CornerInner.Y += R_IrisROI.Top;
-
+            
+            
 
             // Draw R_eye Corner
-            //img_R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
-            //img_R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            img_R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            img_R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
 
 
             //---------------------------------------------------------------------------------------
@@ -363,11 +413,30 @@ namespace eyes
             L_CornerOuter = CornerDetector.WVPF("L_eye_CornerL");
             L_CornerInner = CornerDetector.WVPF("L_eye_CornerR");
 
-            L_CornerInner.Y += L_IrisROI.Y;
-
+            //L_CornerInner.Y += L_IrisROI.Y;
+            
             // Draw L_eye Corner
-            //img_L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
-            //img_L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            img_L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            img_L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            /*AICornerDetection aICornerDetector = new AICornerDetection(filename);
+            aICornerDetector.findCorner(out R_CornerOuter, out R_CornerInner, out L_CornerOuter, out L_CornerInner);
+            Console.WriteLine("R_cornerinner:{0}  EyeROI_R:{1}", R_CornerInner, EyeRoi_R);
+            R_CornerOuter.X -= (EyeRoi_R.X + offset.X);
+            R_CornerOuter.Y -= (EyeRoi_R.Y + offset.Y);
+            R_CornerInner.X -= (EyeRoi_R.X + offset.X);
+            R_CornerInner.Y -= (EyeRoi_R.Y + offset.Y);
+            L_CornerOuter.X -= (EyeRoi_L.X + offset.X);
+            L_CornerOuter.Y -= (EyeRoi_L.Y + offset.Y);
+            L_CornerInner.X -= (EyeRoi_L.X + offset.X);
+            L_CornerInner.Y -= (EyeRoi_L.Y + offset.Y);
+            Console.WriteLine("R_cornerinner:{0}  R_cornerouter:{1}", R_CornerInner, R_CornerOuter);
+            Console.WriteLine("L_cornerinner:{0}  L_cornerouter:{1}", L_CornerInner, L_CornerOuter);*/
+            // Draw R_eye Corner
+            img_R_eye.Draw(new Cross2DF(R_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
+            img_R_eye.Draw(new Cross2DF(R_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            // Draw L_eye Corner
+            img_L_eye.Draw(new Cross2DF(L_CornerOuter, 5, 5), new Bgr(0, 0, 255), 1);
+            img_L_eye.Draw(new Cross2DF(L_CornerInner, 5, 5), new Bgr(0, 0, 255), 1);
 
             #endregion
 
@@ -381,8 +450,8 @@ namespace eyes
             List<Image<Bgr, byte>> list_draw = new List<Image<Bgr, byte>>();
 
             // Parameter for HoughCircle
-            int minRadius = 12; // hospital : 29
-            int maxRadius = 16; // hospital : 38
+            int minRadius = 60; // hospital : 29 12
+            int maxRadius = 78; // hospital : 38 16
 
             // Right Iris Detect
             Iris_Right = new Iris();
@@ -440,6 +509,7 @@ namespace eyes
                 if (timer_stage == 2)
                 {
                     Eye_Left.DrawEyelid(ref img_L_eye);
+                    Eye_Right.DrawEyelid(ref img_R_eye);
                     
                     // Draw Iris
                     float iris_x = L_IrisROI.X + Iris_Left.get_Iris().Center.X;
@@ -1013,12 +1083,16 @@ namespace eyes
             {
                 try
                 {
+                    
                     Openfile.Title = "請選取正常直視圖";
                     My_Image1 = new Image<Gray, byte>(Openfile.FileName);
                     My_Image2 = new Image<Bgr, byte>(Openfile.FileName);
-
+                    filename = Openfile.FileName;
+                    Console.WriteLine("{0}    {1}", filename, Openfile.FileName);
                     MessageBox.Show("請選取往下看照片");
                     #region 眼睛
+                    /*
+                    Console.WriteLine("{0}", System.Environment.CurrentDirectory);
                     CascadeClassifier frontalface = new CascadeClassifier("haarcascade_frontalface_default.xml");
                     faces = frontalface.DetectMultiScale(My_Image1, 1.1, 5, new Size(200, 200), Size.Empty);
 
@@ -1036,6 +1110,10 @@ namespace eyes
 
                         facesori = new Rectangle(faces[0].X, faces[0].Y, faces[0].Width, faces[0].Height);//擷取出的臉部範圍
 
+                        Console.WriteLine("faces[0].X={0}, faces[0].Y={1}, faces[0].Width={2}, faces[0].Height={3}"
+                            , faces[0].X, faces[0].Y, faces[0].Width, faces[0].Height);
+                        //offset.X += face[0].X;
+                        //offset.Y += face[0].Y;
                         int zoomface = 60;
                         for (int i = 0; i < faces.Length; i++)//調整臉範圍大小
                         {
@@ -1054,7 +1132,10 @@ namespace eyes
                         toolStripMenuItem1.Enabled = true;
 
                     }
+                    */
                     #endregion
+                    facecutori = new Image<Bgr, byte>(filename);
+                    img_Periocular = new Image<Bgr, byte>(filename);
 
                 }
                 catch (NullReferenceException excpt) { MessageBox.Show(excpt.Message); }
@@ -1071,6 +1152,7 @@ namespace eyes
                 {
                     Openfile.Title = "請選取往下看圖";
                     img_LevatorFaceDown = new Image<Bgr, byte>(Openfile.FileName);
+                    facedownfilename = Openfile.FileName;
                     MessageBox.Show("請選取往上看照片");
                 }
                 catch (NullReferenceException excpt) { MessageBox.Show(excpt.Message); }
@@ -1087,6 +1169,7 @@ namespace eyes
                 {
                     Openfile.Title = "請選取往上看圖";
                     img_LevatorFaceUp = new Image<Bgr, byte>(Openfile.FileName);
+                    faceupfilename = Openfile.FileName;
                 }
                 catch (NullReferenceException excpt) { MessageBox.Show(excpt.Message); }
             }
@@ -1460,7 +1543,7 @@ namespace eyes
             Image<Gray, byte> his = img[2].CopyBlank();
             CvInvoke.CLAHE(img[2], 5, new Size(2, 2), his);
             his.Save("R_his.jpg");
-            Image <Gray, byte> colorSubtract = img[2] - img[0]; // R - B
+            Image <Gray, byte> colorSubtract = img[2] - img[1]; // R - G
             //CvInvoke.Normalize(colorSubtract, colorSubtract, 0, 255, NormType.MinMax);
             colorSubtract.Save("L_eyeRG.jpg");
             CvInvoke.Threshold(colorSubtract, colorSubtract, 10, 255, ThresholdType.Binary);
@@ -1486,7 +1569,7 @@ namespace eyes
                         Inx = i;
                     }
                 }
-                //CvInvoke.DrawContours(img, Contours, Inx, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
+                CvInvoke.DrawContours(img, Contours, Inx, new MCvScalar(255, 255, 255), 1, LineType.EightConnected, null);
             }
             img.Save("L_eye.jpg");
             

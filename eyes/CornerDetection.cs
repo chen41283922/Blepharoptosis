@@ -148,7 +148,12 @@ namespace eyes
             Image<Gray, byte> Corner = img.Clone();
             int CornerL_width = (CornerROI_Rx + offset) < img.Width ? offset : img.Width - CornerROI_Rx;
             int CornerR_x = (CornerROI_Lx - offset) > 0 ? CornerROI_Lx - offset : 0;
-            
+
+           // if (LorR == "R") CornerR_x -= 80;
+
+           // if(LorR == "L") CornerROI_Rx += 70;
+
+
             CornerR = img.Clone();
             CornerR.ROI = new Rectangle(CornerR_x, CornerROI_Uy, offset, CornerROI_Dy - CornerROI_Uy);
             CornerR.Save(LorR + @"\\CornerR.jpg");

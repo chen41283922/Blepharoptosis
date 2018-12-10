@@ -26,7 +26,7 @@ namespace eyes
         }
 
         VideoCapture webCam;
-        VideoCapture webCamRight;
+        //VideoCapture webCamRight;
         Image<Gray, Byte> My_Image1;
         Image<Bgr, Byte> My_Image2;
         int turn = 0;
@@ -36,7 +36,7 @@ namespace eyes
             
 
             webCam = new VideoCapture(0);
-            webCamRight = new VideoCapture(1);
+            //webCamRight = new VideoCapture(1);
             ////////////////////////////////////////////////////////相機設定
             webCam.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 900);//900*675是4:3最大，解析度再上去就會強制16:9
             webCam.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 675);
@@ -47,14 +47,14 @@ namespace eyes
             webCam.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Autograb, 0);
             webCam.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Contrast, 100);
 
-            webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 900);//900*675是4:3最大，解析度再上去就會強制16:9
+            /*webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 900);//900*675是4:3最大，解析度再上去就會強制16:9
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 675);
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Brightness, 160);
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Focus, 20);
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.XiAutoWb, 0);
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.AutoExposure, 0);
             webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Autograb, 0);
-            webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Contrast, 100);
+            webCamRight.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.Contrast, 100);*/
             Application.Idle += Application_Idle;
         }
         Image<Bgr, Byte> camImage;
@@ -66,7 +66,7 @@ namespace eyes
             try
             {
                 camImage = webCam.QueryFrame().ToImage<Bgr, Byte>();
-                RightcamImage = webCamRight.QueryFrame().ToImage<Bgr, Byte>();
+                //RightcamImage = webCamRight.QueryFrame().ToImage<Bgr, Byte>();
                 Rectangle box = new Rectangle(175,50,450,525);//偵測人臉框框
                 float[] dashValues = { 6, 6 };//設定需線pattern
                 float[] dashValues2 = { 1, 6, 5 };//設定需線pattern
@@ -78,7 +78,7 @@ namespace eyes
                 Pen greenpen = new Pen(Color.Green, 2);
                 
                 Bitmap drawellipse = new Bitmap(camImage.Bitmap);//畫橢圓用bitmap
-                Bitmap drawrightellipse = new Bitmap(RightcamImage.Bitmap);//畫橢圓用bitmap
+                //Bitmap drawrightellipse = new Bitmap(RightcamImage.Bitmap);//畫橢圓用bitmap
 
                 Image<Bgr, Byte> img = new Image<Bgr, Byte>(drawellipse);
                 
@@ -203,11 +203,11 @@ namespace eyes
                 img = new Image<Bgr, Byte>(drawellipse);
                 img.Draw(CorrectionPoint, new Bgr(Color.Green), 2);
                 Image<Bgr, Byte> result = img.Copy();
-                imageBox1.Image = result;
+                imageBox1.Image = camImage;
 
 
                 
-                Image<Bgr, Byte> Rightimg = new Image<Bgr, Byte>(drawrightellipse);
+               /* Image<Bgr, Byte> Rightimg = new Image<Bgr, Byte>(drawrightellipse);
                 Rightimg.ROI = box;
                 CascadeClassifier Rightfrontalface = new CascadeClassifier("haarcascade_frontalface_default.xml");
                 Rectangle[] Rightfaces = Rightfrontalface.DetectMultiScale(Rightimg, 1.1, 5, new Size(200, 200), Size.Empty);
@@ -227,7 +227,7 @@ namespace eyes
                 Rightimg = new Image<Bgr, Byte>(drawrightellipse);
                 Rightimg.Draw(CorrectionPoint, new Bgr(Color.Green), 2);
                 Image<Bgr, Byte> Rightresult = Rightimg.Copy();
-                imageBox2.Image = RightcamImage;//Rightresult;
+                imageBox2.Image = RightcamImage;//Rightresult;*/
             }
             catch { }
         }
@@ -261,21 +261,25 @@ namespace eyes
                 string strPicFile = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".bmp";
                 imageBox1.Image = camImage;
                 imageBox1.Image.Save(Application.StartupPath + @"\image\" + strPicFile);//照日期存檔
-
+                Form1.filename = Application.StartupPath + @"\image\" + strPicFile;
+                //imageBox1.Image.Save(strPicFile);
                 Form1.camera = imageBox1.Image.Bitmap;
-                My_Image1 = new Image<Gray, byte>(Application.StartupPath + @"\image\" + strPicFile);
-                My_Image2 = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
+                //My_Image1 = new Image<Gray, byte>(Application.StartupPath + @"\image\" + strPicFile);
+                //My_Image2 = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
+                My_Image1 = new Image<Gray, byte>(strPicFile);
+                My_Image2 = new Image<Bgr, byte>(strPicFile);
                 Form1.My_Image1 = My_Image1;
                 Form1.My_Image2 = My_Image2;
 
                 #region 眼睛
-                CascadeClassifier frontalface = new CascadeClassifier("haarcascade_frontalface_default.xml");
-                Rectangle[] faces = frontalface.DetectMultiScale(My_Image1, 1.1, 5, new Size(200, 200), Size.Empty);
+                //CascadeClassifier frontalface = new CascadeClassifier("haarcascade_frontalface_default.xml");
+                //Rectangle[] faces = frontalface.DetectMultiScale(My_Image1, 1.1, 5, new Size(200, 200), Size.Empty);
 
                 List<Rectangle> face = new List<Rectangle>();
-                face.AddRange(faces);
+                //face.AddRange(faces);
 
                 //眼睛
+                /*
                 if (faces.Length != 0)
                 {
                     Form1.facecutori = new Image<Bgr, Byte>(My_Image2.Bitmap);
@@ -296,7 +300,7 @@ namespace eyes
                     Form1.imageBox1.Image = My_Image2;
                     Form1.faces = faces;
                     Form1.toolStripMenuItem1.Enabled = true;
-                }
+                }*/
                 #endregion
 
                 MessageBox.Show("拍攝完成！接著進行提眼肌測試，請用力往下看");
@@ -306,7 +310,7 @@ namespace eyes
                 string strPicFile = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".bmp";
                 imageBox1.Image = camImage;
                 imageBox1.Image.Save(Application.StartupPath + @"\image\" + strPicFile);//照日期存檔
-
+                Form1.facedownfilename = Application.StartupPath + @"\image\" + strPicFile;
                 Form1.img_LevatorFaceDown = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
                 MessageBox.Show("拍攝完成！接著請用力往上看");
             }
@@ -315,7 +319,7 @@ namespace eyes
                 string strPicFile = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".bmp";
                 imageBox1.Image = camImage;
                 imageBox1.Image.Save(Application.StartupPath + @"\image\" + strPicFile);//照日期存檔
-
+                Form1.faceupfilename = Application.StartupPath + @"\image\" + strPicFile;
                 Form1.img_LevatorFaceUp = new Image<Bgr, byte>(Application.StartupPath + @"\image\" + strPicFile);
             }
 
@@ -333,7 +337,7 @@ namespace eyes
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
             webCam.Dispose();//視窗關掉釋放相機資源
-            webCamRight.Dispose();
+            //webCamRight.Dispose();
         }
 
         

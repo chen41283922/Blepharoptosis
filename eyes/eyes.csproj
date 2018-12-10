@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AICornerDetection.cs" />
     <Compile Include="CornerDetection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -231,6 +232,8 @@
   <ItemGroup>
     <None Include="bin\Debug\BMP\ok_1.bmp" />
     <None Include="bin\Debug\BMP\Cancel_1.bmp" />
+    <Content Include="bin\Debug\haarcascade_frontalface_default.xml" />
+    <Content Include="haarcascade_frontalface_default.xml" />
     <Content Include="Resources\Cancel_1.bmp" />
     <Content Include="Resources\ok_1.bmp" />
   </ItemGroup>
