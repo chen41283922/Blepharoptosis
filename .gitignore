@@ -24,3 +24,6 @@
 /eyes/obj/Debug/eyes.exe
 /eyes/obj/Debug/eyes.pdb
 /.vs/eyes/v14/.suo
+.vs/
+*.ide-shm
+*.cache
