@@ -27,3 +27,4 @@
 .vs/
 *.ide-shm
 *.cache
+*.lock
